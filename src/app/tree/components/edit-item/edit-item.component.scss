@@ -1,0 +1,106 @@
+h2 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.alert {
+    justify-content: center;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#cuerpo {
+    margin-top: 30px;
+}
+
+.notification {
+    padding: 10px;
+}
+
+.alert span {
+    padding: 20px;
+    background-color: rgba(141, 112, 112, 0.2);
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+i {
+    position: relative;
+    left: 8px;
+    top: 6px;
+    font-size: 1.5rem;
+    color: rgba(159, 255, 115, 0.7);
+}
+
+#cuerpo {
+    width: 100%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+form {
+    padding: 20px;
+}
+
+#submit {
+    transition: 0.4s ease-in;
+    margin-top: 20px;
+    width: 80px;
+    height: 30px;
+    font-weight: bold;
+}
+
+#submit:hover {
+    cursor: pointer;
+    box-shadow: none;
+}
+
+#inputNombre {
+    margin-bottom: 10px;
+}
+
+#inputNombre input,
+#inputArchivo input {
+    height: 23px;
+}
+
+#inputArchivo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#inputCaratula {
+    margin-top: 10px;
+}
+
+input {
+    padding-top: 8px;
+    padding-left: 16px;
+    padding-bottom: 8px;
+    padding-right: 16px;
+}
+
+.centerFlex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lista{
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .lista {
+        width: 100%;
+    }
+    .centerFlex {
+        display: block;
+    }
+    form {
+        width: 100%;
+    }
+}

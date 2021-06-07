@@ -1,0 +1,110 @@
+{
+  "CORE": {
+    "SPINNER_ADD": "Añadiendo",
+    "SPINNER_DELETE": "Borrando",
+    "SPINNER_SAVE": "Guardando",
+    "SPINNER_SEARCHING": "Cargando",
+    "MESSAGES": {
+      "CHANGES_NOT_SAVED": "Hay cambios sin guardar. ¿Desea Continuar?",
+      "COMFIRM_DELETE_RECORD": "¿Está seguro de que desea eliminar este registro?",
+      "RECORD_DELETED": "Registro eliminado corréctamente"
+    }
+  },
+  "APP": {
+    "TITLE": "TITULO DEL PROYECTO",
+    "TITLE_SHORT": "AJG"
+  },
+  "MENU": {
+    "HOME": {
+      "TITLE": "Home"
+    },
+    "SISASI": {
+      "TITLE": "Sisasi",
+      "PERSONAS_ATENDIDAS": "Personas atendidas",
+      "ACOGIDAS_Y_EXPEDIENTES": "Acogidas y expedientes",
+      "EXPEDIENTES_SEGUIMIENTO": "Expedientes de seguimiento"
+    },
+    "SECCION1": {
+      "TITLE": "Seccion 1"
+    },
+    "SECCION2": {
+      "TITLE": "Seccion 2"
+    },
+    "ADMINISTRACION": {
+      "TITLE": "Administración",
+      "ADMINISTRACION_USUARIOS": "Gestión de usuarios"
+    },
+    "INTERFAZ": "Acción",
+    "SALIR": "Salir"
+  },
+  "ADMINISTRACION": {
+    "mensajeSuccess": "La edición se ha realizado de manera satisfactoria",
+    "destino": {
+      "edicionDestinos": "Edición de los usos",
+      "titleTable": "Uso",
+      "boton": "Guardar"
+    },
+    "manualUsuario": "Manual de usuario",
+    "anadirNuevo": "Añadir nuevo",
+    "borrar": "Borrar"
+  },
+  "ADMINISTRACION_USUARIOS": {
+    "TITLE": "Gestión de usuarios",
+    "USUARIO": "Usuario",
+    "BUSCAR": "Buscar",
+    "TODOS_USUARIOS": "Todos usuarios",
+    "NUEVO_USUARIO": "Añadir nuevo usuario",
+    "TABLE": {
+      "HEADERS": {
+        "USUARIO": "Usuario",
+        "NOMBRE": "Nombre",
+        "DEPARTAMENTO": "Departamento",
+        "EMAIL": "Email",
+        "PERFIL": "Perfil",
+        "EDICION": "Edición",
+        "ACCIONES": "Acciones"
+      },
+      "modalEdit": {
+        "success": "success",
+        "error": "error",
+        "userEdition": "Edición de usuarios",
+        "active": "Activo",
+        "department": "Departamento",
+        "dni": "D.N.I.",
+        "email": "Email",
+        "name": "Nombre",
+        "administrador": "Administrador",
+        "provincias": "Provincias",
+        "fianzas": "Fianzas",
+        "ingresosIndebidos": "Ingresos indebidos",
+        "guardar": "Guardar"
+      }
+    }
+  },
+  "CONSTANTES": {
+    "TIPO_DOCUMENTO_IDENTIFICACION": {
+      "1": "DNI",
+      "2": "Pasaporte",
+      "3": "NIE",
+      "4": "Otros"
+    },
+    "PERFILES": {
+      "ADMIN": "Administrador",
+      "GEST": "Gestor",
+      "USER": "Usuario"
+    },
+    "ROLES": {
+      "USER": "Usuarios",
+      "EXT": "Externo"
+    },
+    "ACCIONES": {
+      "SC1": "Seccion 1",
+      "SC2": "Seccion 2"
+    },
+    "PERMISOS": {
+      "RW": "Edición",
+      "RO": "Lectura",
+      "SP": "Sin Permiso"
+    }
+  }
+}

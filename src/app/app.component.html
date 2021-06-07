@@ -1,0 +1,24 @@
+<desy-header [id]="'desy-demo-header'"
+             [expandedLogo]="true" homepageRouterLink="/"
+             [subnavData]="{ text: 'Demo Desy-angular' }"
+             [dropdownData]="dropdownData"
+             [offcanvasData]="{ text: 'Menu', textClose: 'Cerrar', contentHtml: headerOffCanvasMenu, labelledId: 'header-offcanvas-menu-title' }">
+  <ng-template #headerOffCanvasMenu>
+    <ul>
+      <li>
+        <h3 class="p-base text-base font-bold" id="header-offcanvas-menu-title">Componentes</h3>
+        <desy-nav [items]="componentList"></desy-nav>
+      </li>
+      <li>
+        <h3 class="p-base pt-xl text-base font-bold">Información adicional</h3>
+        <desy-nav classes="bg-warning-light" [items]="[{ text: 'Desy-frontend', href: 'https://desy-ast.aragon.es/', target: '_blank' }]"></desy-nav>
+      </li>
+    </ul>
+  </ng-template>
+</desy-header>
+
+<main id="content" class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <router-outlet></router-outlet>
+</main>
+
+<desy-footer [meta]="meta"></desy-footer>

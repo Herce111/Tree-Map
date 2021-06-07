@@ -1,0 +1,29 @@
+.a:hover{
+    outline: 1px solid black;
+}
+
+.arrow{
+    margin-left: 5px;
+}
+
+.noStyle{
+    background-color:transparent;
+    border: none;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.breadcrumbs{
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.block-left{
+    display: block;
+    float: left;
+}

@@ -1,0 +1,82 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<app-implementation-info info="Implementación de menu-horizontal básico" observations="Utiliza las clases 'c-menu-horizontal--tabs mb-5'"></app-implementation-info>
+<desy-menu-horizontal classes="c-menu-horizontal--tabs mb-5" [items]="items"></desy-menu-horizontal>
+<app-spaced [withBorder]="true"></app-spaced>
+
+<app-implementation-info info="Implementación de menu-horizontal completo" observations="El tercer ítem es configurable"></app-implementation-info>
+<desy-menu-horizontal
+  [id]="id"
+  (clickEvent)="handleClickEvent($event)"
+  [idPrefix]="idPrefix"
+  [classes]="classes"
+  [items]="itemsFull"
+  [role]="role"
+  [ariaLabel]="ariaLabel"
+  [ariaDescribedBy]="ariaDescribedBy"
+  [ariaLabelledBy]="ariaLabelledBy"
+  [ariaHidden]="ariaHidden"
+  [ariaDisabled]="ariaDisabled"
+  [ariaControls]="ariaControls"
+  [ariaCurrent]="ariaCurrent"
+  [ariaLive]="ariaLive"
+  [ariaExpanded]="ariaExpanded"
+  [ariaErrorMessage]="ariaErrorMessage"
+  [ariaHasPopup]="ariaHasPopup"
+  [tabindex]="tabindex"></desy-menu-horizontal>
+<p *ngIf="selectedItem">Seleccionado {{selectedItem.text}}</p>
+<app-spaced [withBorder]="true"></app-spaced>
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params></app-title-params>
+    <app-input-text [nameComponent]="nameComponent" placeholder="uppercase c-menu-horizontal--tabs ..." [nameProperty]="'classes'" [(target)]="classes"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="Id" [(target)]="id"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="Id-prefix" [(target)]="idPrefix"> </app-input-text>
+  </div>
+
+  <app-accessibility-inputs [(role)]="role"
+                            [(ariaLabel)]="ariaLabel"
+                            [(ariaDescribedBy)]="ariaDescribedBy"
+                            [(ariaLabelledBy)]="ariaLabelledBy"
+                            [(ariaHidden)]="ariaHidden"
+                            [(ariaDisabled)]="ariaDisabled"
+                            [(ariaControls)]="ariaControls"
+                            [(ariaCurrent)]="ariaCurrent"
+                            [(ariaLive)]="ariaLive"
+                            [(ariaExpanded)]="ariaExpanded"
+                            [(ariaErrorMessage)]="ariaErrorMessage"
+                            [(ariaHasPopup)]="ariaHasPopup"
+                            [(tabindex)]="tabindex"></app-accessibility-inputs>
+</div>
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params></app-title-params>
+    <app-input-text nameComponent="itemCustom" nameProperty="text" [(target)]="itemCustom.text"> </app-input-text>
+    <app-input-text nameComponent="itemCustom" nameProperty="html" [(target)]="itemCustom.html"> </app-input-text>
+    <app-input-text nameComponent="itemCustom" nameProperty="href" [(target)]="itemCustom.href"> </app-input-text>
+    <app-input-text nameComponent="itemCustom" nameProperty="routerLink" [(target)]="itemCustom.routerLink"> </app-input-text>
+    <app-input-text nameComponent="itemCustom" placeholder="input-item-id" nameProperty="fragment" [(target)]="itemCustom.fragment"></app-input-text>
+    <app-input-text nameComponent="itemCustom" placeholder="_blank" nameProperty="target" [(target)]="itemCustom.target"> </app-input-text>
+    <app-input-boolean nameComponent="itemCustom"  nameProperty="active" [(target)]="itemCustom.active"> </app-input-boolean>
+    <app-input-boolean nameComponent="itemCustom"  nameProperty="disabled" [(target)]="itemCustom.disabled"> </app-input-boolean>
+    <app-input-text nameComponent="itemCustom" placeholder="text-primary-base uppercase ..." nameProperty="classes" [(target)]="itemCustom.classes"> </app-input-text>
+    <app-input-text nameComponent="itemCustom" nameProperty="Id" [(target)]="itemCustom.id"> </app-input-text>
+  </div>
+
+  <app-accessibility-inputs id="input-item-id"
+                            [(role)]="itemCustom.role"
+                            [(ariaLabel)]="itemCustom.ariaLabel"
+                            [(ariaDescribedBy)]="itemCustom.ariaDescribedBy"
+                            [(ariaLabelledBy)]="itemCustom.ariaLabelledBy"
+                            [(ariaHidden)]="itemCustom.ariaHidden"
+                            [(ariaDisabled)]="itemCustom.ariaDisabled"
+                            [(ariaControls)]="itemCustom.ariaControls"
+                            [(ariaCurrent)]="itemCustom.ariaCurrent"
+                            [(ariaLive)]="itemCustom.ariaLive"
+                            [(ariaExpanded)]="itemCustom.ariaExpanded"
+                            [(ariaErrorMessage)]="itemCustom.ariaErrorMessage"
+                            [(ariaHasPopup)]="itemCustom.ariaHasPopup"
+                            [(tabindex)]="itemCustom.tabindex"></app-accessibility-inputs>
+</div>

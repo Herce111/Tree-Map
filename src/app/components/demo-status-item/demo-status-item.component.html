@@ -1,0 +1,294 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<ng-template #callerAction>
+  <button class="c-button c-button--transparent" data-module="c-button">Action</button>
+</ng-template>
+<ng-template #callerAdd>
+  <button class="c-button c-button--transparent" data-module="c-button">Aportar</button>
+</ng-template>
+<ng-template #callerModify>
+  <button class="c-button c-button--transparent" data-module="c-button">Modificar</button>
+</ng-template>
+
+<app-implementation-info info="Implementación Default"></app-implementation-info>
+<desy-status-item [id]="'default'" [title]="{'text':'Title'}" [caller]="callerAction"></desy-status-item>
+<app-spaced></app-spaced>
+
+<app-implementation-info info="Implementación Default Only Items"></app-implementation-info>
+<desy-status-item [id]="'only-items'"
+                  [items]="[{'term':{'text':'term'},'definition':{'text':'definition'}},{'term':{'text':'term'},'definition':{'text':'definition'}},{'term':{'text':'term'},'definition':{'text':'definition'}}]"
+                  [status]="{'text':'status','icon':{'type':'success'}}"
+                  [caller]="callerAction"></desy-status-item>
+<app-spaced></app-spaced>
+
+<app-implementation-info info="Implementación Con title Html"></app-implementation-info>
+<desy-status-item [id]="'with-title-html'"
+                  [title]="{'html':'Autorización para la consulta de datos de las personas de la unidad familiar. <span>(Documento condicionado)</span>'}"
+                  [caller]="callerAdd"></desy-status-item>
+<app-spaced></app-spaced>
+
+<app-implementation-info info="Implementación Con Hint"></app-implementation-info>
+<desy-status-item [id]="'with-hint'"
+                  [title]="{'text':'Personas de la unidad familiar'}"
+                  [hint]="{'text':'2 personas añadidas','id':'with-hint-html-hint'}"
+                  [status]="{'text':'Aportado','icon':{'type':'success'}}"
+                  [caller]="callerModify"></desy-status-item>
+<app-spaced></app-spaced>
+
+<app-implementation-info info="Implementación Con Status y errorMessage"></app-implementation-info>
+<desy-status-item [id]="'with-status-alert'" classes="border-l-4 border-alert-base"
+                  [title]="{'text':'Datos adicionales del solicitante'}"
+                  [errorMessage]="{'text':'Es necesario aportar este documento para enviar el trámite','classes':'my-sm text-alert-base'}"
+                  [status]="{'text':'Incompleto','icon':{'type':'alert'},'classes':'text-alert-base'}"
+                  [caller]="callerModify"></desy-status-item>
+<app-spaced></app-spaced>
+
+
+
+<app-implementation-info info="Implementación Editable"></app-implementation-info>
+<desy-status-item [id]="id" [classes]='classes'
+                  [title]="title" [status]="status"
+                  [hint]="hint" [errorMessage]="errorMessage"
+                  [items]="items" [caller]="callerModify"
+                  [role]="role"
+                  [ariaLabel]="ariaLabel"
+                  [ariaDescribedBy]="ariaDescribedBy"
+                  [ariaLabelledBy]="ariaLabelledBy"
+                  [ariaHidden]="ariaHidden"
+                  [ariaDisabled]="ariaDisabled"
+                  [ariaControls]="ariaControls"
+                  [ariaCurrent]="ariaCurrent"
+                  [ariaLive]="ariaLive"
+                  [ariaExpanded]="ariaExpanded"
+                  [ariaErrorMessage]="ariaErrorMessage"
+                  [ariaHasPopup]="ariaHasPopup"
+                  [tabindex]="tabindex"></desy-status-item>
+<app-spaced></app-spaced>
+
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+
+  <div>
+    <app-title-params></app-title-params>
+    <app-input-text [nameComponent]="nameComponent" placeholder="text-alert-base..." nameProperty="classes" [(target)]="classes"></app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="id"></app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="errorId" [(target)]="errorId"></app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="describedBy" [(target)]="describedBy"></app-input-text>
+  </div>
+
+  <app-accessibility-inputs [(role)]="role"
+                            [(ariaLabel)]="ariaLabel"
+                            [(ariaDescribedBy)]="ariaDescribedBy"
+                            [(ariaLabelledBy)]="ariaLabelledBy"
+                            [(ariaHidden)]="ariaHidden"
+                            [(ariaDisabled)]="ariaDisabled"
+                            [(ariaControls)]="ariaControls"
+                            [(ariaCurrent)]="ariaCurrent"
+                            [(ariaLive)]="ariaLive"
+                            [(ariaExpanded)]="ariaExpanded"
+                            [(ariaErrorMessage)]="ariaErrorMessage"
+                            [(ariaHasPopup)]="ariaHasPopup"
+                            [(tabindex)]="tabindex"></app-accessibility-inputs>
+
+  <div>
+    <app-title-params titleparams="Parámetros de title"></app-title-params>
+    <details>
+      <summary
+        class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text [nameComponent]="nameComponent + '.title'" [nameProperty]="'text'" [(target)]="title.text"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent + '.title'" [nameProperty]="'html'" [(target)]="title.html"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent + '.title'" [nameProperty]="'classes'" [(target)]="title.classes" placeholder="bg-warning-light..."></app-input-text>
+      </div>
+    </details>
+  </div>
+  <div></div> <!-- Sin atributos de accesibilidad -->
+
+  <div>
+    <app-title-params titleparams="Parámetros de status"></app-title-params>
+    <details>
+      <summary
+        class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="status" [nameProperty]="'text'" [(target)]="status.text"></app-input-text>
+        <app-input-text nameComponent="status" [nameProperty]="'id'" [(target)]="status.id"></app-input-text>
+        <app-input-text nameComponent="status" [nameProperty]="'classes'" [(target)]="status.classes" placeholder="text-alert-base..."></app-input-text>
+        <app-input-text nameComponent="status" [nameProperty]="'icon.html'" [(target)]="status.icon.html"></app-input-text>
+        <app-input-text nameComponent="status" [nameProperty]="'icon.type'" [(target)]="status.icon.type" placeholder="success, alert, loading and error"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs [id]="'status-id'" title="Parámetros de accesibilidad de Status" id="status"
+                            [(role)]="status.role"
+                            [(ariaLabel)]="status.ariaLabel"
+                            [(ariaDescribedBy)]="status.ariaDescribedBy"
+                            [(ariaLabelledBy)]="status.ariaLabelledBy"
+                            [(ariaHidden)]="status.ariaHidden"
+                            [(ariaDisabled)]="status.ariaDisabled"
+                            [(ariaControls)]="status.ariaControls"
+                            [(ariaCurrent)]="status.ariaCurrent"
+                            [(ariaLive)]="status.ariaLive"
+                            [(ariaExpanded)]="status.ariaExpanded"
+                            [(ariaErrorMessage)]="status.ariaErrorMessage"
+                            [(ariaHasPopup)]="status.ariaHasPopup"
+                            [(tabindex)]="status.tabindex"></app-accessibility-inputs>
+  <div>
+    <app-title-params titleparams="Parámetros de Hint"></app-title-params>
+    <details>
+      <summary
+        class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="hint" [nameProperty]="'text'" [(target)]="hint.text"></app-input-text>
+        <app-input-text nameComponent="hint" [nameProperty]="'html'" [(target)]="hint.html"></app-input-text>
+        <app-input-text nameComponent="hint" [nameProperty]="'id'" [(target)]="hint.id"></app-input-text>
+        <app-input-text nameComponent="hint" [nameProperty]="'classes'" [(target)]="hint.classes" placeholder="text-alert-base..."></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs [id]="'hint-id'" title="Parámetros de accesibilidad de hint" id="hint"
+                            [(role)]="hint.role"
+                            [(ariaLabel)]="hint.ariaLabel"
+                            [(ariaDescribedBy)]="hint.ariaDescribedBy"
+                            [(ariaLabelledBy)]="hint.ariaLabelledBy"
+                            [(ariaHidden)]="hint.ariaHidden"
+                            [(ariaDisabled)]="hint.ariaDisabled"
+                            [(ariaControls)]="hint.ariaControls"
+                            [(ariaCurrent)]="hint.ariaCurrent"
+                            [(ariaLive)]="hint.ariaLive"
+                            [(ariaExpanded)]="hint.ariaExpanded"
+                            [(ariaErrorMessage)]="hint.ariaErrorMessage"
+                            [(ariaHasPopup)]="hint.ariaHasPopup"
+                            [(tabindex)]="hint.tabindex"></app-accessibility-inputs>
+
+  <div>
+    <app-title-params titleparams="Parámetros de ErrorMessage"></app-title-params>
+    <details>
+      <summary
+        class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="Error message" [nameProperty]="'text'" [(target)]="errorMessage.text"></app-input-text>
+        <app-input-text nameComponent="Error message" [nameProperty]="'html'" [(target)]="errorMessage.html"></app-input-text>
+        <app-input-text nameComponent="Error message" [nameProperty]="'id'" [(target)]="errorMessage.id"></app-input-text>
+        <app-input-text nameComponent="Error message" [nameProperty]="'classes'" [(target)]="errorMessage.classes" placeholder="my-sm text-alert-base..."></app-input-text>
+        <app-input-text nameComponent="Error message" [nameProperty]="'visuallyHiddenText'" [(target)]="errorMessage.visuallyHiddenText"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs [id]="'error-message-id'" title="Parámetros de accesibilidad de errorMessage" id="errorMessage"
+                            [(role)]="errorMessage.role"
+                            [(ariaLabel)]="errorMessage.ariaLabel"
+                            [(ariaDescribedBy)]="errorMessage.ariaDescribedBy"
+                            [(ariaLabelledBy)]="errorMessage.ariaLabelledBy"
+                            [(ariaHidden)]="errorMessage.ariaHidden"
+                            [(ariaDisabled)]="errorMessage.ariaDisabled"
+                            [(ariaControls)]="errorMessage.ariaControls"
+                            [(ariaCurrent)]="errorMessage.ariaCurrent"
+                            [(ariaLive)]="errorMessage.ariaLive"
+                            [(ariaExpanded)]="errorMessage.ariaExpanded"
+                            [(ariaErrorMessage)]="errorMessage.ariaErrorMessage"
+                            [(ariaHasPopup)]="errorMessage.ariaHasPopup"
+                            [(tabindex)]="errorMessage.tabindex"></app-accessibility-inputs>
+  <div>
+    <app-title-params titleparams="Parámetros de item"></app-title-params>
+    <details>
+      <summary
+        class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="item" placeholder="mb-base ..." nameProperty="classes"
+                        [(target)]="item.classes"></app-input-text>
+        <app-input-text nameComponent="item" nameProperty="id" [(target)]="item.id"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs [id]="'item-id'" title="Parámetros de accesibilidad del item" id="item"
+                            [(role)]="item.role"
+                            [(ariaLabel)]="item.ariaLabel"
+                            [(ariaDescribedBy)]="item.ariaDescribedBy"
+                            [(ariaLabelledBy)]="item.ariaLabelledBy"
+                            [(ariaHidden)]="item.ariaHidden"
+                            [(ariaDisabled)]="item.ariaDisabled"
+                            [(ariaControls)]="item.ariaControls"
+                            [(ariaCurrent)]="item.ariaCurrent"
+                            [(ariaLive)]="item.ariaLive"
+                            [(ariaExpanded)]="item.ariaExpanded"
+                            [(ariaErrorMessage)]="item.ariaErrorMessage"
+                            [(ariaHasPopup)]="item.ariaHasPopup"></app-accessibility-inputs>
+
+
+  <div>
+    <app-title-params titleparams="Parámetros de Term del item"></app-title-params>
+    <details>
+      <summary
+        class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="term" nameProperty="text" [(target)]="item.term.text"></app-input-text>
+        <app-input-text nameComponent="term" nameProperty="html" [(target)]="item.term.html"></app-input-text>
+        <app-input-text nameComponent="term" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="item.term.classes"></app-input-text>
+        <app-input-text nameComponent="term" nameProperty="id" [(target)]="item.term.id"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs [id]="'term-item-id'" title="Parámetros de accesibilidad de term del item" id="term"
+                            [(role)]="item.term.role"
+                            [(ariaLabel)]="item.term.ariaLabel"
+                            [(ariaDescribedBy)]="item.term.ariaDescribedBy"
+                            [(ariaLabelledBy)]="item.term.ariaLabelledBy"
+                            [(ariaHidden)]="item.term.ariaHidden"
+                            [(ariaDisabled)]="item.term.ariaDisabled"
+                            [(ariaControls)]="item.term.ariaControls"
+                            [(ariaCurrent)]="item.term.ariaCurrent"
+                            [(ariaLive)]="item.term.ariaLive"
+                            [(ariaExpanded)]="item.term.ariaExpanded"
+                            [(ariaErrorMessage)]="item.term.ariaErrorMessage"
+                            [(ariaHasPopup)]="item.term.ariaHasPopup"></app-accessibility-inputs>
+
+  <div>
+    <app-title-params titleparams="Parámetros de Definition del item"></app-title-params>
+    <details>
+      <summary
+        class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="definition" nameProperty="text" [(target)]="item.definition.text"></app-input-text>
+        <app-input-text nameComponent="definition" nameProperty="html" [(target)]="item.definition.html"></app-input-text>
+        <app-input-text nameComponent="definition" placeholder="font-bold text-xl ..." nameProperty="classes" [(target)]="item.definition.classes"></app-input-text>
+        <app-input-text nameComponent="definition" nameProperty="id" [(target)]="item.definition.id"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs [id]="'definition-item-id'" title="Parámetros de accesibilidad de definition del item" id="definition"
+                            [(role)]="item.definition.role"
+                            [(ariaLabel)]="item.definition.ariaLabel"
+                            [(ariaDescribedBy)]="item.definition.ariaDescribedBy"
+                            [(ariaLabelledBy)]="item.definition.ariaLabelledBy"
+                            [(ariaHidden)]="item.definition.ariaHidden"
+                            [(ariaDisabled)]="item.definition.ariaDisabled"
+                            [(ariaControls)]="item.definition.ariaControls"
+                            [(ariaCurrent)]="item.definition.ariaCurrent"
+                            [(ariaLive)]="item.definition.ariaLive"
+                            [(ariaExpanded)]="item.definition.ariaExpanded"
+                            [(ariaErrorMessage)]="item.definition.ariaErrorMessage"
+                            [(ariaHasPopup)]="item.definition.ariaHasPopup"></app-accessibility-inputs>
+
+</div>
+
+

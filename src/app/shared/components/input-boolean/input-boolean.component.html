@@ -1,0 +1,15 @@
+<label class="block mt-base" [for]="nameComponenetProperty">{{ nameProperty }}</label>
+<p [id]="'pid-' + nameComponenetProperty"class="block text-neutral-dark">
+    {{ description ? description : ('Introduce el ' + nameProperty + ' que quieres mostrar en el componente ' + nameComponent)}}
+</p>
+<div class="relative flex items-start py-base">
+            <div class="flex items-center mx-sm">
+              <input  class="form-checkbox text-primary-base transition duration-150 ease-in-out" type="checkbox" 
+                [id]="nameComponenetProperty"
+                [name]="nameProperty + '-name'" 
+                [ngModel]="target" (ngModelChange)="targetChange.emit($event)">
+            </div>
+            <div class="pt-0.5 leading-5">
+              <label class="block" [for]="nameComponenetProperty">{{ nameProperty }}</label>
+            </div>
+</div>

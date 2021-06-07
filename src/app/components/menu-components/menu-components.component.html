@@ -1,0 +1,15 @@
+<div class="pb-lg"></div>
+<div class="c-h1">Componentes</div>
+<div class="pb-lg"></div>
+<nav class="text-sm">
+  <ul>
+    <li *ngFor="let item of sortBy('title')">
+      <a [routerLink]="'/' + item.alias" [id]="'site-menu-item-' + item.alias"
+        class="flex items-center px-base py-xs hover:bg-primary-base hover:text-white truncate  focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        {{ item.title }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="pb-2xl"></div>

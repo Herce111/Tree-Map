@@ -1,0 +1,61 @@
+<ng-container *ngIf="(itemList | async) as itemLst">
+    <app-title-demo [name]="nameComponent"></app-title-demo>
+    <desy-button [html]="'Atras'" [type]="'button'" (click)="goBack()"></desy-button>
+    <div id="cuerpo">
+
+        <desy-notification *ngIf="success" id="type-success" class="notification" [title]="{'text':'Item modificado correctamente'}" type="success">
+        </desy-notification>
+
+        <desy-notification *ngIf="generalError" id="type-alert" class="notification" [title]="{'text':'Ha ocurrido un error, revise el formulario'}" type="alert">
+        </desy-notification>
+
+
+        <div class="centerFlex">
+            <div class="lista">
+                <h3 style="margin-left: 40px;" id="tree_label">Ubicación</h3>
+                <app-tree-bar [(ngModel)]="itemID" (ngModelChange)="changeValue($event)" name="itemId" [hijos]="itemLst"
+                    appReplaceTag></app-tree-bar>
+                <!-- <app-item-list [(ngModel)]="itemID" (ngModelChange)="changeValue($event)" name="itemId" [hijos]="itemLst" appReplaceTag></app-item-list>
+                <small style="margin-left: 40px;">Es obligatorio seleccionar ubicación</small> -->
+            </div>
+
+            <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+
+                <div id="inputNombre">
+                    <desy-input [id]="'nombre-full'" [formControlName]="'nombre'" [labelText]="'Nombre'"
+                        [errorMessageText]="(nombreI.invalid && (nombreI.dirty || nombreI.touched)) 
+                                      ? nombreI.errors.required
+                                      ? 'Nombre es obligatorio'
+                                      : nombreI.errors.pattern ? 'Debe empezar por mayuscula':null
+                                      : null" [name]="'nombre'" [placeholder]="'Nombre'" [type]="'text'"
+                        [classes]="'block'">
+                    </desy-input>
+                </div>
+
+                <div id="inputCaratula">
+                    <desy-checkboxes [formControlName]="'caratula'" [items]="itemsContact" [id]="'caratula-full'"
+                        [name]="'caratula'">
+                    </desy-checkboxes>
+                </div>
+
+                <div id="inputArchivo">
+                    <desy-input [id]="'file-full'" [formControlName]="'file'" [labelText]="'Archivo'" [name]="'file'"
+                        [placeholder]="'Archivo'" [type]="'text'" [classes]="'block'">
+                    </desy-input>
+                </div>
+
+                <desy-checkboxes *ngIf="hijos" formControlName="hijos" legendText="Hijos a conservar" hintText="Deselecciona los hijos a eliminar"
+                    [items]="itemsToDelete" id="hijos" name="hijos">
+                </desy-checkboxes>
+
+                <div class="centerFlex">
+                    <desy-button [html]="'Aceptar'" [type]="'submit'"></desy-button>
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </div>
+</ng-container>

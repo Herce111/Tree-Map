@@ -1,0 +1,125 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<app-implementation-info info="Implementación Default con false y null"></app-implementation-info>
+<desy-table [rows]="[[{'text':'January'},{'text':'85€','classes':'text-right'},{'text':'95€','classes':'text-right'}],false,null,
+                        [{'text':'February'},{'text':'75€','classes':'text-right'},{'text':'55€','classes':'text-right'}],
+                        [{'text':'March'},{'text':'165€','classes':'text-right'},{'text':'125€','classes':'text-right'}]]"></desy-table>
+<app-spaced withBorder></app-spaced>
+
+<app-implementation-info info="Implementación Table con Head y Caption"></app-implementation-info>
+<desy-table caption="Caption 1: Months and rates" captionClasses="mb-base font-bold text-left text-lg"
+            [head]="[{'text':'Month you apply'},{'text':'Rate for bicycles','classes':'text-right'},{'text':'Rate for vehicles','classes':'text-right'}]"
+            [rows]="[[{'text':'January'},{'text':'85€','classes':'text-right'},{'text':'95€','classes':'text-right'}],
+                        [{'text':'February'},{'text':'75€','classes':'text-right'},{'text':'55€','classes':'text-right'}],
+                        [{'text':'March'},{'text':'165€','classes':'text-right'},{'text':'125€','classes':'text-right'}]]"></desy-table>
+<app-spaced withBorder></app-spaced>
+
+<app-implementation-info info="Implementación editable "></app-implementation-info>
+<desy-table [caption]="caption" [captionClasses]="captionClasses" 
+            [firstCellIsHeader]="firstCellIsHeader" [classes]="classes" 
+            [id]="id" [head]="head" [rows]="rows"
+            [role]="role"
+            [ariaLabel]="ariaLabel"
+            [ariaDescribedBy]="ariaDescribedBy"
+            [ariaLabelledBy]="ariaLabelledBy"
+            [ariaHidden]="ariaHidden"
+            [ariaDisabled]="ariaDisabled"
+            [ariaControls]="ariaControls"
+            [ariaCurrent]="ariaCurrent"
+            [ariaLive]="ariaLive"
+            [ariaExpanded]="ariaExpanded"
+            [ariaErrorMessage]="ariaErrorMessage"
+            [ariaHasPopup]="ariaHasPopup"
+            [tabindex]="tabindex"></desy-table>
+<app-spaced withBorder></app-spaced>
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+
+    <div>
+        <app-title-params></app-title-params>
+        <app-input-text [nameComponent]="nameComponent" placeholder="c-table ..." nameProperty="classes" [(target)]="classes"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="id"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="caption" [(target)]="caption"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" placeholder="mb-base font-bold text-left text-lg ..." nameProperty="captionClasses" [(target)]="captionClasses"> </app-input-text>
+        <app-input-boolean [nameComponent]="nameComponent" description="Primera celda como TH" nameProperty="firstCellIsHeader" [(target)]="firstCellIsHeader"> </app-input-boolean>
+    </div>
+
+
+    <app-accessibility-inputs [(role)]="role"
+                [(ariaLabel)]="ariaLabel"
+                [(ariaDescribedBy)]="ariaDescribedBy"
+                [(ariaLabelledBy)]="ariaLabelledBy"
+                [(ariaHidden)]="ariaHidden"
+                [(ariaDisabled)]="ariaDisabled"
+                [(ariaControls)]="ariaControls"
+                [(ariaCurrent)]="ariaCurrent"
+                [(ariaLive)]="ariaLive"
+                [(ariaExpanded)]="ariaExpanded"
+                [(ariaErrorMessage)]="ariaErrorMessage"
+                [(ariaHasPopup)]="ariaHasPopup"
+                [(tabindex)]="tabindex"></app-accessibility-inputs>
+
+    <div>
+        <app-title-params titleparams="Parámetros de ultimo row"></app-title-params>
+         <details>
+        <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+            <span>Mostrar</span>
+        </summary>
+        <div class="py-sm">
+            <app-input-text nameComponent="itemRow" nameProperty="text" [(target)]="itemRow.text"> </app-input-text>
+            <app-input-text nameComponent="itemRow" nameProperty="html" [(target)]="itemRow.html"> </app-input-text>
+            <app-input-text nameComponent="itemRow" nameProperty="classes" [(target)]="itemRow.classes"> </app-input-text>
+            <app-input-text nameComponent="itemRow" nameProperty="id" [(target)]="itemRow.id"> </app-input-text>
+            <app-input-number nameComponent="itemRow" nameProperty="colspan" [(target)]="itemRow.colspan"></app-input-number>
+            <app-input-number nameComponent="itemRow" nameProperty="rowspan" [(target)]="itemRow.rowspan"></app-input-number>
+            </div>
+        </details>
+    </div>
+
+    <app-accessibility-inputs title="Parámetros de accesibilidad del ultimo row" id="itemRow"
+                            [(role)]="itemRow.role"
+                            [(ariaLabel)]="itemRow.ariaLabel"
+                            [(ariaDescribedBy)]="itemRow.ariaDescribedBy"
+                            [(ariaLabelledBy)]="itemRow.ariaLabelledBy"
+                            [(ariaHidden)]="itemRow.ariaHidden"
+                            [(ariaDisabled)]="itemRow.ariaDisabled"
+                            [(ariaControls)]="itemRow.ariaControls"
+                            [(ariaCurrent)]="itemRow.ariaCurrent"
+                            [(ariaLive)]="itemRow.ariaLive"
+                            [(ariaExpanded)]="itemRow.ariaExpanded"
+                            [(ariaErrorMessage)]="itemRow.ariaErrorMessage"
+                            [(ariaHasPopup)]="itemRow.ariaHasPopup"
+                            [(tabindex)]="itemRow.tabindex"></app-accessibility-inputs>
+
+    <div>
+        <app-title-params titleparams="Parámetros de la ultima head"></app-title-params>
+            <details>
+                <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+                    <span>Mostrar</span>
+                </summary>
+                <div class="py-sm">
+                    <app-input-text nameComponent="itemHead" nameProperty="text" [(target)]="itemHead.text"> </app-input-text>
+                    <app-input-text nameComponent="itemHead" nameProperty="html" [(target)]="itemHead.html"> </app-input-text>
+                    <app-input-text nameComponent="itemHead" nameProperty="classes" [(target)]="itemHead.classes"> </app-input-text>
+                    <app-input-text nameComponent="itemHead" nameProperty="id" [(target)]="itemHead.id"> </app-input-text>
+                    <app-input-number nameComponent="itemHead" nameProperty="colspan" [(target)]="itemHead.colspan"></app-input-number>
+                    <app-input-number nameComponent="itemHead" nameProperty="rowspan" [(target)]="itemHead.rowspan"></app-input-number>
+                    </div>
+            </details>
+    </div>
+
+    <app-accessibility-inputs title="Parámetros de accesibilidad de la ultima head" id="itemHead"
+                            [(role)]="itemHead.role"
+                            [(ariaLabel)]="itemHead.ariaLabel"
+                            [(ariaDescribedBy)]="itemHead.ariaDescribedBy"
+                            [(ariaLabelledBy)]="itemHead.ariaLabelledBy"
+                            [(ariaHidden)]="itemHead.ariaHidden"
+                            [(ariaDisabled)]="itemHead.ariaDisabled"
+                            [(ariaControls)]="itemHead.ariaControls"
+                            [(ariaCurrent)]="itemHead.ariaCurrent"
+                            [(ariaLive)]="itemHead.ariaLive"
+                            [(ariaExpanded)]="itemHead.ariaExpanded"
+                            [(ariaErrorMessage)]="itemHead.ariaErrorMessage"
+                            [(ariaHasPopup)]="itemHead.ariaHasPopup"
+                            [(tabindex)]="itemHead.tabindex"></app-accessibility-inputs>
+</div>

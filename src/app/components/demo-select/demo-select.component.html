@@ -1,0 +1,174 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<app-implementation-info info="implementación de select básica"></app-implementation-info>
+
+<desy-select [id]="id" [classes]="classes" [name]="name" [items]="items"
+             [disabled]="disabled" [(ngModel)]="value"
+             [describedBy]="describedBy" [formGroupClasses]="formGroupClasses" [role]="role"
+             [ariaLabel]="ariaLabel"  [ariaLabelledBy]="ariaLabelledBy"
+             [ariaHidden]="ariaHidden" [ariaDisabled]="ariaDisabled" [ariaControls]="ariaControls"
+             [ariaCurrent]="ariaCurrent" [ariaLive]="ariaLive" [ariaExpanded]="ariaExpanded"
+             [ariaErrorMessage]="ariaErrorMessage" [ariaHasPopup]="ariaHasPopup" [tabindex]="tabindex"></desy-select>
+<p> Valor: {{value}}</p>
+<app-spaced withBorder></app-spaced>
+
+<app-implementation-info
+  info="implementación de select completo con interfaces y reactiveForm"></app-implementation-info>
+
+<form [formGroup]="form">
+  <desy-select formControlName="valueFormControl" [id]="id" [classes]="classes" [name]="name" [items]="items"
+               [disabled]="disabled"  [formGroupClasses]="formGroupClasses"
+               [labelData]="(labelData.text || labelData.html) ? labelData : null"
+               [hintData]="(hintData.text || hintData.html) ? hintData : null"
+               [errorMessageData]="(errorMessageData.text || errorMessageData.html) ? errorMessageData : null"
+               [describedBy]="describedBy" [role]="role"
+               [ariaLabel]="ariaLabel"  [ariaLabelledBy]="ariaLabelledBy"
+               [ariaHidden]="ariaHidden" [ariaDisabled]="ariaDisabled" [ariaControls]="ariaControls"
+               [ariaCurrent]="ariaCurrent" [ariaLive]="ariaLive" [ariaExpanded]="ariaExpanded"
+               [ariaErrorMessage]="ariaErrorMessage" [ariaHasPopup]="ariaHasPopup" [tabindex]="tabindex"></desy-select>
+</form>
+<p> Valor: {{form.value.valueFormControl}}</p>
+
+<app-spaced withBorder></app-spaced>
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params></app-title-params>
+
+    <p>Número de opciones</p>
+    <input type="number"  class="c-input form-input block mt-sm" [ngModel]="items.length" (ngModelChange)="generateObjects($event)">
+
+    <app-input-text [nameComponent]="nameComponent" nameProperty="Id" [(target)]="id"></app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="name" [(target)]="name"></app-input-text>
+    <app-input-text [nameComponent]="nameComponent" placeholder="text-primary-base uppercase ..."
+                    nameProperty="classes" [(target)]="classes"></app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="formGroupClasses" [(target)]="formGroupClasses"></app-input-text>
+    
+    <app-input-text [nameComponent]="nameComponent" nameProperty="describedBy"
+                    [(target)]="describedBy"></app-input-text>
+    <app-input-boolean [nameComponent]="nameComponent" nameProperty="disabled"
+                       [(target)]="disabled"></app-input-boolean>
+
+  </div>
+
+  <app-accessibility-inputs [(role)]="role"
+                            [(ariaLabel)]="ariaLabel"
+                            [hideAriaDescribedBy]="true"
+                            [(ariaLabelledBy)]="ariaLabelledBy"
+                            [(ariaHidden)]="ariaHidden"
+                            [(ariaDisabled)]="ariaDisabled"
+                            [(ariaControls)]="ariaControls"
+                            [(ariaCurrent)]="ariaCurrent"
+                            [(ariaLive)]="ariaLive"
+                            [(ariaExpanded)]="ariaExpanded"
+                            [(ariaErrorMessage)]="ariaErrorMessage"
+                            [(ariaHasPopup)]="ariaHasPopup"
+                            [(tabindex)]="tabindex"></app-accessibility-inputs>
+
+  <div>
+    <app-title-params titleparams="Parámetros de label"></app-title-params>
+    <details>
+      <summary
+        class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="label" nameProperty="text" [(target)]="labelData.text"></app-input-text>
+        <app-input-text nameComponent="label" nameProperty="html" [(target)]="labelData.html"></app-input-text>
+        <app-input-text nameComponent="label" nameProperty="for" [(target)]="labelData.for"></app-input-text>
+        <app-input-text nameComponent="label" placeholder="inline-block bg-warning-light ..." nameProperty="classes"
+                        [(target)]="labelData.classes"></app-input-text>
+        <app-input-text nameComponent="label" nameProperty="Id" [(target)]="labelData.id"></app-input-text>
+        <app-input-boolean nameComponent="label" nameProperty="isPageHeading"
+                           [(target)]="labelData.isPageHeading"></app-input-boolean>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs title="Parámetros de accesibilidad de label" id="label"
+                            [(role)]="labelData.role"
+                            [(ariaLabel)]="labelData.ariaLabel"
+                            [(ariaDescribedBy)]="labelData.ariaDescribedBy"
+                            [(ariaLabelledBy)]="labelData.ariaLabelledBy"
+                            [(ariaHidden)]="labelData.ariaHidden"
+                            [(ariaDisabled)]="labelData.ariaDisabled"
+                            [(ariaControls)]="labelData.ariaControls"
+                            [(ariaCurrent)]="labelData.ariaCurrent"
+                            [(ariaLive)]="labelData.ariaLive"
+                            [(ariaExpanded)]="labelData.ariaExpanded"
+                            [(ariaErrorMessage)]="labelData.ariaErrorMessage"
+                            [(ariaHasPopup)]="labelData.ariaHasPopup"
+                            [(tabindex)]="labelData.tabindex"></app-accessibility-inputs>
+
+
+  <div>
+    <app-title-params titleparams="Parámetros de hint"></app-title-params>
+    <details>
+      <summary
+        class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="hint" nameProperty="text" [(target)]="hintData.text"></app-input-text>
+        <app-input-text nameComponent="hint" nameProperty="html" [(target)]="hintData.html"></app-input-text>
+        <app-input-text nameComponent="hint" placeholder="text-primary-base uppercase ..." nameProperty="classes"
+                        [(target)]="hintData.classes"></app-input-text>
+        <app-input-text nameComponent="hint" nameProperty="Id" [(target)]="hintData.id"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs title="Parámetros de accesibilidad de hint" id="hint"
+                            [(role)]="hintData.role"
+                            [(ariaLabel)]="hintData.ariaLabel"
+                            [(ariaDescribedBy)]="hintData.ariaDescribedBy"
+                            [(ariaLabelledBy)]="hintData.ariaLabelledBy"
+                            [(ariaHidden)]="hintData.ariaHidden"
+                            [(ariaDisabled)]="hintData.ariaDisabled"
+                            [(ariaControls)]="hintData.ariaControls"
+                            [(ariaCurrent)]="hintData.ariaCurrent"
+                            [(ariaLive)]="hintData.ariaLive"
+                            [(ariaExpanded)]="hintData.ariaExpanded"
+                            [(ariaErrorMessage)]="hintData.ariaErrorMessage"
+                            [(ariaHasPopup)]="hintData.ariaHasPopup"
+                            [(tabindex)]="hintData.tabindex"></app-accessibility-inputs>
+
+
+  <div>
+    <app-title-params titleparams="Parámetros de error"></app-title-params>
+    <details>
+      <summary
+        class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+
+        <app-input-text nameComponent="errorMessage" nameProperty="text"
+                        [(target)]="errorMessageData.text"></app-input-text>
+        <app-input-text nameComponent="errorMessage" nameProperty="html"
+                        [(target)]="errorMessageData.html"></app-input-text>
+        <app-input-text nameComponent="errorMessage" nameProperty="visuallyHiddenText"
+                        [(target)]="errorMessageData.visuallyHiddenText"></app-input-text>
+        <app-input-text nameComponent="errorMessage" placeholder="text-primary-base uppercase ..."
+                        nameProperty="classes" [(target)]="errorMessageData.classes"></app-input-text>
+        <app-input-text nameComponent="errorMessage" nameProperty="Id" [(target)]="errorMessageData.id"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs title="Parámetros de accesibilidad de errorMessage" id="error"
+                            [(role)]="errorMessageData.role"
+                            [(ariaLabel)]="errorMessageData.ariaLabel"
+                            [(ariaDescribedBy)]="errorMessageData.ariaDescribedBy"
+                            [(ariaLabelledBy)]="errorMessageData.ariaLabelledBy"
+                            [(ariaHidden)]="errorMessageData.ariaHidden"
+                            [(ariaDisabled)]="errorMessageData.ariaDisabled"
+                            [(ariaControls)]="errorMessageData.ariaControls"
+                            [(ariaCurrent)]="errorMessageData.ariaCurrent"
+                            [(ariaLive)]="errorMessageData.ariaLive"
+                            [(ariaExpanded)]="errorMessageData.ariaExpanded"
+                            [(ariaErrorMessage)]="errorMessageData.ariaErrorMessage"
+                            [(ariaHasPopup)]="errorMessageData.ariaHasPopup"
+                            [(tabindex)]="errorMessageData.tabindex"></app-accessibility-inputs>
+
+</div>

@@ -1,0 +1,138 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<ng-template #html1>
+    <p><strong>Panel 1</strong>. Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Est quis exercitationem, nesciunt nulla quisquam temporibus. Provident animi dolor veniam, et quas consequuntur. Reiciendis eius in, nostrum porro? Quaerat, temporibus, optio?</p>
+</ng-template>
+<ng-template #html2>
+    <p><strong>Panel 2</strong>. Est quis exercitationem, nesciunt nulla quisquam temporibus. Provident animi dolor veniam, et quas consequuntur. Reiciendis eius in, nostrum porro? Quaerat, temporibus, optio? Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Est quis exercitationem, nesciunt nulla quisquam temporibus. Provident animi dolor veniam, et quas consequuntur.</p>
+</ng-template>
+<ng-template #html3>
+    <p><strong>Panel 3</strong>. Provident animi dolor veniam, et quas consequuntur. Reiciendis eius in, nostrum porro? Quaerat, temporibus, optio? Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Est quis exercitationem, nesciunt nulla quisquam temporibus. Provident animi dolor veniam, et quas consequuntur.</p>
+</ng-template>
+<ng-template #html4>
+    <p><strong>Panel 4</strong>. Reiciendis eius in, nostrum porro? Quaerat, temporibus, optio? Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Est quis exercitationem, nesciunt nulla quisquam temporibus. Provident animi dolor veniam, et quas consequuntur.</p>
+</ng-template>
+<ng-template #customTabSelector>
+    <div class="mb-base p-base bg-warning-light"><ul class="c-ul mb-0"><li><p>Ley 38/2003, de 17 de noviembre, General de Subvenciones. (BOE nº 276 de 18 de noviembre de 2003) y su Reglamento de desarrollo aprobado por Real Decreto 887/2006, de 21 de julio. </p><p><a href="#" class="c-link text-sm">Ver detalles de la normativa</a></p></li><li>Ley 5/2015, de 25 de marzo, de Subvenciones de Aragón. (BOA nº 68 de 10 de abril de 2015). <br><a href="#" class="c-link text-sm">Ver detalles de la normativa</a></li></ul></div><div class="flex items-baseline"><p class="flex-1 text-sm text-neutral-dark">Cambios realizados hace 2 horas</p><div class="ml-auto"><button class="c-button c-button--transparent">Descartar</button><button class="c-button c-button--transparent">Editar</button></div></div>
+</ng-template>
+<ng-template #customTabPanel>
+    <div class='mb-base p-base'><ul class='c-ul mb-0'><li><p>Ley 38/2003, de 17 de noviembre, General de Subvenciones. (BOE nº 276 de 11 de diciembre de 2020) y su Reglamento de desarrollo aprobado por Real Decreto 887/2006, de 21 de julio.</p><p><a href='#' class='c-link text-sm'>Ver detalles de la normativa</a></p></li><li>Ley 5/2015, de 25 de marzo, de Subvenciones de Aragón. (BOA nº 68 de 10 de abril de 2015). <br><a href='#' class='c-link text-sm'>Ver detalles de la normativa</a></li></ul></div><p class='text-sm text-neutral-dark'>Texto original</p>
+</ng-template>
+
+<app-implementation-info info="Implementación Default"></app-implementation-info>
+<desy-tabs idPrefix="tab-example" tablistAriaLabel="Tab example" title="Implementación Default"
+    [items]="[
+        {'text':'Tab 0', 'id':'tab-example-d', 'disabled':'true','panel':{'text':'Tab disabled'}},
+        {'text':'Tab 1', 'id':'tab-example-a', 'panel':{'html':html1,'classes':'bg-warning-light'}},
+        {'text':'Tab 2', 'id':'tab-example-b', 'disabled':'true', 'panel':{'html':html2}},
+        {'text':'Tab 3', 'id':'tab-example-c', 'panel':{'html':html3,'classes':'bg-warning-light'}},
+        {'text':'Tab 4', 'id':'tab-example-d', 'panel':{'html':html4}},
+        {'text':'Tab 5', 'id':'tab-example-d', 'panel':{'text':'Tab con texto sin formato.'}},
+        {'text':'Tab 5', 'id':'tab-example-d', 'disabled':'true','panel':{'text':'Tab disabled 2'}}]"></desy-tabs>
+<app-spaced withBorder="true"></app-spaced>
+
+<app-implementation-info info="Implementación Editable"></app-implementation-info>
+<desy-tabs [id]="id" [idPrefix]="idPrefix"  [classes]="classes" [title]="title"
+        [tablistAriaLabel]="tablistAriaLabel" [items]="items" 
+        [role]="role" 
+        [ariaLabel]="ariaLabel"
+        [ariaDescribedBy]="ariaDescribedBy"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [ariaHidden]="ariaHidden"
+        [ariaDisabled]="ariaDisabled"
+        [ariaControls]="ariaControls"
+        [ariaCurrent]="ariaCurrent"
+        [ariaLive]="ariaLive"
+        [ariaExpanded]="ariaExpanded"
+        [ariaErrorMessage]="ariaErrorMessage"
+        [ariaHasPopup]="ariaHasPopup"
+        [tabindex]="tabindex"></desy-tabs>
+<app-spaced withBorder="true"></app-spaced> 
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+ 
+     <div>
+        <app-title-params></app-title-params>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="title" [(target)]="title"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" placeholder="bg-warning-light..." nameProperty="classes" [(target)]="classes"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="id"> </app-input-text> 
+        <app-input-text [nameComponent]="nameComponent" nameProperty="idPrefix" [(target)]="idPrefix"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" placeholder="Tab example..." nameProperty="tablistAriaLabel" [(target)]="tablistAriaLabel"> </app-input-text> 
+    </div>
+
+    <app-accessibility-inputs [(role)]="role"
+                [(ariaLabel)]="ariaLabel"
+                [(ariaDescribedBy)]="ariaDescribedBy"
+                [(ariaLabelledBy)]="ariaLabelledBy"
+                [(ariaHidden)]="ariaHidden"
+                [(ariaDisabled)]="ariaDisabled"
+                [(ariaControls)]="ariaControls"
+                [(ariaCurrent)]="ariaCurrent"
+                [(ariaLive)]="ariaLive"
+                [(ariaExpanded)]="ariaExpanded"
+                [(ariaErrorMessage)]="ariaErrorMessage"
+                [(ariaHasPopup)]="ariaHasPopup"
+                [(tabindex)]="tabindex"></app-accessibility-inputs>
+
+    <div>
+        <app-title-params titleparams="Parámetros de item"></app-title-params>
+        <details>
+            <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+                <span>Mostrar</span>
+            </summary>
+            <div class="py-sm">
+                <app-input-text [nameComponent]="'item'" nameProperty="text" [(target)]="item.text"> </app-input-text>
+                <app-input-text [nameComponent]="'item'" nameProperty="html" [(target)]="item.html"> </app-input-text>
+                <app-input-text [nameComponent]="'item'" nameProperty="id" [(target)]="item.id"> </app-input-text>
+                <app-input-boolean [nameComponent]="'item'" description="Deshabilita el boton de la implementación editable" nameProperty="disabled" [(target)]="item.disabled"> </app-input-boolean>
+            </div>
+        </details>
+    </div>
+    
+    <app-accessibility-inputs title="Parámetros de accesibilidad del item" id="item"
+                            [(role)]="item.role"
+                            [(ariaLabel)]="item.ariaLabel"
+                            [(ariaDescribedBy)]="item.ariaDescribedBy"
+                            [(ariaLabelledBy)]="item.ariaLabelledBy"
+                            [(ariaHidden)]="item.ariaHidden"
+                            [(ariaDisabled)]="item.ariaDisabled"
+                            [(ariaControls)]="item.ariaControls"
+                            [(ariaCurrent)]="item.ariaCurrent"
+                            [(ariaLive)]="item.ariaLive"
+                            [(ariaExpanded)]="item.ariaExpanded"
+                            [(ariaErrorMessage)]="item.ariaErrorMessage"
+                            [(ariaHasPopup)]="item.ariaHasPopup"
+                            [(tabindex)]="item.tabindex"></app-accessibility-inputs>
+
+    <div>
+        <app-title-params titleparams="Parámetros del Panel del item"></app-title-params>
+        <details>
+            <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+                <span>Mostrar</span>
+            </summary>
+            <div class="py-sm">
+                <app-input-text nameComponent="panel" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="item.panel.classes"> </app-input-text>
+                <app-input-text nameComponent="panel" nameProperty="id" [(target)]="item.panel.id"> </app-input-text>
+            </div>
+        </details>
+    </div>
+    
+    <app-accessibility-inputs title="Parámetros de accesibilidad de panel del item" id="panel"
+                            [(role)]="item.panel.role"
+                            [(ariaLabel)]="item.panel.ariaLabel"
+                            [(ariaDescribedBy)]="item.panel.ariaDescribedBy"
+                            [(ariaLabelledBy)]="item.panel.ariaLabelledBy"
+                            [(ariaHidden)]="item.panel.ariaHidden"
+                            [(ariaDisabled)]="item.panel.ariaDisabled"
+                            [(ariaControls)]="item.panel.ariaControls"
+                            [(ariaCurrent)]="item.panel.ariaCurrent"
+                            [(ariaLive)]="item.panel.ariaLive"
+                            [(ariaExpanded)]="item.panel.ariaExpanded"
+                            [(ariaErrorMessage)]="item.panel.ariaErrorMessage"
+                            [(ariaHasPopup)]="item.panel.ariaHasPopup"
+                            [(tabindex)]="item.panel.tabindex"></app-accessibility-inputs>
+
+</div>
+
+
+

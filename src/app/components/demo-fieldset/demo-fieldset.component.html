@@ -1,0 +1,129 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<app-implementation-info info="implementación de la legenda con una template: legendTmp"></app-implementation-info>
+
+<ng-template #caller1>
+  <label class="block" for="contact-phone">Phone number</label>
+  <input class="c-input form-input mt-sm" name="contact-phone" type="text" id="contact-phone" [(ngModel)]="phone1">
+</ng-template>
+
+<desy-fieldset [classes]="classes" [id]="id" [legendRef]="legendTmp" [caller]="caller1"
+           [role]="role"
+           [ariaLabel]="ariaLabel"
+           [describedBy]="describedBy"
+           [ariaLabelledBy]="ariaLabelledBy"
+           [ariaHidden]="ariaHidden"
+           [ariaDisabled]="ariaDisabled"
+           [ariaControls]="ariaControls"
+           [ariaCurrent]="ariaCurrent"
+           [ariaLive]="ariaLive"
+           [ariaExpanded]="ariaExpanded"
+           [errorId]="errorId"
+           [ariaHasPopup]="ariaHasPopup"
+           [tabindex]="tabindex">
+    <ng-template #legendTmp><desy-legend [text]="legendtext" [html]="legendhtml" [classes]="legendclasses" [isPageHeading]="legendisPageHeading"></desy-legend></ng-template>
+</desy-fieldset>
+
+<app-spaced></app-spaced>
+<p> valor de phone: {{phone1}}</p>
+
+
+<app-spaced withBorder></app-spaced>
+
+
+<app-implementation-info info="implementación de la legenda con su interfaz: legend"></app-implementation-info>
+
+<ng-template #caller2>
+  <label class="block" for="contact-phone">Phone number</label>
+  <input class="c-input form-input mt-sm" name="contact-phone" type="text" id="contact-phone" [(ngModel)]="phone2">
+</ng-template>
+<desy-fieldset [classes]="classes" [id]="id" [legendData]="{text: legendtext, html: legendhtml,  classes: legendclasses, isPageHeading: legendisPageHeading}"  
+           [caller]="caller2"
+           [role]="role"
+           [ariaLabel]="ariaLabel"
+           [describedBy]="describedBy"
+           [ariaLabelledBy]="ariaLabelledBy"
+           [ariaHidden]="ariaHidden"
+           [ariaDisabled]="ariaDisabled"
+           [ariaControls]="ariaControls"
+           [ariaCurrent]="ariaCurrent"
+           [ariaLive]="ariaLive"
+           [ariaExpanded]="ariaExpanded"
+           [errorId]="errorId"
+           [ariaHasPopup]="ariaHasPopup"
+           [tabindex]="tabindex">
+</desy-fieldset>
+
+<app-spaced></app-spaced>
+<p> valor de phone: {{phone2}}</p>
+
+
+<app-spaced withBorder></app-spaced>
+
+
+<app-implementation-info info="implementación de la legenda con solo el texto: legendText"
+  observations="no afectan los demás atributos referentes a legend: html, classes, isPageHeading">
+</app-implementation-info>
+
+<ng-template #caller3>
+  <label class="block" for="contact-phone">Phone number</label>
+  <input class="c-input form-input mt-sm" name="contact-phone" type="text" id="contact-phone" [(ngModel)]="phone3">
+</ng-template>
+
+<desy-fieldset [classes]="classes" [id]="id" [legendText]="legendtext" [caller]="caller3"
+           [role]="role"
+           [ariaLabel]="ariaLabel"
+           [describedBy]="describedBy"
+           [ariaLabelledBy]="ariaLabelledBy"
+           [ariaHidden]="ariaHidden"
+           [ariaDisabled]="ariaDisabled"
+           [ariaControls]="ariaControls"
+           [ariaCurrent]="ariaCurrent"
+           [ariaLive]="ariaLive"
+           [ariaExpanded]="ariaExpanded"
+           [errorId]="errorId"
+           [ariaHasPopup]="ariaHasPopup"
+           [tabindex]="tabindex">
+</desy-fieldset>
+
+<app-spaced></app-spaced>
+<p> valor de phone: {{phone3}}</p>
+
+
+
+<app-spaced withBorder></app-spaced>
+
+
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params></app-title-params>
+
+    <app-input-text [nameComponent]="nameComponent" nameProperty="describedBy" [(target)]="describedBy"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="errorId" [(target)]="errorId"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="classes"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="id'" [(target)]="id"> </app-input-text>
+    
+    <app-title-params titleparams="Parámetros de legend"></app-title-params>
+
+    <app-input-text [nameComponent]="'legend'" nameProperty="text" [(target)]="legendtext"> </app-input-text>
+    <app-input-text [nameComponent]="'legend'" nameProperty="html" [(target)]="legendhtml"> </app-input-text>
+    <app-input-text [nameComponent]="'legend'" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="legendclasses"> </app-input-text>
+    <app-input-boolean [nameComponent]="'legend'" nameProperty="isPageHeading" [(target)]="legendisPageHeading"> </app-input-boolean>
+  </div>
+
+  <app-accessibility-inputs [(role)]="role"
+              [(ariaLabel)]="ariaLabel"
+              [hideAriaDescribedBy]="true"
+              [(ariaLabelledBy)]="ariaLabelledBy"
+              [(ariaHidden)]="ariaHidden"
+              [(ariaDisabled)]="ariaDisabled"
+              [(ariaControls)]="ariaControls"
+              [(ariaCurrent)]="ariaCurrent"
+              [(ariaLive)]="ariaLive"
+              [(ariaExpanded)]="ariaExpanded"
+              [hideAriaErrorMessage]="true"
+              [(ariaHasPopup)]="ariaHasPopup"
+              [(tabindex)]="tabindex"></app-accessibility-inputs>
+
+</div>

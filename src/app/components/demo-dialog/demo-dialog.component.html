@@ -1,0 +1,132 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<ng-template #modalForDynamic>
+  <desy-modal [id]="'dyn-' + modalOptions.id"
+              [classes]="modalOptions.classes"
+              [title]="modalOptions.title"
+              [description]="modalOptions.description"
+              [itemsPrimary]="modalOptions.itemsPrimary" [itemsSecondary]="modalOptions.itemsSecondary"
+              [isDismissible]="modalOptions.isDismissible" [icon]="modalOptions.icon"
+              [role]="modalOptions.role"
+              [ariaLabel]="modalOptions.ariaLabel"
+              [ariaDescribedBy]="modalOptions.ariaDescribedBy"
+              [ariaLabelledBy]="modalOptions.ariaLabelledBy"
+              [ariaHidden]="modalOptions.ariaHidden"
+              [ariaDisabled]="modalOptions.ariaDisabled"
+              [ariaControls]="modalOptions.ariaControls"
+              [ariaCurrent]="modalOptions.ariaCurrent"
+              [ariaLive]="modalOptions.ariaLive"
+              [ariaExpanded]="modalOptions.ariaExpanded"
+              [ariaErrorMessage]="modalOptions.ariaErrorMessage"
+              [ariaHasPopup]="modalOptions.ariaHasPopup"
+              [tabindex]="modalOptions.tabindex"
+              (closeModal)="closeDialogDynamicWithTemplate()"
+  ></desy-modal>
+</ng-template>
+<ng-template #modalForStatic>
+  <desy-modal [id]="'sta-' + modalOptions.id"
+              [classes]="modalOptions.classes"
+              [title]="modalOptions.title"
+              [description]="modalOptions.description"
+              [itemsPrimary]="modalOptions.itemsPrimary" [itemsSecondary]="modalOptions.itemsSecondary"
+              [isDismissible]="modalOptions.isDismissible" [icon]="modalOptions.icon"
+              [role]="modalOptions.role"
+              [ariaLabel]="modalOptions.ariaLabel"
+              [ariaDescribedBy]="modalOptions.ariaDescribedBy"
+              [ariaLabelledBy]="modalOptions.ariaLabelledBy"
+              [ariaHidden]="modalOptions.ariaHidden"
+              [ariaDisabled]="modalOptions.ariaDisabled"
+              [ariaControls]="modalOptions.ariaControls"
+              [ariaCurrent]="modalOptions.ariaCurrent"
+              [ariaLive]="modalOptions.ariaLive"
+              [ariaExpanded]="modalOptions.ariaExpanded"
+              [ariaErrorMessage]="modalOptions.ariaErrorMessage"
+              [ariaHasPopup]="modalOptions.ariaHasPopup"
+              [tabindex]="modalOptions.tabindex"
+              (closeModal)="closeDialogStatic()"></desy-modal>
+</ng-template>
+
+<app-implementation-info info="Implementación de dialog desde servicio" observations="Modal definida en objeto. El segundo botón, cuyo id es 'closeable-dialog', creará un dialog que se cerrará automáticamente transcurridos 3 segundos."></app-implementation-info>
+<desy-button text="Abrir dialog" (clickEvent)="openDialogDynamic()"></desy-button>&nbsp;
+<desy-button [id]="'closeable-dialog'" text="Abrir dialog y cerrar automáticamente" (clickEvent)="openDialogDynamicWithAutoclose()"></desy-button>
+<app-spaced withBorder></app-spaced>
+
+<app-implementation-info info="Implementación de dialog desde servicio" observations="Modal definida en template"></app-implementation-info>
+<desy-button text="Abrir dialog" (clickEvent)="openDialogDynamicWithTemplate(modalForDynamic)"></desy-button>
+<app-spaced withBorder></app-spaced>
+
+<app-implementation-info info="Implementación de dialog desde servicio" observations="Componente de modal personalizado"></app-implementation-info>
+<desy-button text="Abrir dialog" (clickEvent)="openDialogDynamicWithComponent()"></desy-button>&nbsp;
+<app-spaced withBorder></app-spaced>
+
+
+<app-implementation-info info="Implementación de dialog desde template" observations="Modal definida en template"></app-implementation-info>
+<desy-dialog #dialog
+             [(active)]="staticDialogActive"
+             [id]="dialogOptions.id"
+             [classes]="dialogOptions.classes"
+             [caller]="modalForStatic"
+             [focusOnClose]="dialogOptions.focusOnClose"
+             [dismissOnBackdrop]="dialogOptions.dismissOnBackdrop"
+             [role]="dialogOptions.role"
+             [ariaLabel]="dialogOptions.ariaLabel"
+             [ariaDescribedBy]="dialogOptions.ariaDescribedBy"
+             [ariaLabelledBy]="dialogOptions.ariaLabelledBy"
+             [ariaHidden]="dialogOptions.ariaHidden"
+             [ariaDisabled]="dialogOptions.ariaDisabled"
+             [ariaControls]="dialogOptions.ariaControls"
+             [ariaCurrent]="dialogOptions.ariaCurrent"
+             [ariaLive]="dialogOptions.ariaLive"
+             [ariaExpanded]="dialogOptions.ariaExpanded"
+             [ariaErrorMessage]="dialogOptions.ariaErrorMessage"
+             [ariaHasPopup]="dialogOptions.ariaHasPopup"
+             [tabindex]="dialogOptions.tabindex">
+</desy-dialog>
+<desy-button text="Abrir dialog" (clickEvent)="openDialogStatic()"></desy-button>
+<app-spaced withBorder></app-spaced>
+
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params></app-title-params>
+    <app-input-text [nameComponent]="nameComponent" placeholder="bg-warning-light..." nameProperty="classes" [(target)]="dialogOptions.classes"></app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="dialogOptions.id"></app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="focusOnClose" placeholder="closeable-dialog" [(target)]="dialogOptions.focusOnClose"></app-input-text>
+    <app-input-boolean [nameComponent]="nameComponent" description="Mostrar X on top right" nameProperty="dismissOnBackdrop" [(target)]="dialogOptions.dismissOnBackdrop"></app-input-boolean>
+  </div>
+  <app-accessibility-inputs [(role)]="dialogOptions.role"
+                            [(ariaLabel)]="dialogOptions.ariaLabel"
+                            [(ariaDescribedBy)]="dialogOptions.ariaDescribedBy"
+                            [(ariaLabelledBy)]="dialogOptions.ariaLabelledBy"
+                            [(ariaHidden)]="dialogOptions.ariaHidden"
+                            [(ariaDisabled)]="dialogOptions.ariaDisabled"
+                            [(ariaControls)]="dialogOptions.ariaControls"
+                            [(ariaCurrent)]="dialogOptions.ariaCurrent"
+                            [(ariaLive)]="dialogOptions.ariaLive"
+                            [(ariaExpanded)]="dialogOptions.ariaExpanded"
+                            [(ariaErrorMessage)]="dialogOptions.ariaErrorMessage"
+                            [(ariaHasPopup)]="dialogOptions.ariaHasPopup"
+                            [(tabindex)]="dialogOptions.tabindex"></app-accessibility-inputs>
+
+  <div>
+    <app-title-params titleparams="Parámetros básicos del modal"></app-title-params>
+    <app-input-text nameComponent="modal" placeholder="bg-warning-light..." nameProperty="classes" [(target)]="modalOptions.classes"></app-input-text>
+    <app-input-text nameComponent="modal" nameProperty="id" [(target)]="modalOptions.id"></app-input-text>
+    <app-input-boolean nameComponent="modal" description="Mostrar X on top right" nameProperty="isDismissible" [(target)]="modalOptions.isDismissible"></app-input-boolean>
+  </div>
+  <app-accessibility-inputs title="Parámetros de accesibilidad del modal" id="modal-id"
+                            [(role)]="modalOptions.role"
+                            [(ariaLabel)]="modalOptions.ariaLabel"
+                            [(ariaDescribedBy)]="modalOptions.ariaDescribedBy"
+                            [(ariaLabelledBy)]="modalOptions.ariaLabelledBy"
+                            [(ariaHidden)]="modalOptions.ariaHidden"
+                            [(ariaDisabled)]="modalOptions.ariaDisabled"
+                            [(ariaControls)]="modalOptions.ariaControls"
+                            [(ariaCurrent)]="modalOptions.ariaCurrent"
+                            [(ariaLive)]="modalOptions.ariaLive"
+                            [(ariaExpanded)]="modalOptions.ariaExpanded"
+                            [(ariaErrorMessage)]="modalOptions.ariaErrorMessage"
+                            [(ariaHasPopup)]="modalOptions.ariaHasPopup"
+                            [(tabindex)]="modalOptions.tabindex"></app-accessibility-inputs>
+
+</div>

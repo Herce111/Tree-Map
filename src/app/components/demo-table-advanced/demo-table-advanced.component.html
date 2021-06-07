@@ -1,0 +1,138 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+<app-spaced></app-spaced>
+
+<app-implementation-info info="Implementación tabla sencilla"></app-implementation-info>
+<desy-table-advanced classes="min-w-full" 
+    [rows]="[{'cellsList':[{'text':'January'},{'text':'85€','classes':'text-right'},{'text':'95€','classes':'text-right'}]},{'cellsList':[{'text':'February'},{'text':'75€','classes':'text-right'},{'text':'55€','classes':'text-right'}]},{'cellsList':[{'text':'March'},{'text':'165€','classes':'text-right'},{'text':'125€','classes':'text-right'}]}]"></desy-table-advanced>
+<app-spaced withBorder></app-spaced>
+
+
+<app-implementation-info info="implementacion completa"></app-implementation-info>
+<desy-table-advanced classes="min-w-full" idPrefix="table-with-all" hasCheckboxes="true"  firstCellIsHeader="true" (rowsChecked)="rowsChecked = $event"  caption="Caption 1: Months and rates" captionClasses="mb-base font-bold text-left text-lg"
+    [head]="[{'text':'Row number'},{'text':'Month you apply','orderBy':'none','hasFilter':true},{'text':'Rate for bicycles','orderBy':'none','classes':'text-right','hasFilter':true},{'text':'Rate for vehicles','orderBy':'none','classes':'text-right','hasFilter':true}]"
+    [rows]="[{'id':'identificador1','cellsList':[{'text':'First row'},{'text':'January'},{'text':'85€','classes':'text-right'},{'text':'95€','classes':'text-right'}]},{'id':'identificador2','cellsList':[{'text':'Second row'},{'text':'February'},{'text':'75€','classes':'text-right'},{'text':'55€','classes':'text-right'}]},{'id':'identificador3','cellsList':[{'text':'Third row'},{'text':'March'},{'text':'165€','classes':'text-right'},{'text':'125€','classes':'text-right'}]}]"></desy-table-advanced>
+<p>{{rowsChecked | json}}</p>
+<app-spaced withBorder></app-spaced>
+
+
+<app-implementation-info info="Implementación editable"></app-implementation-info>
+<desy-table-advanced [caption]="caption" [captionClasses]="captionClasses"  (rowsChecked)="rowsChecked2 = $event"
+            [head]="[{'text':'Row number'},{'text':'Month you apply','orderBy':'none','hasFilter':true},{'text':'Rate for bicycles','orderBy':'none','classes':'text-right','hasFilter':true}, itemHead]"
+            [rows]="[{'id':'identificador1','cellsList':[{'text':'First row'},{'text':'January'},{'text':'85€','classes':'text-right'},{'text':'95€','classes':'text-right'}]},{'id':'identificador2','cellsList':[{'text':'Second row'},{'text':'February'},{'text':'75€','classes':'text-right'},{'text':'55€','classes':'text-right'}]}, itemRow]"
+            [classes]="classes" 
+            [id]="id" [idPrefix]="idPrefix" 
+            [hasCheckboxes]="hasCheckboxes" [firstCellIsHeader]="firstCellIsHeader"
+            [role]="role"
+            [ariaLabel]="ariaLabel"
+            [ariaDescribedBy]="ariaDescribedBy"
+            [ariaLabelledBy]="ariaLabelledBy"
+            [ariaHidden]="ariaHidden"
+            [ariaDisabled]="ariaDisabled"
+            [ariaControls]="ariaControls"
+            [ariaCurrent]="ariaCurrent"
+            [ariaLive]="ariaLive"
+            [ariaExpanded]="ariaExpanded"
+            [ariaErrorMessage]="ariaErrorMessage"
+            [ariaHasPopup]="ariaHasPopup"
+            [tabindex]="tabindex"></desy-table-advanced>
+<p>{{rowsChecked2 | json}}</p>
+<app-spaced withBorder></app-spaced>
+
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+
+    <div>
+        <app-title-params></app-title-params>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="caption" [(target)]="caption"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" placeholder="mb-base font-bold text-left text-lg ..." nameProperty="captionClasses" [(target)]="captionClasses"> </app-input-text>
+        <app-input-boolean [nameComponent]="nameComponent" description="Primera celda como TH" nameProperty="firstCellIsHeader" [(target)]="firstCellIsHeader"> </app-input-boolean>
+        <app-input-boolean [nameComponent]="nameComponent" description="Incluir checkbox" nameProperty="hasCheckboxes" [(target)]="hasCheckboxes"> </app-input-boolean>
+        <app-input-text [nameComponent]="nameComponent" placeholder="min-w-full ..." nameProperty="classes" [(target)]="classes"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="idPrefix" [(target)]="idPrefix"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="id"> </app-input-text>
+    </div>
+
+
+    <app-accessibility-inputs [(role)]="role"
+                [(ariaLabel)]="ariaLabel"
+                [(ariaDescribedBy)]="ariaDescribedBy"
+                [(ariaLabelledBy)]="ariaLabelledBy"
+                [(ariaHidden)]="ariaHidden"
+                [(ariaDisabled)]="ariaDisabled"
+                [(ariaControls)]="ariaControls"
+                [(ariaCurrent)]="ariaCurrent"
+                [(ariaLive)]="ariaLive"
+                [(ariaExpanded)]="ariaExpanded"
+                [(ariaErrorMessage)]="ariaErrorMessage"
+                [(ariaHasPopup)]="ariaHasPopup"
+                [(tabindex)]="tabindex"></app-accessibility-inputs>
+
+    <div>
+        <app-title-params titleparams="Parámetros de row"></app-title-params>
+         <details>
+        <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+            <span>Mostrar</span>
+        </summary>
+        <div class="py-sm">
+            <app-input-text nameComponent="itemRow" nameProperty="id" [(target)]="itemRow.id"> </app-input-text>
+
+            <app-input-text nameComponent="itemCell" nameProperty="text" [(target)]="itemCell.text"> </app-input-text>
+            <app-input-text nameComponent="itemCell" nameProperty="html" [(target)]="itemCell.html"> </app-input-text>
+            <app-input-text nameComponent="itemCell" nameProperty="classes" [(target)]="itemCell.classes"> </app-input-text>
+            <app-input-text nameComponent="itemCell" nameProperty="id" [(target)]="itemCell.id"> </app-input-text>
+            <app-input-number nameComponent="itemCell" nameProperty="colspan" [(target)]="itemCell.colspan"></app-input-number>
+            <app-input-number nameComponent="itemCell" nameProperty="rowspan" [(target)]="itemCell.rowspan"></app-input-number>
+            </div>
+        </details>
+    </div>
+
+    <app-accessibility-inputs title="Parámetros de accesibilidad del ultima cell" id="itemCell"
+                            [(role)]="itemCell.role"
+                            [(ariaLabel)]="itemCell.ariaLabel"
+                            [(ariaDescribedBy)]="itemCell.ariaDescribedBy"
+                            [(ariaLabelledBy)]="itemCell.ariaLabelledBy"
+                            [(ariaHidden)]="itemCell.ariaHidden"
+                            [(ariaDisabled)]="itemCell.ariaDisabled"
+                            [(ariaControls)]="itemCell.ariaControls"
+                            [(ariaCurrent)]="itemCell.ariaCurrent"
+                            [(ariaLive)]="itemCell.ariaLive"
+                            [(ariaExpanded)]="itemCell.ariaExpanded"
+                            [(ariaErrorMessage)]="itemCell.ariaErrorMessage"
+                            [(ariaHasPopup)]="itemCell.ariaHasPopup"
+                            [(tabindex)]="itemCell.tabindex"></app-accessibility-inputs>
+
+    <div>
+        <app-title-params titleparams="Parámetros de la ultima head"></app-title-params>
+            <details>
+                <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+                    <span>Mostrar</span>
+                </summary>
+                <div class="py-sm">
+                    <app-input-text nameComponent="itemHead" nameProperty="text" [(target)]="itemHead.text"> </app-input-text>
+                    <app-input-text nameComponent="itemHead" nameProperty="html" [(target)]="itemHead.html"> </app-input-text>
+                    <app-input-text nameComponent="itemHead" nameProperty="classes" [(target)]="itemHead.classes"> </app-input-text>
+                    <app-input-text nameComponent="itemHead" nameProperty="id" [(target)]="itemHead.id"> </app-input-text>
+                    <app-input-number nameComponent="itemHead" nameProperty="colspan" [(target)]="itemHead.colspan"></app-input-number>
+                    <app-input-number nameComponent="itemHead" nameProperty="rowspan" [(target)]="itemHead.rowspan"></app-input-number>
+                    <app-input-boolean nameComponent="itemHead" description="Incluir filtro" nameProperty="hasFilter" [(target)]="itemHead.hasFilter"> </app-input-boolean>
+                    <app-input-text nameComponent="itemHead" nameProperty="filterClasses" [(target)]="itemHead.filterClasses"> </app-input-text>
+                    <app-input-text nameComponent="itemHead" nameProperty="orderBy" [(target)]="itemHead.orderBy"> </app-input-text>
+                    </div>
+            </details>
+    </div>
+
+    <app-accessibility-inputs title="Parámetros de accesibilidad de la ultima head" id="itemHead"
+                            [(role)]="itemHead.role"
+                            [(ariaLabel)]="itemHead.ariaLabel"
+                            [(ariaDescribedBy)]="itemHead.ariaDescribedBy"
+                            [(ariaLabelledBy)]="itemHead.ariaLabelledBy"
+                            [(ariaHidden)]="itemHead.ariaHidden"
+                            [(ariaDisabled)]="itemHead.ariaDisabled"
+                            [(ariaControls)]="itemHead.ariaControls"
+                            [(ariaCurrent)]="itemHead.ariaCurrent"
+                            [(ariaLive)]="itemHead.ariaLive"
+                            [(ariaExpanded)]="itemHead.ariaExpanded"
+                            [(ariaErrorMessage)]="itemHead.ariaErrorMessage"
+                            [(ariaHasPopup)]="itemHead.ariaHasPopup"
+                            [(tabindex)]="itemHead.tabindex"></app-accessibility-inputs>
+</div>

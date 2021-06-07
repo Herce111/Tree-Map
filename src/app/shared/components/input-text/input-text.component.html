@@ -1,0 +1,11 @@
+<label class="block mt-base" [for]="nameComponenetProperty">{{ nameProperty }}</label>
+<p [id]="'pid-' + nameComponenetProperty" class="block text-neutral-dark">
+    {{ description ? description : ('Introduce el ' + nameProperty + ' que quieres mostrar en el componente ' + nameComponent)}}
+</p>
+<input class="c-input form-input block mt-sm" type="text"
+        [placeholder]="placeholder ? placeholder : 'Introduce el ' +  nameProperty " 
+        [id]="nameComponenetProperty"
+        [name]="nameProperty + '-name'"
+        [ngModel]="target" (ngModelChange)="targetChange.emit($event)"
+        [attr.aria-describedby]="nameComponenetProperty">
+

@@ -1,0 +1,35 @@
+
+ul[role="tree"] {
+  margin: 0;
+  list-style: none;
+  font-size: 120%;
+}
+
+button{
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.icono{
+  font-size: 1.3rem;
+}
+
+[role="treeitem"][aria-expanded="false"] > #oculto {
+  display: none;
+}
+
+[role="treeitem"][aria-expanded="true"] > #oculto {
+  display: block;
+}
+
+.name.focus, .doc:focus{
+  border-color: black;
+  background-color: #eee;
+}
+
+.name:hover, .doc:hover{
+  font-weight: bold;
+}
+
+

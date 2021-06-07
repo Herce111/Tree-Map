@@ -1,0 +1,61 @@
+<div>
+  <app-title-params [titleparams]="title"></app-title-params>
+   <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+
+        <label *ngIf="!hideRole" class="block mt-base" for="{{id}}-role"><i>role</i></label>
+        <input *ngIf="!hideRole" class="c-input form-input block mt-sm" id="{{id}}-role" name="role-name" [ngModel]="role" (ngModelChange)="roleChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaLabel" class="block mt-base" for="{{id}}-ariaLabel"><i>aria-label</i></label>
+        <input *ngIf="!hideAriaLabel" class="c-input form-input block mt-sm" id="{{id}}-ariaLabel" name="label-name" [ngModel]="ariaLabel" (ngModelChange)="ariaLabelChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaDescribedBy" class="block mt-base" for="{{id}}-ariaDescribedBy"><i>aria-describedby</i></label>
+        <input *ngIf="!hideAriaDescribedBy" class="c-input form-input block mt-sm" id="{{id}}-ariaDescribedBy" name="describedby-name" [ngModel]="ariaDescribedBy" (ngModelChange)="ariaDescribedByChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaLabelledBy" class="block mt-base" for="{{id}}-ariaLabelledBy"><i>aria-labelledby</i></label>
+        <input *ngIf="!hideAriaLabelledBy" class="c-input form-input block mt-sm" id="{{id}}-ariaLabelledBy" name="labelledby-name" [ngModel]="ariaLabelledBy" (ngModelChange)="ariaLabelledByChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaHidden" class="block mt-base" for="{{id}}-ariaHidden"><i>aria-hidden</i></label>
+        <input *ngIf="!hideAriaHidden" class="c-input form-input block mt-sm" id="{{id}}-ariaHidden" name="hidden-name" [ngModel]="ariaHidden" (ngModelChange)="ariaHiddenChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaDisabled" class="block mt-base" for="{{id}}-ariaDisabled"><i>aria-disabled</i></label>
+        <input *ngIf="!hideAriaDisabled" class="c-input form-input block mt-sm" id="{{id}}-ariaDisabled" name="disabled-name" [ngModel]="ariaDisabled" (ngModelChange)="ariaDisabledChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaControls" class="block mt-base" for="{{id}}-ariaControls"><i>aria-controls</i></label>
+        <input *ngIf="!hideAriaControls" class="c-input form-input block mt-sm" id="{{id}}-ariaControls" name="controls-name" [ngModel]="ariaControls" (ngModelChange)="ariaControlsChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaCurrent" class="block mt-base" for="{{id}}-ariaCurrent"><i>aria-current</i></label>
+        <input *ngIf="!hideAriaCurrent" class="c-input form-input block mt-sm" id="{{id}}-ariaCurrent" name="current-name" [ngModel]="ariaCurrent" (ngModelChange)="ariaCurrentChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaLive" class="block mt-base" for="{{id}}-ariaLive"><i>aria-live</i></label>
+        <input *ngIf="!hideAriaLive" class="c-input form-input block mt-sm" id="{{id}}-ariaLive" name="live-name" [ngModel]="ariaLive" (ngModelChange)="ariaLiveChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaExpanded" class="block mt-base" for="{{id}}-ariaExpanded"><i>aria-expanded</i></label>
+        <input *ngIf="!hideAriaExpanded" class="c-input form-input block mt-sm" id="{{id}}-ariaExpanded" name="expanded-name" [ngModel]="ariaExpanded" (ngModelChange)="ariaExpandedChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaErrorMessage" class="block mt-base" for="{{id}}-ariaErrorMessage"><i>aria-errormessage</i></label>
+        <input *ngIf="!hideAriaErrorMessage" class="c-input form-input block mt-sm" id="{{id}}-ariaErrorMessage" name="errormssage-name" [ngModel]="ariaErrorMessage" (ngModelChange)="ariaErrorMessageChange.emit($event)" type="text">
+
+
+        <label *ngIf="!hideAriaHasPopup" class="block mt-base" for="{{id}}-ariaHasPopup"><i>aria-haspopup</i></label>
+        <input *ngIf="!hideAriaHasPopup" class="c-input form-input block mt-sm" id="{{id}}-ariaHasPopup" name="haspopup-name" [ngModel]="ariaHasPopup" (ngModelChange)="ariaHasPopupChange.emit($event)" type="text">
+
+        <label *ngIf="!hideTabindex" class="block mt-base" for="{{id}}-tabindex"><i>tabindex</i></label>
+        <input *ngIf="!hideTabindex" class="c-input form-input block mt-sm" id="{{id}}-tabindex" name="tabindex-name" [ngModel]="tabindex" (ngModelChange)="tabindexChange.emit($event)" type="text">
+
+      </div>
+    </details>
+</div>

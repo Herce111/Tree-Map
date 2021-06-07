@@ -1,0 +1,1 @@
+export { TreeBarComponent } from './tree-bar.component';

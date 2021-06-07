@@ -1,0 +1,99 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <ng-template #caller1>
+      <div class="w-48 p-2"><div class="border-4 border-dashed border-gray-200 rounded-lg h-40"></div></div>
+    </ng-template>
+
+    <app-implementation-info info="Implementación con caller estático"></app-implementation-info>
+    <desy-dropdown [text]="text" [html]="html" [classes]="classes"
+                   [classesTooltip]="classesTooltip" [classesContainer]="classesContainer"
+                   [caller]="caller1"
+                   [disabled]="disabled"
+                   [hiddenText]="hiddenText"
+                   [id]="id"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [tabindex]="tabindex"
+                   (clickEvent)="updateClickCountText()"></desy-dropdown>
+    <p class="pt-base">{{clickText}}</p>
+  </div>
+  <div>
+    <ng-template #caller2>
+      <ul>
+        <li>
+          <a [routerLink]="['/spinner']" class="flex items-center px-base py-xs hover:bg-primary-base hover:text-white truncate  focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">Spinner</a>
+        </li>
+        <li>
+          <a [routerLink]="['/collapsible']" class="flex items-center px-base py-xs hover:bg-primary-base hover:text-white truncate  focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">Collapsible</a>
+        </li>
+        <li>
+          <a [routerLink]="['/pill']" class="flex items-center px-base py-xs hover:bg-primary-base hover:text-white truncate  focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">Pill</a>
+        </li>
+      </ul>
+    </ng-template>
+
+    <app-implementation-info info="Implementación con caller menu"></app-implementation-info>
+    <desy-dropdown [text]="text" [html]="html" [classes]="classes"
+                   [classesTooltip]="classesTooltip" [classesContainer]="classesContainer"
+                   [caller]="caller2"
+                   [disabled]="disabled"
+                   [hiddenText]="hiddenText"
+                   [id]="id"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [tabindex]="tabindex"
+                   (clickEvent)="updateClickCountTextList()"></desy-dropdown>
+    <p class="pt-base">{{clickTextList}}</p>
+  </div>
+</div>
+
+<app-spaced withBorder></app-spaced>
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params></app-title-params>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="text" [(target)]="text"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="html" [(target)]="html"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="hiddenText" [(target)]="hiddenText"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="id"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" placeholder="c-dropdown--secondary c-dropdown--has-selection c-dropdown--sm ..." nameProperty="classes" [(target)]="classes"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" placeholder="max-h-64 overflow-y-auto ..." nameProperty="classesTooltip" [(target)]="classesTooltip"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" placeholder="inline-block p-base bg-warning-light ..." nameProperty="classesContainer" [(target)]="classesContainer"> </app-input-text>
+    <app-input-boolean [nameComponent]="nameComponent" description="Deshabilita el boton" nameProperty="disabled" [(target)]="disabled"> </app-input-boolean>
+
+  </div>
+
+  <div>
+    <app-accessibility-inputs [(role)]="role"
+                              [(ariaLabel)]="ariaLabel"
+                              [(ariaDescribedBy)]="ariaDescribedBy"
+                              [(ariaLabelledBy)]="ariaLabelledBy"
+                              [(ariaHidden)]="ariaHidden"
+                              [(ariaDisabled)]="ariaDisabled"
+                              [(ariaControls)]="ariaControls"
+                              [(ariaCurrent)]="ariaCurrent"
+                              [(ariaLive)]="ariaLive"
+                              [hideAriaExpanded]="true"
+                              [(ariaErrorMessage)]="ariaErrorMessage"
+                              [(tabindex)]="tabindex"
+                              [hideAriaHasPopup]="true"></app-accessibility-inputs>
+  </div>
+</div>

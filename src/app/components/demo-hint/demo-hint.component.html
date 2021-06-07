@@ -1,0 +1,52 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<app-implementation-info info="implementación de hint con texto"></app-implementation-info>
+<desy-hint text="Hint con texto inicial"></desy-hint>
+<app-spaced withBorder></app-spaced>
+
+<app-implementation-info info="implementación de hint con html con script malicioso"></app-implementation-info>
+<desy-hint html="Hint con <b>html inicial</b> e intento de script malicioso <script>alert('El componente hint admite ejecución de código')</scrip>" ></desy-hint>
+<app-spaced withBorder></app-spaced>
+
+<app-implementation-info info="implementación de hint con todos parametros parametrizados"></app-implementation-info>
+<desy-hint [text]="text" [html]="html" [classes]="classes" [id]="id"
+           [role]="role"
+           [ariaLabel]="ariaLabel"
+           [ariaDescribedBy]="ariaDescribedBy"
+           [ariaLabelledBy]="ariaLabelledBy"
+           [ariaHidden]="ariaHidden"
+           [ariaDisabled]="ariaDisabled"
+           [ariaControls]="ariaControls"
+           [ariaCurrent]="ariaCurrent"
+           [ariaLive]="ariaLive"
+           [ariaExpanded]="ariaExpanded"
+           [ariaErrorMessage]="ariaErrorMessage"
+           [ariaHasPopup]="ariaHasPopup"
+           [tabindex]="tabindex"></desy-hint>
+
+<app-spaced withBorder></app-spaced>
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params></app-title-params>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="text" [(target)]="text"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="html" [(target)]="html"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" placeholder="text-primary-base uppercase ..." nameProperty="classes" [(target)]="classes"> </app-input-text>
+    <app-input-text [nameComponent]="nameComponent" nameProperty="Id" [(target)]="id"> </app-input-text>
+  </div>
+
+  <app-accessibility-inputs [(role)]="role"
+           [(ariaLabel)]="ariaLabel"
+           [(ariaDescribedBy)]="ariaDescribedBy"
+           [(ariaLabelledBy)]="ariaLabelledBy"
+           [(ariaHidden)]="ariaHidden"
+           [(ariaDisabled)]="ariaDisabled"
+           [(ariaControls)]="ariaControls"
+           [(ariaCurrent)]="ariaCurrent"
+           [(ariaLive)]="ariaLive"
+           [(ariaExpanded)]="ariaExpanded"
+           [(ariaErrorMessage)]="ariaErrorMessage"
+           [(ariaHasPopup)]="ariaHasPopup"
+           [(tabindex)]="tabindex"></app-accessibility-inputs>
+
+</div>

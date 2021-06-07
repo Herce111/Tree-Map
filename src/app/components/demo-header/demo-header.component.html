@@ -1,0 +1,267 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<app-implementation-info info="Implementación configurable"></app-implementation-info>
+<desy-header
+  [id]="id"
+  [classes]="classes"
+  [containerClasses]="containerClasses"
+  [homepageUrl]="homepageUrl"
+  [homepageRouterLink]="homepageRouterLink"
+  [homepageFragment]="homepageFragment"
+  [expandedLogo]="expandedLogo"
+
+  [subnavData]="isHeaderElemVisible('subnav') ? (headerSubnavItems ? subnavData : subnavDataWithoutItems) : null"
+  [navigationData]="isHeaderElemVisible('navigation') ? navigationData : null"
+  [dropdownData]="isHeaderElemVisible('dropdown') ? dropdownData : null"
+  [offcanvasData]="isHeaderElemVisible('offcanvas') ? offsetcanvasData : null"
+
+  [role]="role"
+  [ariaLabel]="ariaLabel"
+  [ariaDescribedBy]="ariaDescribedBy"
+  [ariaLabelledBy]="ariaLabelledBy"
+  [ariaHidden]="ariaHidden"
+  [ariaDisabled]="ariaDisabled"
+  [ariaControls]="ariaControls"
+  [ariaCurrent]="ariaCurrent"
+  [ariaLive]="ariaLive"
+  [ariaExpanded]="ariaExpanded"
+  [ariaErrorMessage]="ariaErrorMessage"
+  [ariaHasPopup]="ariaHasPopup"
+  [tabindex]="tabindex"
+></desy-header>
+
+<ng-template #offsetMenu>
+  <ul>
+    <li>
+      <h3 class="p-base text-base font-bold" id="caller-id">Páginas</h3>
+      <desy-nav [items]="[{ text: 'Opción 1 (sin url)', routerLink: [] }, { text: 'Opción 2 (componentes)', routerLink: '/' }, { text: 'Opción 3 (externa)', href: 'http://google.es' }]"></desy-nav>
+    </li>
+    <li>
+      <h3 class="p-base pt-xl text-base font-bold">Información adicional</h3>
+      <desy-nav classes="bg-warning-light" [items]="[{ text: 'Opción 1', routerLink: '/'}, { text: 'Opción 2', routerLink: '/' }, { text: 'Opción 3', routerLink: '/' }]"></desy-nav>
+    </li>
+  </ul>
+</ng-template>
+
+<app-spaced withBorder></app-spaced>
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params titleparams="Parámetros de header"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="id"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="classes" placeholder="p-20" [(target)]="classes"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="containerClasses" placeholder="p-20" [(target)]="containerClasses"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="homepageUrl" [(target)]="homepageUrl"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="homepageRouterLink" [(target)]="homepageRouterLink"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="homepageFragment" [(target)]="homepageFragment"></app-input-text>
+        <app-input-boolean [nameComponent]="nameComponent" nameProperty="expandedLogo" [(target)]="expandedLogo"></app-input-boolean>
+      </div>
+    </details>
+  </div>
+  <app-accessibility-inputs [id]="'input-header-id'"
+                            [(role)]="role"
+                            [(ariaLabel)]="ariaLabel"
+                            [(ariaDescribedBy)]="ariaDescribedBy"
+                            [(ariaLabelledBy)]="ariaLabelledBy"
+                            [(ariaHidden)]="ariaHidden"
+                            [(ariaDisabled)]="ariaDisabled"
+                            [(ariaControls)]="ariaControls"
+                            [(ariaCurrent)]="ariaCurrent"
+                            [(ariaLive)]="ariaLive"
+                            [(ariaExpanded)]="ariaExpanded"
+                            [(ariaErrorMessage)]="ariaErrorMessage"
+                            [(ariaHasPopup)]="ariaHasPopup"
+                            [(tabindex)]="tabindex"></app-accessibility-inputs>
+</div>
+
+
+<desy-checkboxes legendText="Configuración de los elementos del header" name="headerElems"
+                 hintText="Selecciona un elemento para incluirlo al header y configurarlo"
+                 [(ngModel)]="headerVisibleElems" [items]="headerElements">
+  <ng-template #subnavInputs desyCondition [item]="headerElements[0]">
+    <app-input-boolean nameComponent="subnav" nameProperty="Mostrar items" [(target)]="headerSubnavItems"
+                       [description]="'Mostrar items en el subnav'"></app-input-boolean>
+    <div class="c-form-group grid grid-cols-2 gap-base">
+      <div>
+        <app-title-params titleparams="Parámetros de subnav"></app-title-params>
+        <details>
+          <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+            <span>Mostrar</span>
+          </summary>
+          <div class="py-sm">
+            <app-input-text nameComponent="subnav" nameProperty="text" [(target)]="subnavData.text"></app-input-text>
+            <app-input-text nameComponent="subnav" nameProperty="html" [(target)]="subnavData.html"></app-input-text>
+            <app-input-text nameComponent="subnav" nameProperty="classes" placeholder="p-20" [(target)]="subnavData.classes"></app-input-text>
+          </div>
+        </details>
+      </div>
+      <div></div><!-- Subnav no tiene parámetros de accesibilidad -->
+
+      <div>
+        <app-title-params titleparams="Parámetros de Subnav-item"></app-title-params>
+        <details>
+          <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+            <span>Mostrar</span>
+          </summary>
+          <div class="py-sm">
+            <app-input-text nameComponent="subnav-item" nameProperty="id" [(target)]="subnavItemData.id"></app-input-text>
+            <app-input-text nameComponent="subnav-item" nameProperty="classes" placeholder="p-20" [(target)]="subnavItemData.classes"></app-input-text>
+            <app-input-text nameComponent="subnav-item" nameProperty="text" [(target)]="subnavItemData.text"></app-input-text>
+            <app-input-text nameComponent="subnav-item" nameProperty="html" [(target)]="subnavItemData.html"></app-input-text>
+            <app-input-text nameComponent="subnav-item" nameProperty="href" [(target)]="subnavItemData.href"></app-input-text>
+            <app-input-text nameComponent="subnav-item" nameProperty="routerLink" [(target)]="subnavItemData.routerLink"></app-input-text>
+            <app-input-text nameComponent="subnav-item" nameProperty="fragment" [(target)]="subnavItemData.fragment"></app-input-text>
+            <app-input-boolean nameComponent="subnav-item" nameProperty="active" [(target)]="subnavItemData.active"></app-input-boolean>
+            <app-input-boolean nameComponent="subnav-item" nameProperty="disabled" [(target)]="subnavItemData.disabled"></app-input-boolean>
+            <app-input-text nameComponent="subnav-item" nameProperty="divider" [(target)]="subnavItemData.divider"></app-input-text>
+          </div>
+        </details>
+      </div>
+      <app-accessibility-inputs [id]="'input-subnav-item-id'"
+                                title="Parámetros de accesibilidad de subnav item"
+                                [(role)]="subnavItemData.role"
+                                [(ariaLabel)]="subnavItemData.ariaLabel"
+                                [(ariaDescribedBy)]="subnavItemData.ariaDescribedBy"
+                                [(ariaLabelledBy)]="subnavItemData.ariaLabelledBy"
+                                [(ariaHidden)]="subnavItemData.ariaHidden"
+                                [(ariaDisabled)]="subnavItemData.ariaDisabled"
+                                [(ariaControls)]="subnavItemData.ariaControls"
+                                [(ariaCurrent)]="subnavItemData.ariaCurrent"
+                                [(ariaLive)]="subnavItemData.ariaLive"
+                                [(ariaExpanded)]="subnavItemData.ariaExpanded"
+                                [(ariaErrorMessage)]="subnavItemData.ariaErrorMessage"
+                                [(ariaHasPopup)]="subnavItemData.ariaHasPopup"
+                                [(tabindex)]="subnavItemData.tabindex"></app-accessibility-inputs>
+    </div>
+  </ng-template>
+  <ng-template #subnavInputs desyCondition [item]="headerElements[1]">
+    <div class="c-form-group grid grid-cols-2 gap-base">
+      <div>
+        <app-title-params titleparams="Parámetros de navigation"></app-title-params>
+        <details>
+          <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+            <span>Mostrar</span>
+          </summary>
+          <div class="py-sm">
+            <app-input-text nameComponent="navigation" nameProperty="classes" [(target)]="navigationData.classes"></app-input-text>
+          </div>
+        </details>
+      </div>
+      <div></div><!-- Navigation no tiene parámetros de accesibilidad -->
+
+      <div>
+        <app-title-params titleparams="Parámetros de Navigation-item"></app-title-params>
+        <details>
+          <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+            <span>Mostrar</span>
+          </summary>
+          <div class="py-sm">
+            <app-input-text nameComponent="navigation-item" nameProperty="id" [(target)]="navigationItemData.id"></app-input-text>
+            <app-input-text nameComponent="navigation-item" nameProperty="text" [(target)]="navigationItemData.text"></app-input-text>
+            <app-input-text nameComponent="navigation-item" nameProperty="html" [(target)]="navigationItemData.html"></app-input-text>
+            <app-input-text nameComponent="navigation-item" nameProperty="href" [(target)]="navigationItemData.href"></app-input-text>
+            <app-input-text nameComponent="navigation-item" nameProperty="routerLink" [(target)]="navigationItemData.routerLink"></app-input-text>
+            <app-input-text nameComponent="navigation-item" nameProperty="fragment" [(target)]="navigationItemData.fragment"></app-input-text>
+            <app-input-boolean nameComponent="navigation-item" nameProperty="active" [(target)]="navigationItemData.active"></app-input-boolean>
+            <app-input-boolean nameComponent="navigation-item" nameProperty="disabled" [(target)]="navigationItemData.disabled"></app-input-boolean>
+          </div>
+        </details>
+      </div>
+      <app-accessibility-inputs [id]="'input-navigation-item-id'"
+                                title="Parámetros de accesibilidad de navigation item"
+                                [(role)]="role"
+                                [(ariaLabel)]="navigationItemData.ariaLabel"
+                                [(ariaDescribedBy)]="navigationItemData.ariaDescribedBy"
+                                [(ariaLabelledBy)]="navigationItemData.ariaLabelledBy"
+                                [(ariaHidden)]="navigationItemData.ariaHidden"
+                                [(ariaDisabled)]="navigationItemData.ariaDisabled"
+                                [(ariaControls)]="navigationItemData.ariaControls"
+                                [(ariaCurrent)]="navigationItemData.ariaCurrent"
+                                [(ariaLive)]="navigationItemData.ariaLive"
+                                [(ariaExpanded)]="navigationItemData.ariaExpanded"
+                                [(ariaErrorMessage)]="navigationItemData.ariaErrorMessage"
+                                [(ariaHasPopup)]="navigationItemData.ariaHasPopup"
+                                [(tabindex)]="navigationItemData.tabindex"></app-accessibility-inputs>
+    </div>
+  </ng-template>
+  <ng-template #subnavInputs desyCondition [item]="headerElements[2]">
+    <div class="c-form-group grid grid-cols-2 gap-base">
+      <div>
+        <app-title-params titleparams="Parámetros de dropdown"></app-title-params>
+        <details>
+          <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+            <span>Mostrar</span>
+          </summary>
+          <div class="py-sm">
+            <app-input-text nameComponent="dropdown" nameProperty="text" [(target)]="dropdownData.text"></app-input-text>
+            <app-input-text nameComponent="dropdown" nameProperty="html" [(target)]="dropdownData.html"></app-input-text>
+            <app-input-text nameComponent="dropdown" nameProperty="classes" [(target)]="dropdownData.classes"></app-input-text>
+          </div>
+        </details>
+      </div>
+      <div></div><!-- Navigation no tiene parámetros de accesibilidad -->
+
+      <div>
+        <app-title-params titleparams="Parámetros de Dropdown-item"></app-title-params>
+        <details>
+          <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+            <span>Mostrar</span>
+          </summary>
+          <div class="py-sm">
+            <app-input-text nameComponent="dropdown-item" nameProperty="id" [(target)]="dropdownItemData.id"></app-input-text>
+            <app-input-text nameComponent="dropdown-item" nameProperty="classes" placeholder="p-20" [(target)]="dropdownItemData.classes"></app-input-text>
+            <app-input-text nameComponent="dropdown-item" nameProperty="text" [(target)]="dropdownItemData.text"></app-input-text>
+            <app-input-text nameComponent="dropdown-item" nameProperty="html" [(target)]="dropdownItemData.html"></app-input-text>
+            <app-input-text nameComponent="dropdown-item" nameProperty="href" [(target)]="dropdownItemData.href"></app-input-text>
+            <app-input-text nameComponent="dropdown-item" nameProperty="routerLink" [(target)]="dropdownItemData.routerLink"></app-input-text>
+            <app-input-text nameComponent="dropdown-item" nameProperty="fragment" [(target)]="dropdownItemData.fragment"></app-input-text>
+            <app-input-boolean nameComponent="dropdown-item" nameProperty="active" [(target)]="dropdownItemData.active"></app-input-boolean>
+            <app-input-boolean nameComponent="dropdown-item" nameProperty="disabled" [(target)]="dropdownItemData.disabled"></app-input-boolean>
+            <app-input-text nameComponent="dropdown-item" nameProperty="divider" [(target)]="dropdownItemData.divider"></app-input-text>
+          </div>
+        </details>
+      </div>
+
+      <app-accessibility-inputs [id]="'input-dropdown-item-id'"
+                                title="Parámetros de accesibilidad de dropdown item"
+                                [(role)]="dropdownItemData.role"
+                                [(ariaLabel)]="dropdownItemData.ariaLabel"
+                                [(ariaDescribedBy)]="dropdownItemData.ariaDescribedBy"
+                                [(ariaLabelledBy)]="dropdownItemData.ariaLabelledBy"
+                                [(ariaHidden)]="dropdownItemData.ariaHidden"
+                                [(ariaDisabled)]="dropdownItemData.ariaDisabled"
+                                [(ariaControls)]="dropdownItemData.ariaControls"
+                                [(ariaCurrent)]="dropdownItemData.ariaCurrent"
+                                [(ariaLive)]="dropdownItemData.ariaLive"
+                                [(ariaExpanded)]="dropdownItemData.ariaExpanded"
+                                [(ariaErrorMessage)]="dropdownItemData.ariaErrorMessage"
+                                [(ariaHasPopup)]="dropdownItemData.ariaHasPopup"
+                                [(tabindex)]="dropdownItemData.tabindex"></app-accessibility-inputs>
+    </div>
+  </ng-template>
+  <ng-template #subnavInputs desyCondition [item]="headerElements[3]">
+    <div class="c-form-group grid grid-cols-2 gap-base">
+      <div>
+        <app-title-params titleparams="Parámetros de offsetcanvas"></app-title-params>
+        <details>
+          <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+            <span>Mostrar</span>
+          </summary>
+          <div class="py-sm">
+            <app-input-text nameComponent="offsetcanvas" nameProperty="text" [(target)]="offsetcanvasData.text"></app-input-text>
+            <app-input-text nameComponent="offsetcanvas" nameProperty="html" [(target)]="offsetcanvasData.html"></app-input-text>
+            <app-input-text nameComponent="offsetcanvas" nameProperty="classes" [(target)]="offsetcanvasData.classes"></app-input-text>
+            <app-input-text nameComponent="offsetcanvas" nameProperty="textClose" [(target)]="offsetcanvasData.textClose"></app-input-text>
+            <app-input-text nameComponent="offsetcanvas" nameProperty="labelledId" [(target)]="offsetcanvasData.labelledId"></app-input-text>
+          </div>
+        </details>
+      </div>
+      <div></div><!-- Offsetcanvas no tiene parámetros de accesibilidad -->
+    </div>
+  </ng-template>
+</desy-checkboxes>

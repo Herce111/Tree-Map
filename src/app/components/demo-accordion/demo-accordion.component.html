@@ -1,0 +1,112 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+<app-implementation-info info="Implementación de accordion básico"></app-implementation-info>
+<desy-accordion [items]="defaultList"></desy-accordion>
+<app-implementation-info info="Implementación de accordion con allowMultiple = true"></app-implementation-info>
+<desy-accordion [items]="allowMultipleList" [allowMultiple]="true"></desy-accordion>
+<app-implementation-info info="Implementación de accordion con allowToggle = true"></app-implementation-info>
+<desy-accordion [items]="allowToggleList" [allowToggle]="true"></desy-accordion>
+<app-implementation-info info="Implementación de accordion con heading"></app-implementation-info>
+<desy-accordion [items]="headingList" [heading]="heading"></desy-accordion>
+<app-implementation-info info="Implementación de accordion con heading y showControls = true"></app-implementation-info>
+<desy-accordion [items]="headingControlsList" [heading]="heading" [showControl]="true" [allowMultiple]="true" [allowToggle]="true"></desy-accordion>
+
+<app-implementation-info info="Implementación de accordion parametrizado"></app-implementation-info>
+<desy-accordion [items]="customList" [heading]="customHeading" [showControl]="customShowControl" [allowMultiple]="customAllowMultiple" [allowToggle]="customAllowToggle"
+                [classes]="customClasses" [idPrefix]="customIdPrefix"
+                [id]="id"
+                [role]="role"
+                [ariaLabel]="ariaLabel"
+                [ariaDescribedBy]="ariaDescribedBy"
+                [ariaLabelledBy]="ariaLabelledBy"
+                [ariaHidden]="ariaHidden"
+                [ariaDisabled]="ariaDisabled"
+                [ariaControls]="ariaControls"
+                [ariaCurrent]="ariaCurrent"
+                [ariaLive]="ariaLive"
+                [ariaExpanded]="ariaExpanded"
+                [ariaErrorMessage]="ariaErrorMessage"
+                [ariaHasPopup]="ariaHasPopup"
+                [tabindex]="tabindex"></desy-accordion>
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params titleparams="Parámetros de accordion"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-boolean [nameComponent]="nameComponent" nameProperty="showControl" [(target)]="customShowControl"> </app-input-boolean>
+        <app-input-boolean [nameComponent]="nameComponent" nameProperty="allowMultiple" [(target)]="customAllowMultiple"> </app-input-boolean>
+        <app-input-boolean [nameComponent]="nameComponent" nameProperty="allowToggle" [(target)]="customAllowToggle"> </app-input-boolean>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="idPrefix" [(target)]="customIdPrefix"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" placeholder="text-primary-base uppercase ..." nameProperty="classes" [(target)]="customClasses"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="Id" [(target)]="id"> </app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <div>
+    <app-accessibility-inputs [(role)]="role"
+                              [(ariaLabel)]="ariaLabel"
+                              [(ariaDescribedBy)]="ariaDescribedBy"
+                              [(ariaLabelledBy)]="ariaLabelledBy"
+                              [(ariaHidden)]="ariaHidden"
+                              [(ariaDisabled)]="ariaDisabled"
+                              [(ariaControls)]="ariaControls"
+                              [(ariaCurrent)]="ariaCurrent"
+                              [(ariaLive)]="ariaLive"
+                              [(ariaExpanded)]="ariaExpanded"
+                              [(ariaErrorMessage)]="ariaErrorMessage"
+                              [(ariaHasPopup)]="ariaHasPopup"
+                              [(tabindex)]="tabindex"></app-accessibility-inputs>
+  </div>
+
+  <div>
+    <app-title-params titleparams="Parámetros de AccordionItem"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text [nameComponent]="nameComponent" nameProperty="headerText" [(target)]="customItem.headerText"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="headerHtml" [(target)]="customItem.headerHtml"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="text" [(target)]="customItem.text"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="html" [(target)]="customItem.html"> </app-input-text>
+        <app-input-boolean [nameComponent]="nameComponent" nameProperty="open" [(target)]="customItem.open"> </app-input-boolean>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="Id" [(target)]="customItem.id"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" placeholder="text-primary-base uppercase ..." nameProperty="classes" [(target)]="customItem.classes"> </app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <div>
+    <app-accessibility-inputs title="PARÁMETROS DE ACCESIBILIDAD DE ACCORDIONITEM"
+                              [(role)]="customItem.role"
+                              [(ariaLabel)]="customItem.ariaLabel"
+                              [(ariaDescribedBy)]="customItem.ariaDescribedBy"
+                              [(ariaLabelledBy)]="customItem.ariaLabelledBy"
+                              [(ariaHidden)]="customItem.ariaHidden"
+                              [(ariaDisabled)]="customItem.ariaDisabled"
+                              [(ariaControls)]="customItem.ariaControls"
+                              [(ariaCurrent)]="customItem.ariaCurrent"
+                              [(ariaLive)]="customItem.ariaLive"
+                              [(ariaExpanded)]="customItem.ariaExpanded"
+                              [(ariaErrorMessage)]="customItem.ariaErrorMessage"
+                              [(ariaHasPopup)]="customItem.ariaHasPopup"
+                              [(tabindex)]="customItem.tabindex"></app-accessibility-inputs>
+  </div>
+
+  <div>
+    <app-title-params titleparams="Parámetros de Heading"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text [nameComponent]="nameComponent" nameProperty="text" [(target)]="customHeading.text"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="html" [(target)]="customHeading.html"> </app-input-text>
+        <app-input-text [nameComponent]="nameComponent" placeholder="text-primary-base uppercase ..." nameProperty="classes" [(target)]="customHeading.classes"> </app-input-text>
+      </div>
+    </details>
+  </div>
+</div>

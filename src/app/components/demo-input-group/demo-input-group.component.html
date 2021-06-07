@@ -1,0 +1,494 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<div class="grid grid-cols-3 gap-base">
+  <div>
+    <app-implementation-info info="Implementación de Date-input con ngModel"></app-implementation-info>
+    <desy-input-group id="withNgModel" [(ngModel)]="value" legendText="Documento de identidad"
+                      [items]="items"></desy-input-group>
+    <p>Valor: {{ value | json }}</p>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de Date-input con reactiveForm"></app-implementation-info>
+    <form class="form" [formGroup]="form">
+      <desy-input-group id="withReactiveForm" [errorMessageText]="formErrorMsg"
+                        formGroupName="date" legendText="Documento de identidad"
+                        [items]="items"></desy-input-group>
+    </form>
+    <p>Valor: {{ form.value['date'] | json }}</p>
+    <p>Válido: {{ form.valid ? 'Sí' : 'No' }}</p>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de Date-input con ngModelGroup"></app-implementation-info>
+    <form class="form"  #tdForm="ngForm">
+      <desy-input-group id="tdDate" ngModelGroup="tdDate" legendText="Documento de identidad"
+                        [items]="items"></desy-input-group>
+    </form>
+    <p>Valor: {{ tdForm.value['tdDate'] | json }}</p>
+    <p>Válido: {{ tdForm.valid ? 'Sí' : 'No' }}</p>
+  </div>
+</div>
+<app-spaced withBorder></app-spaced>
+
+<!-- Pruebas fieldset -->
+<div class="grid grid-cols-4 gap-base">
+  <div>
+    <app-implementation-info info="Implementación de fieldset con interfaz" observations="mi name es 'fieldset-data', a mi id se le añade '-fieldset-data'"></app-implementation-info>
+    <desy-input-group [fieldsetData]="(fieldsetData.legend.text || fieldsetData.legend.html) ? fieldsetData : null"
+                      [items]="itemsAlt"
+                      [formGroupClasses]="formGroupClasses"
+                      namePrefix="fieldset-data"
+
+                      [classes]="classes"
+                      [id]="id + '-fieldset-data'"
+                      [role]="role"
+                      [ariaLabel]="ariaLabel"
+                      [ariaDescribedBy]="ariaDescribedBy"
+                      [ariaLabelledBy]="ariaLabelledBy"
+                      [ariaHidden]="ariaHidden"
+                      [ariaDisabled]="ariaDisabled"
+                      [ariaControls]="ariaControls"
+                      [ariaCurrent]="ariaCurrent"
+                      [ariaLive]="ariaLive"
+                      [ariaExpanded]="ariaExpanded"
+                      [ariaErrorMessage]="ariaErrorMessage"
+                      [ariaHasPopup]="ariaHasPopup"
+                      [tabindex]="tabindex"></desy-input-group>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de legend con template" observations="mi name es 'legend-template', a mi id se le añade '-legend-template'"></app-implementation-info>
+    <desy-input-group [legendRef]="(fieldsetData.legend.text || fieldsetData.legend.html)? legendTmp : null"
+                      [items]="itemsAlt"
+                      [formGroupClasses]="formGroupClasses"
+                      namePrefix="legend-template"
+
+                      [classes]="classes"
+                      [id]="id + '-legend-template'"
+                      [role]="role"
+                      [ariaLabel]="ariaLabel"
+                      [ariaDescribedBy]="ariaDescribedBy"
+                      [ariaLabelledBy]="ariaLabelledBy"
+                      [ariaHidden]="ariaHidden"
+                      [ariaDisabled]="ariaDisabled"
+                      [ariaControls]="ariaControls"
+                      [ariaCurrent]="ariaCurrent"
+                      [ariaLive]="ariaLive"
+                      [ariaExpanded]="ariaExpanded"
+                      [ariaErrorMessage]="ariaErrorMessage"
+                      [ariaHasPopup]="ariaHasPopup"
+                      [tabindex]="tabindex"></desy-input-group>
+    <ng-template #legendTmp><desy-legend [text]="fieldsetData.legend.text" [html]="fieldsetData.legend.html" [classes]="fieldsetData.legend.classes" [isPageHeading]="fieldsetData.legend.isPageHeading"></desy-legend></ng-template>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de legend con interfaz&nbsp;" observations="mi name es 'legend-data', a mi id se le añade '-legend-data'"></app-implementation-info>
+    <desy-input-group [legendData]="(fieldsetData.legend.text || fieldsetData.legend.html) ? fieldsetData.legend : null"
+                      [items]="itemsAlt"
+                      [formGroupClasses]="formGroupClasses"
+                      namePrefix="legend-data"
+
+                      [classes]="classes"
+                      [id]="id + '-legend-data'"
+                      [role]="role"
+                      [ariaLabel]="ariaLabel"
+                      [ariaDescribedBy]="ariaDescribedBy"
+                      [ariaLabelledBy]="ariaLabelledBy"
+                      [ariaHidden]="ariaHidden"
+                      [ariaDisabled]="ariaDisabled"
+                      [ariaControls]="ariaControls"
+                      [ariaCurrent]="ariaCurrent"
+                      [ariaLive]="ariaLive"
+                      [ariaExpanded]="ariaExpanded"
+                      [ariaErrorMessage]="ariaErrorMessage"
+                      [ariaHasPopup]="ariaHasPopup"
+                      [tabindex]="tabindex"></desy-input-group>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de legend con sólo el texto" observations="mi name es 'legend-text', a mi id se le añade '-legend-text'"></app-implementation-info>
+    <desy-input-group [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                      [items]="itemsAlt"
+                      [formGroupClasses]="formGroupClasses"
+                      namePrefix="legend-text"
+
+                      [classes]="classes"
+                      [id]="id + '-legend-text'"
+                      [role]="role"
+                      [ariaLabel]="ariaLabel"
+                      [ariaDescribedBy]="ariaDescribedBy"
+                      [ariaLabelledBy]="ariaLabelledBy"
+                      [ariaHidden]="ariaHidden"
+                      [ariaDisabled]="ariaDisabled"
+                      [ariaControls]="ariaControls"
+                      [ariaCurrent]="ariaCurrent"
+                      [ariaLive]="ariaLive"
+                      [ariaExpanded]="ariaExpanded"
+                      [ariaErrorMessage]="ariaErrorMessage"
+                      [ariaHasPopup]="ariaHasPopup"
+                      [tabindex]="tabindex"></desy-input-group>
+  </div>
+</div>
+<app-spaced withBorder></app-spaced>
+
+<!--Pruebas hint -->
+<div class="grid grid-cols-3 gap-base">
+  <div>
+    <app-implementation-info info="Implementación de hint con template" observations="mi name es 'hint-template', a mi id se le añade '-hint-template'"></app-implementation-info>
+    <desy-input-group [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                      [hintRef]="(hintData.text || hintData.html) ? hint : null"
+                      [items]="itemsAlt"
+                      [formGroupClasses]="formGroupClasses"
+                      [namePrefix]="namePrefix"
+                      name="hint-template"
+
+                      [classes]="classes"
+                      [id]="id + '-hint-template'"
+                      [role]="role"
+                      [ariaLabel]="ariaLabel"
+                      [ariaDescribedBy]="ariaDescribedBy"
+                      [ariaLabelledBy]="ariaLabelledBy"
+                      [ariaHidden]="ariaHidden"
+                      [ariaDisabled]="ariaDisabled"
+                      [ariaControls]="ariaControls"
+                      [ariaCurrent]="ariaCurrent"
+                      [ariaLive]="ariaLive"
+                      [ariaExpanded]="ariaExpanded"
+                      [ariaErrorMessage]="ariaErrorMessage"
+                      [ariaHasPopup]="ariaHasPopup"
+                      [tabindex]="tabindex"></desy-input-group>
+    <ng-template #hint>
+      <desy-hint *ngIf="hintData.text || hintData.html" [text]="hintData.text" [html]="hintData.html" [classes]="hintData.classes" [id]="hintData.id"
+                 [role]="hintData.role"
+                 [ariaLabel]="hintData.ariaLabel"
+                 [ariaDescribedBy]="hintData.ariaDescribedBy"
+                 [ariaLabelledBy]="hintData.ariaLabelledBy"
+                 [ariaHidden]="hintData.ariaHidden"
+                 [ariaDisabled]="hintData.ariaDisabled"
+                 [ariaControls]="hintData.ariaControls"
+                 [ariaCurrent]="hintData.ariaCurrent"
+                 [ariaLive]="hintData.ariaLive"
+                 [ariaExpanded]="hintData.ariaExpanded"
+                 [ariaErrorMessage]="hintData.ariaErrorMessage"
+                 [ariaHasPopup]="hintData.ariaHasPopup"
+                 [tabindex]="hintData.tabindex"></desy-hint>
+    </ng-template>
+
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de hint con interfaz" observations="mi name es 'hint-data', a mi id se le añade '-hint-data'"></app-implementation-info>
+    <desy-input-group [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                      [hintData]="(hintData.text || hintData.html) ? hintData : null"
+                      [items]="itemsAlt"
+                      [formGroupClasses]="formGroupClasses"
+                      [namePrefix]="namePrefix"
+                      name="hint-data"
+
+                      [classes]="classes"
+                      [id]="id + '-hint-data'"
+                      [role]="role"
+                      [ariaLabel]="ariaLabel"
+                      [ariaDescribedBy]="ariaDescribedBy"
+                      [ariaLabelledBy]="ariaLabelledBy"
+                      [ariaHidden]="ariaHidden"
+                      [ariaDisabled]="ariaDisabled"
+                      [ariaControls]="ariaControls"
+                      [ariaCurrent]="ariaCurrent"
+                      [ariaLive]="ariaLive"
+                      [ariaExpanded]="ariaExpanded"
+                      [ariaErrorMessage]="ariaErrorMessage"
+                      [ariaHasPopup]="ariaHasPopup"
+                      [tabindex]="tabindex"></desy-input-group>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de hint con sólo el texto" observations="mi name es 'hint-text', a mi id se le añade '-hint-text'&nbsp;&nbsp;&nbsp;"></app-implementation-info>
+    <desy-input-group [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                      [hintText]="hintData.text ? hintData.text : null"
+                      [items]="itemsAlt"
+                      [formGroupClasses]="formGroupClasses"
+                      [namePrefix]="namePrefix"
+                      name="hint-text"
+
+                      [classes]="classes"
+                      [id]="id + '-hint-text'"
+                      [role]="role"
+                      [ariaLabel]="ariaLabel"
+                      [ariaDescribedBy]="ariaDescribedBy"
+                      [ariaLabelledBy]="ariaLabelledBy"
+                      [ariaHidden]="ariaHidden"
+                      [ariaDisabled]="ariaDisabled"
+                      [ariaControls]="ariaControls"
+                      [ariaCurrent]="ariaCurrent"
+                      [ariaLive]="ariaLive"
+                      [ariaExpanded]="ariaExpanded"
+                      [ariaErrorMessage]="ariaErrorMessage"
+                      [ariaHasPopup]="ariaHasPopup"
+                      [tabindex]="tabindex"></desy-input-group>
+  </div>
+</div>
+<app-spaced withBorder></app-spaced>
+
+<!-- Pruebas errorMessage -->
+<div class="grid grid-cols-3 gap-base">
+  <div>
+    <app-implementation-info info="Implementación de errormMessage con template" observations="mi name es 'error-template', a mi id se le añade '-error-template'"></app-implementation-info>
+    <desy-input-group [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                      [errorMessageRef]="(errorMessageData.text || errorMessageData.html) ? error : null"
+                      [items]="itemsAlt"
+                      [formGroupClasses]="formGroupClasses"
+                      [namePrefix]="namePrefix"
+                      name="error-template"
+
+                      [classes]="classes"
+                      [id]="id + '-error-template'"
+                      [role]="role"
+                      [ariaLabel]="ariaLabel"
+                      [ariaDescribedBy]="ariaDescribedBy"
+                      [ariaLabelledBy]="ariaLabelledBy"
+                      [ariaHidden]="ariaHidden"
+                      [ariaDisabled]="ariaDisabled"
+                      [ariaControls]="ariaControls"
+                      [ariaCurrent]="ariaCurrent"
+                      [ariaLive]="ariaLive"
+                      [ariaExpanded]="ariaExpanded"
+                      [ariaErrorMessage]="ariaErrorMessage"
+                      [ariaHasPopup]="ariaHasPopup"
+                      [tabindex]="tabindex"></desy-input-group>
+    <ng-template #error>
+      <desy-error-message [text]="errorMessageData.text"
+                          [html]="errorMessageData.html"
+                          [visuallyHiddenText]="errorMessageData.visuallyHiddenText"
+                          [id]="errorMessageData.id"
+                          [classes]="errorMessageData.classes"
+                          [role]="errorMessageData.role"
+                          [ariaLabel]="errorMessageData.ariaLabel"
+                          [ariaDescribedBy]="errorMessageData.ariaDescribedBy"
+                          [ariaLabelledBy]="errorMessageData.ariaLabelledBy"
+                          [ariaHidden]="errorMessageData.ariaHidden"
+                          [ariaDisabled]="errorMessageData.ariaDisabled"
+                          [ariaControls]="errorMessageData.ariaControls"
+                          [ariaCurrent]="errorMessageData.ariaCurrent"
+                          [ariaLive]="errorMessageData.ariaLive"
+                          [ariaExpanded]="errorMessageData.ariaExpanded"
+                          [ariaErrorMessage]="errorMessageData.ariaErrorMessage"
+                          [ariaHasPopup]="errorMessageData.ariaHasPopup"
+                          [tabindex]="errorMessageData.tabindex"></desy-error-message>
+    </ng-template>
+
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de errormMessage con interfaz" observations="mi name es 'error-data', a mi id se le añade '-error-data'"></app-implementation-info>
+    <desy-input-group [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                      [errorMessageData]="(errorMessageData.text || errorMessageData.html) ? errorMessageData : null"
+                      [items]="itemsAlt"
+                      [formGroupClasses]="formGroupClasses"
+                      [namePrefix]="namePrefix"
+                      name="error-data"
+
+                      [classes]="classes"
+                      [id]="id + '-error-data'"
+                      [role]="role"
+                      [ariaLabel]="ariaLabel"
+                      [ariaDescribedBy]="ariaDescribedBy"
+                      [ariaLabelledBy]="ariaLabelledBy"
+                      [ariaHidden]="ariaHidden"
+                      [ariaDisabled]="ariaDisabled"
+                      [ariaControls]="ariaControls"
+                      [ariaCurrent]="ariaCurrent"
+                      [ariaLive]="ariaLive"
+                      [ariaExpanded]="ariaExpanded"
+                      [ariaErrorMessage]="ariaErrorMessage"
+                      [ariaHasPopup]="ariaHasPopup"
+                      [tabindex]="tabindex"></desy-input-group>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de errormMessage con sólo el texto" observations="mi name es 'error-text', a mi id se le añade '-error-text'"></app-implementation-info>
+    <desy-input-group [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                      [errorMessageText]="errorMessageData.text ? errorMessageData.text : null"
+                      [items]="itemsAlt"
+                      [formGroupClasses]="formGroupClasses"
+                      [namePrefix]="namePrefix"
+                      name="error-text"
+
+                      [classes]="classes"
+                      [id]="id + '-error-text'"
+                      [role]="role"
+                      [ariaLabel]="ariaLabel"
+                      [ariaDescribedBy]="ariaDescribedBy"
+                      [ariaLabelledBy]="ariaLabelledBy"
+                      [ariaHidden]="ariaHidden"
+                      [ariaDisabled]="ariaDisabled"
+                      [ariaControls]="ariaControls"
+                      [ariaCurrent]="ariaCurrent"
+                      [ariaLive]="ariaLive"
+                      [ariaExpanded]="ariaExpanded"
+                      [ariaErrorMessage]="ariaErrorMessage"
+                      [ariaHasPopup]="ariaHasPopup"
+                      [tabindex]="tabindex"></desy-input-group>
+  </div>
+</div>
+<app-spaced withBorder></app-spaced>
+
+
+
+<!-- Configuración -->
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text [nameComponent]="nameComponent" nameProperty="namePrefix" [(target)]="namePrefix"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="classes"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" placeholder="bg-warning-light ..." nameProperty="formGroupClasses" [(target)]="formGroupClasses"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="id"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs [(role)]="role"
+                            [(ariaLabel)]="ariaLabel"
+                            [(ariaDescribedBy)]="ariaDescribedBy"
+                            [(ariaLabelledBy)]="ariaLabelledBy"
+                            [(ariaHidden)]="ariaHidden"
+                            [(ariaDisabled)]="ariaDisabled"
+                            [(ariaControls)]="ariaControls"
+                            [(ariaCurrent)]="ariaCurrent"
+                            [(ariaLive)]="ariaLive"
+                            [(ariaExpanded)]="ariaExpanded"
+                            [(ariaErrorMessage)]="ariaErrorMessage"
+                            [(ariaHasPopup)]="ariaHasPopup"
+                            [(tabindex)]="tabindex"></app-accessibility-inputs>
+
+  <div>
+    <app-title-params  titleparams="Parámetros de un ítem (número)"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="input" nameProperty="id" [(target)]="customItem.id"></app-input-text>
+        <app-input-text nameComponent="input" nameProperty="value" [(target)]="customItem.value"></app-input-text>
+        <app-input-text nameComponent="input" nameProperty="name" [(target)]="customItem.name"></app-input-text>
+        <app-input-text nameComponent="labelData" nameProperty="labelText" [(target)]="customItem.labelText"></app-input-text>
+        <app-input-text nameComponent="labelData" nameProperty="labelData.text" [(target)]="customItem.labelData.text"></app-input-text>
+        <app-input-text nameComponent="labelData" nameProperty="labelData.classes" [(target)]="customItem.labelData.classes"></app-input-text>
+        <app-input-text nameComponent="hintData"  nameProperty="autocomplete" [(target)]="customItem.autocomplete"></app-input-text>
+        <app-input-text nameComponent="hintData"  placeholder="20[0-9]{2}" nameProperty="pattern" [(target)]="customItem.pattern"></app-input-text>
+        <app-input-boolean nameComponent="input" nameProperty="hasErrors" [(target)]="customItem.hasErrors"></app-input-boolean>
+        <app-input-text nameComponent="input" nameProperty="classes" [(target)]="customItem.classes"></app-input-text>
+        <app-input-text nameComponent="input" nameProperty="formGroupClasses" [(target)]="customItem.formGroupClasses"></app-input-text>
+        <app-input-text nameComponent="input" nameProperty="maxlength" [(target)]="customItem.maxlength"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs  title="Parámetros de accesibilidad de de un ítem (número)" id="itemDate"
+                             [(role)]="customItem.role"
+                             [(ariaLabel)]="customItem.ariaLabel"
+                             [(ariaDescribedBy)]="customItem.ariaDescribedBy"
+                             [(ariaLabelledBy)]="customItem.ariaLabelledBy"
+                             [(ariaHidden)]="customItem.ariaHidden"
+                             [(ariaDisabled)]="customItem.ariaDisabled"
+                             [(ariaControls)]="customItem.ariaControls"
+                             [(ariaCurrent)]="customItem.ariaCurrent"
+                             [(ariaLive)]="customItem.ariaLive"
+                             [(ariaExpanded)]="customItem.ariaExpanded"
+                             [(ariaErrorMessage)]="customItem.ariaErrorMessage"
+                             [(ariaHasPopup)]="customItem.ariaHasPopup"
+                             [(tabindex)]="customItem.tabindex"></app-accessibility-inputs>
+
+  <div>
+    <app-title-params titleparams="Parámetros de fieldset"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text [nameComponent]="'fieldset'" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="fieldsetData.classes"></app-input-text>
+        <app-input-text [nameComponent]="'fieldset'" nameProperty="id" [(target)]="fieldsetData.id"></app-input-text>
+
+        <app-title-params titleparams="Parámetros de legend"></app-title-params>
+        <app-input-text [nameComponent]="'legend'" nameProperty="text" [(target)]="fieldsetData.legend.text"></app-input-text>
+        <app-input-text [nameComponent]="'legend'" nameProperty="html" [(target)]="fieldsetData.legend.html"></app-input-text>
+        <app-input-text [nameComponent]="'legend'" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="fieldsetData.legend.classes"></app-input-text>
+        <app-input-boolean [nameComponent]="'legend'" nameProperty="isPageHeading" [(target)]="fieldsetData.legend.isPageHeading"></app-input-boolean>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs title="Parámetros de accesibilidad de fieldset" id="fieldset"
+                            [(role)]="fieldsetData.role"
+                            [(ariaLabel)]="fieldsetData.ariaLabel"
+                            [hideAriaDescribedBy]="true"
+                            [(ariaLabelledBy)]="fieldsetData.ariaLabelledBy"
+                            [(ariaHidden)]="fieldsetData.ariaHidden"
+                            [(ariaDisabled)]="fieldsetData.ariaDisabled"
+                            [(ariaControls)]="fieldsetData.ariaControls"
+                            [(ariaCurrent)]="fieldsetData.ariaCurrent"
+                            [(ariaLive)]="fieldsetData.ariaLive"
+                            [(ariaExpanded)]="fieldsetData.ariaExpanded"
+                            [hideAriaErrorMessage]="true"
+                            [(ariaHasPopup)]="fieldsetData.ariaHasPopup"
+                            [(tabindex)]="fieldsetData.tabindex"></app-accessibility-inputs>
+
+
+  <div>
+    <app-title-params titleparams="Parámetros de hint"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="hint"  nameProperty="text" [(target)]="hintData.text"></app-input-text>
+        <app-input-text nameComponent="hint"  nameProperty="html" [(target)]="hintData.html"></app-input-text>
+        <app-input-text nameComponent="hint"  placeholder="text-primary-base uppercase ..." nameProperty="classes" [(target)]="hintData.classes"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs title="Parámetros de accesibilidad de hint" id="hint"
+                            [(role)]="hintData.role"
+                            [(ariaLabel)]="hintData.ariaLabel"
+                            [(ariaDescribedBy)]="hintData.ariaDescribedBy"
+                            [(ariaLabelledBy)]="hintData.ariaLabelledBy"
+                            [(ariaHidden)]="hintData.ariaHidden"
+                            [(ariaDisabled)]="hintData.ariaDisabled"
+                            [(ariaControls)]="hintData.ariaControls"
+                            [(ariaCurrent)]="hintData.ariaCurrent"
+                            [(ariaLive)]="hintData.ariaLive"
+                            [(ariaExpanded)]="hintData.ariaExpanded"
+                            [(ariaErrorMessage)]="hintData.ariaErrorMessage"
+                            [(ariaHasPopup)]="hintData.ariaHasPopup"
+                            [(tabindex)]="hintData.tabindex"></app-accessibility-inputs>
+
+
+  <div>
+    <app-title-params titleparams="Parámetros de error"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="errorMessage" nameProperty="text" [(target)]="errorMessageData.text"></app-input-text>
+        <app-input-text nameComponent="errorMessage" nameProperty="html" [(target)]="errorMessageData.html"></app-input-text>
+        <app-input-text nameComponent="errorMessage" nameProperty="visuallyHiddenText" [(target)]="errorMessageData.visuallyHiddenText"></app-input-text>
+        <app-input-text nameComponent="errorMessage" placeholder="text-primary-base uppercase ..." nameProperty="classes" [(target)]="errorMessageData.classes"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs title="Parámetros de accesibilidad de errorMessage" id="error"
+                            [(role)]="errorMessageData.role"
+                            [(ariaLabel)]="errorMessageData.ariaLabel"
+                            [(ariaDescribedBy)]="errorMessageData.ariaDescribedBy"
+                            [(ariaLabelledBy)]="errorMessageData.ariaLabelledBy"
+                            [(ariaHidden)]="errorMessageData.ariaHidden"
+                            [(ariaDisabled)]="errorMessageData.ariaDisabled"
+                            [(ariaControls)]="errorMessageData.ariaControls"
+                            [(ariaCurrent)]="errorMessageData.ariaCurrent"
+                            [(ariaLive)]="errorMessageData.ariaLive"
+                            [(ariaExpanded)]="errorMessageData.ariaExpanded"
+                            [(ariaErrorMessage)]="errorMessageData.ariaErrorMessage"
+                            [(ariaHasPopup)]="errorMessageData.ariaHasPopup"
+                            [(tabindex)]="errorMessageData.tabindex"></app-accessibility-inputs>
+
+</div>

@@ -1,0 +1,174 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+ 
+<app-implementation-info info="Implementación Default"></app-implementation-info>
+<desy-menu-vertical idPrefix="default-example" [items]="[{'text':'Item 1','href':'http://www.google.com'},
+        {'text':'Item 2','href':'http://www.google.com'},
+        {'text':'Item 3','href':'http://www.google.com'}]"
+        ariaLabel="Menu vertical" ></desy-menu-vertical>
+<app-spaced withBorder="true"></app-spaced>
+
+<app-implementation-info info="Implementación With Disabled item, target & divider"></app-implementation-info>
+<desy-menu-vertical idPrefix="divider-example"
+        [items]="[{'text':'Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus.','href':'http://www.google.com','target':'_blank'},
+                {'text':'Item 2','href':'http://www.google.com','target':'_blank','divider':'true'},
+                {'text':'Item 3','href':'http://www.google.com','target':'_blank'},
+                {'text':'Item 4','href':'http://www.google.com','disabled':'true','target':'_blank'}]"
+        ariaLabel="Menu vertical"></desy-menu-vertical>
+<app-spaced withBorder="true"></app-spaced>
+
+<app-implementation-info info="Implementación With all parent items"></app-implementation-info>
+<desy-menu-vertical idPrefix="parent-example"
+        [items]="[{'text':'Item 1','id':'parent-example-item-1','sub':{'items':[{'text':'Subitem 1','href':'http://www.google.com'},{'text':'Subitem 2','href':'http://www.google.com'},{'text':'Subitem 3','href':'http://www.google.com'}]}},
+                {'text':'Item 2','id':'parent-example-item-2','sub':{'items':[{'text':'Subitem 1','href':'http://www.google.com'},{'text':'Subitem 2','href':'http://www.google.com'},{'text':'Subitem 3','href':'http://www.google.com'}]}},
+                {'text':'Item 3','sub':{'items':[{'text':'Aqui en el ejemplo pasa un sub.html'}]}}]"
+                ></desy-menu-vertical>
+<app-spaced withBorder="true"></app-spaced>
+
+ <app-implementation-info info="Implementación With all parent items"></app-implementation-info>
+<desy-menu-vertical idPrefix="parent-example" expandable="true" classes="bg-warning-light"
+        [items]="[{'text':'Item 1','id':'parent-example-item-1','classes':'bg-warning-base','expanded':'true','sub':{'classes':'border-l-4 border-alert-base bg-alert-light','items':[{'text':'Subitem 1'},{'text':'Subitem 2','classes':'border-2 border-alert-base text-alert-base bg-white'},{'text':'Subitem 3'}]}},
+                {'text':'Item 2','id':'parent-example-item-2','sub':{'items':[{'text':'Subitem 1','divider':'true'},{'text':'Subitem 2','disabled':'true'},{'text':'Subitem 3','active':'true'}]}},
+                {'text':'Item 3','sub':{'items':[{'html':'Aqui paso unicamente un sub.html, sin href'}]}}]"
+        ariaLabel="Menu vertical"       ></desy-menu-vertical>
+<app-spaced withBorder="true"></app-spaced>  
+
+<app-implementation-info info="Implementación Editable"></app-implementation-info>
+<desy-menu-vertical [id]="id" [idPrefix]="idPrefix"  [classes]="classes"
+        [items]="items"  [expandable]="expandable"
+        [role]="role" 
+        [ariaLabel]="ariaLabel"
+        [ariaDescribedBy]="ariaDescribedBy"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [ariaHidden]="ariaHidden"
+        [ariaDisabled]="ariaDisabled"
+        [ariaControls]="ariaControls"
+        [ariaCurrent]="ariaCurrent"
+        [ariaLive]="ariaLive"
+        [ariaExpanded]="ariaExpanded"
+        [ariaErrorMessage]="ariaErrorMessage"
+        [ariaHasPopup]="ariaHasPopup"
+        [tabindex]="tabindex"></desy-menu-vertical>
+<app-spaced withBorder="true"></app-spaced> 
+
+
+<div class="c-form-group grid grid-cols-2 gap-base">
+ 
+        <div>
+                <app-title-params></app-title-params>
+                <app-input-text [nameComponent]="nameComponent" placeholder="bg-warning-light..." nameProperty="classes" [(target)]="classes"> </app-input-text>
+                <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="id"> </app-input-text> 
+                <app-input-text [nameComponent]="nameComponent" nameProperty="idPrefix" [(target)]="idPrefix"> </app-input-text>
+                <app-input-boolean [nameComponent]="nameComponent" nameProperty="Expandable" [(target)]="expandable"> </app-input-boolean> 
+        </div>
+
+        <app-accessibility-inputs [(role)]="role"
+                [(ariaLabel)]="ariaLabel"
+                [(ariaDescribedBy)]="ariaDescribedBy"
+                [(ariaLabelledBy)]="ariaLabelledBy"
+                [(ariaHidden)]="ariaHidden"
+                [(ariaDisabled)]="ariaDisabled"
+                [(ariaControls)]="ariaControls"
+                [(ariaCurrent)]="ariaCurrent"
+                [(ariaLive)]="ariaLive"
+                [(ariaExpanded)]="ariaExpanded"
+                [(ariaErrorMessage)]="ariaErrorMessage"
+                [(ariaHasPopup)]="ariaHasPopup"
+                [(tabindex)]="tabindex"></app-accessibility-inputs>
+
+        <div>
+                <app-title-params titleparams="Parámetros de item"></app-title-params>
+                <details>
+                        <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+                        <span>Mostrar</span>
+                        </summary>
+                        <div class="py-sm">
+                        <app-input-text [nameComponent]="nameComponent" nameProperty="text" [(target)]="item.text"> </app-input-text>
+                        <app-input-text [nameComponent]="nameComponent" nameProperty="html" [(target)]="item.html"> </app-input-text>
+                        <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="item.id"> </app-input-text>
+                        <app-input-text [nameComponent]="nameComponent" nameProperty="classes" [(target)]="item.classes"> </app-input-text>
+                        <app-input-text [nameComponent]="nameComponent" nameProperty="href" [(target)]="item.href"> </app-input-text>
+                        <app-input-text [nameComponent]="nameComponent" description="url interna del proyecto" placeholder="/hint" nameProperty="routerLink" [(target)]="item.routerLink"> </app-input-text>
+                        <app-input-text [nameComponent]="nameComponent" description="clases css a aplicar cuando estamos en la ruta donde va el boton" placeholder="c-button--alert uppercase ..." nameProperty="routerLinkActiveClasses" [(target)]="item.routerLinkActiveClasses"> </app-input-text>
+                        <app-input-text [nameComponent]="nameComponent" description="anchor (sin #)" nameProperty="fragment" [(target)]="item.fragment"> </app-input-text>
+                        <app-input-text [nameComponent]="nameComponent" nameProperty="target" [(target)]="item.target"> </app-input-text>
+                        <app-input-boolean [nameComponent]="nameComponent" description="Mostrar el item expandido de la implementación editable" nameProperty="expanded" [(target)]="item.expanded"> </app-input-boolean>
+                        <app-input-boolean [nameComponent]="nameComponent" description="Deshabilita el item de la implementación editable" nameProperty="disabled" [(target)]="item.disabled"> </app-input-boolean>
+                        <app-input-boolean [nameComponent]="nameComponent" description="Añade una línea divisoria al item" nameProperty="divider" [(target)]="item.divider"> </app-input-boolean>
+                        </div>
+                </details>
+        </div>
+
+        <app-accessibility-inputs title="Parámetros de accesibilidad del item" id="item"
+                                [(role)]="item.role"
+                                [(ariaLabel)]="item.ariaLabel"
+                                [(ariaDescribedBy)]="item.ariaDescribedBy"
+                                [(ariaLabelledBy)]="item.ariaLabelledBy"
+                                [(ariaHidden)]="item.ariaHidden"
+                                [(ariaDisabled)]="item.ariaDisabled"
+                                [(ariaControls)]="item.ariaControls"
+                                [(ariaCurrent)]="item.ariaCurrent"
+                                [(ariaLive)]="item.ariaLive"
+                                [(ariaExpanded)]="item.ariaExpanded"
+                                [(ariaErrorMessage)]="item.ariaErrorMessage"
+                                [(ariaHasPopup)]="item.ariaHasPopup"
+                                [(tabindex)]="item.tabindex"></app-accessibility-inputs> 
+
+
+        <div>
+                <app-title-params titleparams="Parámetros del Sub del item"></app-title-params>
+                <details>
+                        <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+                                <span>Mostrar</span>
+                        </summary>
+                        <div class="py-sm">
+                                <app-input-text nameComponent="sub" nameProperty="id" [(target)]="item.sub.id"> </app-input-text>
+                                <app-input-text nameComponent="sub" nameProperty="html" [(target)]="item.sub.html"> </app-input-text>
+                                <app-input-text nameComponent="sub" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="item.sub.classes"> </app-input-text>
+                        </div>
+                </details>
+        </div>
+                
+        <app-accessibility-inputs title="Parámetros de accesibilidad de sub del item" id="sub"
+                                [(role)]="item.sub.role"
+                                [(ariaLabel)]="item.sub.ariaLabel"
+                                [(ariaDescribedBy)]="item.sub.ariaDescribedBy"
+                                [(ariaLabelledBy)]="item.sub.ariaLabelledBy"
+                                [(ariaHidden)]="item.sub.ariaHidden"
+                                [(ariaDisabled)]="item.sub.ariaDisabled"
+                                [(ariaControls)]="item.sub.ariaControls"
+                                [(ariaCurrent)]="item.sub.ariaCurrent"
+                                [(ariaLive)]="item.sub.ariaLive"
+                                [(ariaExpanded)]="item.sub.ariaExpanded"
+                                [(ariaErrorMessage)]="item.sub.ariaErrorMessage"
+                                [(ariaHasPopup)]="item.sub.ariaHasPopup"
+                                [(tabindex)]="item.sub.tabindex"></app-accessibility-inputs>
+
+
+        <div>
+                <app-title-params titleparams="Parámetros de Items del Sub del item"></app-title-params>
+                <details>
+                        <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+                                <span>Mostrar</span>
+                        </summary>
+                        <div class="py-sm">
+                                <app-input-text nameComponent="items" nameProperty="id" [(target)]="subItem.id"> </app-input-text>
+                                <app-input-text nameComponent="items" nameProperty="text" [(target)]="subItem.text"> </app-input-text>
+                                <app-input-text nameComponent="items" nameProperty="html" [(target)]="subItem.html"> </app-input-text>
+                                <app-input-text nameComponent="items" nameProperty="href" [(target)]="subItem.href"> </app-input-text>
+                                <app-input-text nameComponent="items" description="url interna del proyecto" placeholder="/hint" nameProperty="routerLink" [(target)]="subItem.routerLink"> </app-input-text>
+                                <app-input-text nameComponent="items" description="clases css a aplicar cuando estamos en la ruta donde va el boton" placeholder="c-button--alert uppercase ..." nameProperty="routerLinkActiveClasses" [(target)]="subItem.routerLinkActiveClasses"> </app-input-text>
+                                <app-input-text nameComponent="items" description="anchor (sin #)" nameProperty="fragment" [(target)]="subItem.fragment"> </app-input-text>
+                                <app-input-text nameComponent="items" nameProperty="target" [(target)]="subItem.target"> </app-input-text>
+                                <app-input-boolean [nameComponent]="nameComponent" description="Desactiva el subItem" nameProperty="disabled" [(target)]="subItem.disabled"> </app-input-boolean>
+                                <app-input-boolean [nameComponent]="nameComponent" description="Resalta el subItem como activo" nameProperty="active" [(target)]="subItem.active"> </app-input-boolean>
+                                <app-input-boolean [nameComponent]="nameComponent" description="Añade una línea divisoria al item" nameProperty="divider" [(target)]="subItem.divider"> </app-input-boolean>   
+                        </div>
+                </details>
+        </div> 
+
+
+
+
+
+
+</div>

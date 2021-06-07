@@ -1,0 +1,529 @@
+<app-title-demo [name]="nameComponent"></app-title-demo>
+
+<!-- Básico -->
+<div class="grid grid-cols-2 gap-base">
+  <div class="align-middle">
+    <app-implementation-info info="Implementación de radio básico con ngModel" observations="mi name es 'radioNgModel'"></app-implementation-info>
+    <desy-radios [(ngModel)]="value"
+                 legendText="Have you changed your name?"
+                 hintText="This includes changing your last name or spelling your name differently."
+                 [items]="[{'value': 'yes', 'text': 'Yes', 'classes': 'mr-sm'},{'value': 'no', 'text': 'No', 'classes': 'mr-sm'}]"
+                 idPrefix="example"
+                 name="radioNgModel"
+                 classes="flex">
+    </desy-radios>
+    <p> Valor: {{value}}</p>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de radio con condicionales y reactiveForm"></app-implementation-info>
+    <form [formGroup]="form">
+      <desy-radios formControlName="valueFormControl"
+                   legendText="How do you want to be contacted?"
+                   [errorMessageData]="valueFormControl.invalid ? {text: 'Soy obligatorio'} : null"
+                   [items]="itemsContact"
+                   [formGroupClasses]="formGroupContactClasses"
+                   idPrefix="how-contacted"
+                   name="how-contacted">
+
+        <ng-template desyCondition value="email" [items]="itemsContact">
+          <desy-input id="context-email" name="context-email" labelText="E-mail" [errorMessageData]="email.invalid ? {text: 'No es un email'} : null"  placeholder="ejemplo@email.es"  formControlName="email"></desy-input>
+        </ng-template>
+
+        <ng-template desyCondition value="phone" [items]="itemsContact">
+            <desy-input id="context-phone" name="contact-phone" labelText="Phone number" [errorMessageData]="phone.invalid ? {text: 'Longitud minima 9'} : null" formControlName="phone"></desy-input>
+        </ng-template>
+
+         <ng-template desyCondition value="text" [items]="itemsContact">
+            <desy-input id="contact-text-message" name="contact-text-message" labelText="Mobile phone number" [errorMessageData]="phoneTxt.invalid ? {text: 'Longitud minima 9'} : null" formControlName="phoneTxt"></desy-input>
+        </ng-template>
+         
+      </desy-radios>
+    </form>
+    <p> Contacto: {{form.value.valueFormControl}}</p>
+    <p> email: {{form.value.email}}</p>
+    <p> telefono: {{form.value.phone}}</p>
+    <p> telefono movil: {{form.value.phoneTxt}}</p>
+    <p> Valido: {{form.valid ? 'Sí' : 'No'}}</p>
+
+  </div>
+</div>
+<app-spaced withBorder></app-spaced>
+
+<!-- Pruebas fieldset -->
+<div class="grid grid-cols-2 gap-base">
+  <div>
+    <app-implementation-info info="Implementación de fieldsest con interfaz" observations="mi name es 'fielset-data', a mi id se le añade '-fieldset-data'"></app-implementation-info>
+      <desy-radios [fieldsetData]="(fieldsetData.legend.text || fieldsetData.legend.html) ? fieldsetData : null"
+                   [items]="getItems()"
+                   [formGroupClasses]="formGroupClasses"
+                   [idPrefix]="idPrefix"
+                   name="fielset-data"
+                   [hasDividers]="hasDividers"
+                   [classes]="classes"
+                   [id]="id + '-fielset-data'"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaExpanded]="ariaExpanded"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [ariaHasPopup]="ariaHasPopup"
+                   [tabindex]="tabindex">
+                  
+        <ng-template desyCondition [item]="itemRadioDataCustom">
+              <desy-input id="input-cond" name="input-cond" labelText="introduce un texto"></desy-input>
+        </ng-template>
+      </desy-radios>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de legend con template" observations="mi name es 'legend-template', a mi id se le añade '-legend-template'"></app-implementation-info>
+      <desy-radios [legendRef]="(fieldsetData.legend.text || fieldsetData.legend.html)? legendTmp : null"
+                  [items]="getItems()"
+                  [formGroupClasses]="formGroupClasses"
+                  [idPrefix]="idPrefix"
+                  name="legend-template"
+                  [hasDividers]="hasDividers"
+                  [classes]="classes"
+                  [id]="id + '-legend-template'"
+                  [role]="role"
+                  [ariaLabel]="ariaLabel"
+                  [ariaDescribedBy]="ariaDescribedBy"
+                  [ariaLabelledBy]="ariaLabelledBy"
+                  [ariaHidden]="ariaHidden"
+                  [ariaDisabled]="ariaDisabled"
+                  [ariaControls]="ariaControls"
+                  [ariaCurrent]="ariaCurrent"
+                  [ariaLive]="ariaLive"
+                  [ariaExpanded]="ariaExpanded"
+                  [ariaErrorMessage]="ariaErrorMessage"
+                  [ariaHasPopup]="ariaHasPopup"
+                  [tabindex]="tabindex"></desy-radios>
+                  <ng-template #legendTmp><desy-legend [text]="fieldsetData.legend.text" [html]="fieldsetData.legend.html" [classes]="fieldsetData.legend.classes" [isPageHeading]="fieldsetData.legend.isPageHeading"></desy-legend></ng-template>
+  </div>
+</div>
+<div class="grid grid-cols-2 gap-base">
+    <div>
+    <app-implementation-info info="Implementación de legend con interfaz" observations="mi name es 'legend-data', a mi id se le añade '-legend-data'"></app-implementation-info>
+      <desy-radios [legendData]="(fieldsetData.legend.text || fieldsetData.legend.html) ? fieldsetData.legend : null"
+                   [items]="getItems()"
+                   [formGroupClasses]="formGroupClasses"
+                   [idPrefix]="idPrefix"
+                   name="legend-data"
+                   [hasDividers]="hasDividers"
+                   [classes]="classes"
+                   [id]="id + '-legend-data'"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaExpanded]="ariaExpanded"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [ariaHasPopup]="ariaHasPopup"
+                   [tabindex]="tabindex"></desy-radios>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de legend con sólo el texto" observations="mi name es 'legend-text', a mi id se le añade '-legend-text'"></app-implementation-info>
+      <desy-radios [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                   [items]="getItems()"
+                   [formGroupClasses]="formGroupClasses"
+                   [idPrefix]="idPrefix"
+                   name="legend-text"
+                   [hasDividers]="hasDividers"
+                   [classes]="classes"
+                   [id]="id + '-legend-text'"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaExpanded]="ariaExpanded"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [ariaHasPopup]="ariaHasPopup"
+                   [tabindex]="tabindex"></desy-radios>
+  </div>
+</div>
+<app-spaced withBorder></app-spaced>
+
+<!-- Pruebas hint -->
+<div class="grid grid-cols-3 gap-base">
+  <div>
+    <app-implementation-info info="Implementación de hint con template" observations="mi name es 'hint-template', a mi id se le añade '-hint-template'"></app-implementation-info>
+      <desy-radios [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                   [hintRef]="(hintData.text || hintData.html) ? hint : null"
+                   [items]="getItems()"
+                   [formGroupClasses]="formGroupClasses"
+                   [idPrefix]="idPrefix"
+                   name="hint-template"
+                   [hasDividers]="hasDividers"
+                   [classes]="classes"
+                   [id]="id + '-hint-template'"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaExpanded]="ariaExpanded"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [ariaHasPopup]="ariaHasPopup"
+                   [tabindex]="tabindex"></desy-radios>
+      <ng-template #hint>
+        <desy-hint *ngIf="hintData.text || hintData.html" [text]="hintData.text" [html]="hintData.html" [classes]="hintData.classes" [id]="hintData.id"
+                   [role]="hintData.role"
+                   [ariaLabel]="hintData.ariaLabel"
+                   [ariaDescribedBy]="hintData.ariaDescribedBy"
+                   [ariaLabelledBy]="hintData.ariaLabelledBy"
+                   [ariaHidden]="hintData.ariaHidden"
+                   [ariaDisabled]="hintData.ariaDisabled"
+                   [ariaControls]="hintData.ariaControls"
+                   [ariaCurrent]="hintData.ariaCurrent"
+                   [ariaLive]="hintData.ariaLive"
+                   [ariaExpanded]="hintData.ariaExpanded"
+                   [ariaErrorMessage]="hintData.ariaErrorMessage"
+                   [ariaHasPopup]="hintData.ariaHasPopup"
+                   [tabindex]="hintData.tabindex"></desy-hint>
+      </ng-template>
+
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de hint con interfaz" observations="mi name es 'hint-data', a mi id se le añade '-hint-data'"></app-implementation-info>
+      <desy-radios [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                   [hintData]="(hintData.text || hintData.html) ? hintData : null"
+                   [items]="getItems()"
+                   [formGroupClasses]="formGroupClasses"
+                   [idPrefix]="idPrefix"
+                   name="hint-data"
+                   [hasDividers]="hasDividers"
+                   [classes]="classes"
+                   [id]="id + '-hint-data'"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaExpanded]="ariaExpanded"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [ariaHasPopup]="ariaHasPopup"
+                   [tabindex]="tabindex"></desy-radios>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de hint con sólo el texto" observations="mi name es 'hint-text', a mi id se le añade '-hint-text'"></app-implementation-info>
+      <desy-radios [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                   [hintText]="hintData.text ? hintData.text : null"
+                   [items]="getItems()"
+                   [formGroupClasses]="formGroupClasses"
+                   [idPrefix]="idPrefix"
+                   name="hint-text"
+                   [hasDividers]="hasDividers"
+                   [classes]="classes"
+                   [id]="id + '-hint-text'"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaExpanded]="ariaExpanded"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [ariaHasPopup]="ariaHasPopup"
+                   [tabindex]="tabindex"></desy-radios>
+  </div>
+</div>
+<app-spaced withBorder></app-spaced>
+
+<!-- Pruebas errorMessage -->
+<div class="grid grid-cols-3 gap-base">
+  <div>
+    <app-implementation-info info="Implementación de errormMessage con template" observations="mi name es 'error-template', a mi id se le añade '-error-template'"></app-implementation-info>
+      <desy-radios [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                   [errorMessageRef]="(errorMessageData.text || errorMessageData.html) ? error : null"
+                   [items]="getItems()"
+                   [formGroupClasses]="formGroupClasses"
+                   [idPrefix]="idPrefix"
+                   name="error-template"
+                   [hasDividers]="hasDividers"
+                   [classes]="classes"
+                   [id]="id + '-error-template'"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaExpanded]="ariaExpanded"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [ariaHasPopup]="ariaHasPopup"
+                   [tabindex]="tabindex"></desy-radios>
+      <ng-template #error>
+        <desy-error-message [text]="errorMessageData.text"
+                            [html]="errorMessageData.html"
+                            [visuallyHiddenText]="errorMessageData.visuallyHiddenText"
+                            [id]="errorMessageData.id"
+                            [classes]="errorMessageData.classes"
+                            [role]="errorMessageData.role"
+                            [ariaLabel]="errorMessageData.ariaLabel"
+                            [ariaDescribedBy]="errorMessageData.ariaDescribedBy"
+                            [ariaLabelledBy]="errorMessageData.ariaLabelledBy"
+                            [ariaHidden]="errorMessageData.ariaHidden"
+                            [ariaDisabled]="errorMessageData.ariaDisabled"
+                            [ariaControls]="errorMessageData.ariaControls"
+                            [ariaCurrent]="errorMessageData.ariaCurrent"
+                            [ariaLive]="errorMessageData.ariaLive"
+                            [ariaExpanded]="errorMessageData.ariaExpanded"
+                            [ariaErrorMessage]="errorMessageData.ariaErrorMessage"
+                            [ariaHasPopup]="errorMessageData.ariaHasPopup"
+                            [tabindex]="errorMessageData.tabindex"></desy-error-message>
+      </ng-template>
+
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de errormMessage con interfaz" observations="mi name es 'error-data', a mi id se le añade '-error-data'"></app-implementation-info>
+      <desy-radios [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                   [errorMessageData]="(errorMessageData.text || errorMessageData.html) ? errorMessageData : null"
+                   [items]="getItems()"
+                   [formGroupClasses]="formGroupClasses"
+                   [idPrefix]="idPrefix"
+                   name="error-data"
+                   [hasDividers]="hasDividers"
+                   [classes]="classes"
+                   [id]="id + '-error-data'"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaExpanded]="ariaExpanded"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [ariaHasPopup]="ariaHasPopup"
+                   [tabindex]="tabindex"></desy-radios>
+  </div>
+  <div>
+    <app-implementation-info info="Implementación de errormMessage con sólo el texto" observations="mi name es 'error-text', a mi id se le añade '-error-text'"></app-implementation-info>
+      <desy-radios [legendText]="fieldsetData.legend.text ? fieldsetData.legend.text : null"
+                   [errorMessageText]="errorMessageData.text ? errorMessageData.text : null"
+                   [items]="getItems()"
+                   [formGroupClasses]="formGroupClasses"
+                   [idPrefix]="idPrefix"
+                   name="error-text"
+                   [hasDividers]="hasDividers"
+                   [classes]="classes"
+                   [id]="id + '-error-text'"
+                   [role]="role"
+                   [ariaLabel]="ariaLabel"
+                   [ariaDescribedBy]="ariaDescribedBy"
+                   [ariaLabelledBy]="ariaLabelledBy"
+                   [ariaHidden]="ariaHidden"
+                   [ariaDisabled]="ariaDisabled"
+                   [ariaControls]="ariaControls"
+                   [ariaCurrent]="ariaCurrent"
+                   [ariaLive]="ariaLive"
+                   [ariaExpanded]="ariaExpanded"
+                   [ariaErrorMessage]="ariaErrorMessage"
+                   [ariaHasPopup]="ariaHasPopup"
+                   [tabindex]="tabindex"></desy-radios>
+  </div>
+</div>
+<app-spaced withBorder></app-spaced>
+
+
+
+<!-- Configuración -->
+<div class="c-form-group grid grid-cols-2 gap-base">
+  <div>
+    <app-title-params></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text [nameComponent]="nameComponent" placeholder="w-100 ..." nameProperty="formGroupClasses" [(target)]="formGroupClasses"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="idPrefix" [(target)]="idPrefix"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="name" [(target)]="name"></app-input-text>
+        <app-input-boolean [nameComponent]="nameComponent" nameProperty="hasDividers" [(target)]="hasDividers"></app-input-boolean>
+        <app-input-text [nameComponent]="nameComponent" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="classes"></app-input-text>
+        <app-input-text [nameComponent]="nameComponent" nameProperty="id" [(target)]="id"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs [(role)]="role"
+                            [(ariaLabel)]="ariaLabel"
+                            [(ariaDescribedBy)]="ariaDescribedBy"
+                            [(ariaLabelledBy)]="ariaLabelledBy"
+                            [(ariaHidden)]="ariaHidden"
+                            [(ariaDisabled)]="ariaDisabled"
+                            [(ariaControls)]="ariaControls"
+                            [(ariaCurrent)]="ariaCurrent"
+                            [(ariaLive)]="ariaLive"
+                            [(ariaExpanded)]="ariaExpanded"
+                            [(ariaErrorMessage)]="ariaErrorMessage"
+                            [(ariaHasPopup)]="ariaHasPopup"
+           [(tabindex)]="tabindex"></app-accessibility-inputs>
+
+  <div>
+      <app-title-params  titleparams="Parámetros de un radio"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="itemRadio" nameProperty="text" [(target)]="itemRadioDataCustom.text"></app-input-text>
+        <app-input-text nameComponent="itemRadio" nameProperty="html" [(target)]="itemRadioDataCustom.html"></app-input-text>
+        <app-input-text nameComponent="itemRadio" nameProperty="id" [(target)]="itemRadioDataCustom.id"></app-input-text>
+        <app-input-text nameComponent="itemRadio" nameProperty="value" [(target)]="itemRadioDataCustom.value"></app-input-text>
+        <app-input-text nameComponent="labelData" nameProperty="labelData.classes" [(target)]="itemRadioDataCustom.labelData.classes"></app-input-text>
+        <app-input-text nameComponent="hintData"  nameProperty="hintData.text" [(target)]="itemRadioDataCustom.hintData.text"></app-input-text>
+        <app-input-text nameComponent="hintData"  nameProperty="hintData.html" [(target)]="itemRadioDataCustom.hintData.html"></app-input-text>
+        <app-input-text nameComponent="hintData"  placeholder="text-primary-base uppercase ..." nameProperty="hintData.classes" [(target)]="itemRadioDataCustom.hintData.classes"></app-input-text>
+        <app-input-text nameComponent="itemRadio" nameProperty="divider" [(target)]="itemRadioDataCustom.divider"></app-input-text>
+        <app-input-boolean nameComponent="itemRadio" nameProperty="checked" [(target)]="itemRadioDataCustom.checked"></app-input-boolean>
+        <app-input-boolean nameComponent="itemRadio" nameProperty="conditional" [(target)]="itemRadioDataCustom.conditional"></app-input-boolean>
+        <app-input-boolean nameComponent="itemRadio" nameProperty="disabled" [(target)]="itemRadioDataCustom.disabled"></app-input-boolean>
+        <app-input-text nameComponent="itemRadio" nameProperty="classes" [(target)]="itemRadioDataCustom.classes"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs title="Parámetros de accesibilidad de un radio" id="itemRadio"
+                            [(role)]="itemRadioDataCustom.role"
+                            [(ariaLabel)]="itemRadioDataCustom.ariaLabel"
+                            [(ariaDescribedBy)]="itemRadioDataCustom.ariaDescribedBy"
+                            [(ariaLabelledBy)]="itemRadioDataCustom.ariaLabelledBy"
+                            [(ariaHidden)]="itemRadioDataCustom.ariaHidden"
+                            [(ariaDisabled)]="itemRadioDataCustom.ariaDisabled"
+                            [(ariaControls)]="itemRadioDataCustom.ariaControls"
+                            [(ariaCurrent)]="itemRadioDataCustom.ariaCurrent"
+                            [(ariaLive)]="itemRadioDataCustom.ariaLive"
+                            [(ariaExpanded)]="itemRadioDataCustom.ariaExpanded"
+                            [(ariaErrorMessage)]="itemRadioDataCustom.ariaErrorMessage"
+                            [(ariaHasPopup)]="itemRadioDataCustom.ariaHasPopup"
+           [(tabindex)]="itemRadioDataCustom.tabindex"></app-accessibility-inputs>
+
+  <div>
+    <app-title-params titleparams="Parámetros de fieldset"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="fieldset" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="fieldsetData.classes"></app-input-text>
+        <app-input-text nameComponent="fieldset" nameProperty="id" [(target)]="fieldsetData.id"></app-input-text>
+
+        <app-title-params titleparams="Parámetros de legend"></app-title-params>
+        <app-input-text nameComponent="legend" nameProperty="text" [(target)]="fieldsetData.legend.text"></app-input-text>
+        <app-input-text nameComponent="legend" nameProperty="html" [(target)]="fieldsetData.legend.html"></app-input-text>
+        <app-input-text nameComponent="legend" placeholder="text-primary-base ..." nameProperty="classes" [(target)]="fieldsetData.legend.classes"></app-input-text>
+        <app-input-boolean nameComponent="legend" nameProperty="isPageHeading" [(target)]="fieldsetData.legend.isPageHeading"></app-input-boolean>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs title="Parámetros de accesibilidad de fieldset" id="fieldset"
+                            [(role)]="fieldsetData.role"
+                            [(ariaLabel)]="fieldsetData.ariaLabel"
+                            [hideAriaDescribedBy]="true"
+                            [(ariaLabelledBy)]="fieldsetData.ariaLabelledBy"
+                            [(ariaHidden)]="fieldsetData.ariaHidden"
+                            [(ariaDisabled)]="fieldsetData.ariaDisabled"
+                            [(ariaControls)]="fieldsetData.ariaControls"
+                            [(ariaCurrent)]="fieldsetData.ariaCurrent"
+                            [(ariaLive)]="fieldsetData.ariaLive"
+                            [(ariaExpanded)]="fieldsetData.ariaExpanded"
+                            [hideAriaErrorMessage]="true"
+                            [(ariaHasPopup)]="fieldsetData.ariaHasPopup"
+                            [(tabindex)]="fieldsetData.tabindex"></app-accessibility-inputs>
+
+
+  <div>
+    <app-title-params titleparams="Parámetros de hint"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="hint" nameProperty="text" [(target)]="hintData.text"></app-input-text>
+        <app-input-text nameComponent="hint" nameProperty="html" [(target)]="hintData.html"></app-input-text>
+        <app-input-text nameComponent="hint" placeholder="text-primary-base uppercase ..." nameProperty="classes" [(target)]="hintData.classes"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs title="Parámetros de accesibilidad de hint" id="hint"
+                            [(role)]="hintData.role"
+                            [(ariaLabel)]="hintData.ariaLabel"
+                            [(ariaDescribedBy)]="hintData.ariaDescribedBy"
+                            [(ariaLabelledBy)]="hintData.ariaLabelledBy"
+                            [(ariaHidden)]="hintData.ariaHidden"
+                            [(ariaDisabled)]="hintData.ariaDisabled"
+                            [(ariaControls)]="hintData.ariaControls"
+                            [(ariaCurrent)]="hintData.ariaCurrent"
+                            [(ariaLive)]="hintData.ariaLive"
+                            [(ariaExpanded)]="hintData.ariaExpanded"
+                            [(ariaErrorMessage)]="hintData.ariaErrorMessage"
+                            [(ariaHasPopup)]="hintData.ariaHasPopup"
+                            [(tabindex)]="hintData.tabindex"></app-accessibility-inputs>
+
+
+  <div>
+    <app-title-params titleparams="Parámetros de error"></app-title-params>
+    <details>
+      <summary class="inline-block py-sm cursor-pointer focus:bg-warning-base focus:outline-none focus:shadow-outline-focus focus:text-black">
+        <span>Mostrar</span>
+      </summary>
+      <div class="py-sm">
+        <app-input-text nameComponent="errorMessage" nameProperty="text" [(target)]="errorMessageData.text"></app-input-text>
+        <app-input-text nameComponent="errorMessage" nameProperty="html" [(target)]="errorMessageData.html"></app-input-text>
+        <app-input-text nameComponent="errorMessage" nameProperty="visuallyHiddenText" [(target)]="errorMessageData.visuallyHiddenText"></app-input-text>
+        <app-input-text nameComponent="errorMessage" placeholder="text-primary-base uppercase ..." nameProperty="classes" [(target)]="errorMessageData.classes"></app-input-text>
+      </div>
+    </details>
+  </div>
+
+  <app-accessibility-inputs title="Parámetros de accesibilidad de errorMessage" id="error"
+                            [(role)]="errorMessageData.role"
+                            [(ariaLabel)]="errorMessageData.ariaLabel"
+                            [(ariaDescribedBy)]="errorMessageData.ariaDescribedBy"
+                            [(ariaLabelledBy)]="errorMessageData.ariaLabelledBy"
+                            [(ariaHidden)]="errorMessageData.ariaHidden"
+                            [(ariaDisabled)]="errorMessageData.ariaDisabled"
+                            [(ariaControls)]="errorMessageData.ariaControls"
+                            [(ariaCurrent)]="errorMessageData.ariaCurrent"
+                            [(ariaLive)]="errorMessageData.ariaLive"
+                            [(ariaExpanded)]="errorMessageData.ariaExpanded"
+                            [(ariaErrorMessage)]="errorMessageData.ariaErrorMessage"
+                            [(ariaHasPopup)]="errorMessageData.ariaHasPopup"
+                            [(tabindex)]="errorMessageData.tabindex"></app-accessibility-inputs>
+</div>
+
+
