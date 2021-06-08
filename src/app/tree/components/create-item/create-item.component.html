@@ -3,7 +3,7 @@
     <desy-button [html]="'Atras'" [type]="'button'" (click)="goBack()"></desy-button>
     <div id="cuerpo">
 
-        <desy-notification *ngIf="success" id="type-success" class="notification" [title]="{'text':'Item modificado correctamente'}" type="success">
+        <desy-notification *ngIf="success" id="type-success" class="notification" [title]="{'text':'Item creado correctamente'}" type="success">
         </desy-notification>
 
         <desy-notification *ngIf="limiteLvl" id="type-alert" class="notification" [title]="{'text':'El elemento seleccionado no puede tener hijos'}" type="alert">

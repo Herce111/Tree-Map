@@ -69,7 +69,6 @@ export class EditItemComponent implements OnInit {
       nombre.enable();
       caratula.enable();
       hijos.enable();
-      console.log(value);
       const item = this.treeSvc.findItem(value);
       if (item.hijos) {
         file.disable();
@@ -85,13 +84,13 @@ export class EditItemComponent implements OnInit {
       if(this.itemForm.get('hijos').value){
         this.hijos = this.itemForm.get('hijos').value;
       }
-
     } else {
       nombre.disable();
       caratula.disable();
       file.disable();
       hijos.disable();
     }
+   
   }
 
 
