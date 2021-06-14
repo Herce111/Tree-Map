@@ -7,6 +7,7 @@ import { Item } from '../models/item';
 })
 export class TreeViewService {
 
+  public breadCrumb=[];
   public itemList = new BehaviorSubject<Item[]>([
     new Item({
       id: 1, nombre: 'Tomo_01_Proyecto de Ley', caratula: false, hijos: [
@@ -33,21 +34,21 @@ export class TreeViewService {
 constructor() { }
 
   private deepFind(id: number, item: Item, maxLevel: number = Infinity, level: number = 0) {
-  if (item.id === id) {
-    return item;
-  }
+    if (item.id === id) {
+      return item;
+    }
 
-  if (level >= maxLevel) {
+    if (level >= maxLevel) {
+      return null;
+    }
+
+    for (const hijo of item.hijos) {
+      const itemFound = this.deepFind(id, hijo, maxLevel, level + 1);
+      if (itemFound) { return itemFound; }
+    }
+
     return null;
   }
-
-  for (const hijo of item.hijos) {
-    const itemFound = this.deepFind(id, hijo, maxLevel, level + 1);
-    if (itemFound) { return itemFound; }
-  }
-
-  return null;
-}
 
   private getChildrenCount(item: Item) {
   return item.hijos.reduce((acc, it) => acc + this.getChildrenCount(it), item.hijos.length);
@@ -84,5 +85,23 @@ editItem(id: number, newItem: Item) {
 }
 
 
+private deepFindNew(id: number, item: Item) {
+  if (item.id === id) {
+    return item;
+  }
+  
+
+  for (const hijo of item.hijos) {
+    const itemFound = this.deepFindNew(id, hijo);
+    if (itemFound) { return hijo }
+  }
+
+  return null;
+}
+
+findParents(id: number) {
+  const itemList = this.itemList.getValue();
+  return itemList.reduce((found, it) => found ? found : this.deepFindNew(id, it), null);
+}
 
 }

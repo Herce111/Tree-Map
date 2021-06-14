@@ -28,10 +28,10 @@ export class TreeBarComponent implements OnInit, ControlValueAccessor {
     this.val = val;
     this.onChange(val)
     this.onTouched();
+    this.createBreadCrumb(val);
   }
   public itemList: Observable<Item[]>;
-  public a: boolean;
-  public parents:Item[];
+  public parents: Item[];
 
   public get icon() {
     return this.visible ? '&#x25B2;' : '&#x25BC;';
@@ -43,29 +43,10 @@ export class TreeBarComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.itemList = this.treeSvc.itemList.asObservable();
-    this.testVal = +this.rutaActiva.snapshot.params['id'];
-    const itemCrumb = new ItemBreadcrumbsModel();
-    itemCrumb.text = 'Presupuesto';
-    itemCrumb.html = 'Presupuesto';
-    
-    const itemCrumb2 = new ItemBreadcrumbsModel();
-    itemCrumb2.text = 'Tomo_01_Proyecto de Ley';
-    itemCrumb2.html = 'Tomo_01_Proyecto de Ley';
-    //itemCrumb2.routerLink = '/section';
-    
-    const itemHtml = new ItemBreadcrumbsModel();
-    itemHtml.text = 'Libro_02_Anexo I';
-    itemHtml.html = 'Libro_02_Anexo I';
-    
-    this.item = new ItemBreadcrumbsModel();
-    this.item.text = 'Pieza_01_Estado Letra A';
-    this.item.html = 'Pieza_01_Estado Letra A';
-
-    this.items = [];
-    this.items.push(itemCrumb);
-    this.items.push(itemCrumb2);
-    this.items.push(itemHtml);
-    this.items.push(this.item);
+    if(this.rutaActiva.snapshot.params['id']){
+      this.testVal = +this.rutaActiva.snapshot.params['id'];
+      this.visible=true;
+    }
   }
 
 
@@ -87,6 +68,37 @@ export class TreeBarComponent implements OnInit, ControlValueAccessor {
     throw new Error('Method not implemented.');
   }
 
- 
+  private createBreadCrumb(v: any) {
+    this.items = [];
+    if (this.testVal) {
+
+      const parents = this.treeSvc.findParents(v);
+      const hijo = this.treeSvc.findItem(v);
+
+
+      //push de presupuesto
+      const pesupuestoCrumb = new ItemBreadcrumbsModel();
+      pesupuestoCrumb.text = 'Presupuesto';
+      pesupuestoCrumb.html = 'Presupuesto';
+      this.items.push(pesupuestoCrumb);
+
+
+      //push de los padres
+      const itemCrumb = new ItemBreadcrumbsModel();
+      itemCrumb.text = parents.nombre;
+      itemCrumb.html = parents.nombre;
+      this.items.push(itemCrumb);
+      
+      if (parents.id != hijo.id) {
+        //push del item actual
+        this.item = new ItemBreadcrumbsModel();
+        this.item.text = hijo.nombre;
+        this.item.html = hijo.nombre;
+        this.items.push(this.item);
+      }
+    }
+  }
+
+
 
 }

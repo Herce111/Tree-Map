@@ -1,6 +1,6 @@
 <ng-container *ngIf="(itemList | async) as itemLst">
   <app-title-demo [name]="nameComponent"></app-title-demo>
-  <div style="display: flex; justify-content: space-between;">
+  <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
     <app-item-list [(ngModel)]="testVal" [hijos]="itemLst"></app-item-list>
     <div>
       <desy-button class="desy-button" [html]="'Añadir secciones'" [routerLink]='"/treeView/addItem"'></desy-button>
