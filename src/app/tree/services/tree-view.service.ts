@@ -85,15 +85,15 @@ editItem(id: number, newItem: Item) {
 }
 
 
-private deepFindNew(id: number, item: Item) {
+private parentFind(id: number, item: Item) {
   if (item.id === id) {
     return item;
   }
   
 
   for (const hijo of item.hijos) {
-    const itemFound = this.deepFindNew(id, hijo);
-    if (itemFound) { return hijo }
+    const itemFound = this.parentFind(id, hijo);
+    if (itemFound) { return [item, hijo] }
   }
 
   return null;
@@ -101,7 +101,7 @@ private deepFindNew(id: number, item: Item) {
 
 findParents(id: number) {
   const itemList = this.itemList.getValue();
-  return itemList.reduce((found, it) => found ? found : this.deepFindNew(id, it), null);
+  return itemList.reduce((found, it) => found ? found : this.parentFind(id, it), null);
 }
 
 }

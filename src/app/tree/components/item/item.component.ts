@@ -1,7 +1,7 @@
-import { Component, forwardRef, Input, Renderer2 } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, forwardRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Item } from '../../models/item';
-
+import {ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -14,10 +14,11 @@ import { Item } from '../../models/item';
     } 
   ],  
 })
-export class ItemComponent implements ControlValueAccessor {
+export class ItemComponent implements ControlValueAccessor, AfterViewInit {
 
   public expanded = false;
   @Input() item: Item;
+  @Input() parametro: string;
   public get icon() {
     return !this.item.hijos.length
       ? '&#11044;'
@@ -36,7 +37,26 @@ export class ItemComponent implements ControlValueAccessor {
     this.onTouched();
   }
   
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2) {
+  }
+
+  ngAfterViewInit(): void {
+
+    if(this.parametro && this.parametro!='undefined'){
+      if(+this.parametro == this.item.id){
+        const el = document.getElementById('id'+this.item.id.toString());
+        el.click();
+      }
+    }
+
+    if(+this.parametro != this.item.id){ //linea a cambiar
+      this.expanded=true;
+    }else{
+      this.expanded=false;
+    }
+    
+  }
+  
 
 
 

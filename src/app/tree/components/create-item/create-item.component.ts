@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ItemCheckboxData } from 'desy-angular';
@@ -7,6 +7,7 @@ import { Item } from '../../models/item';
 import { TreeViewService } from '../../services/tree-view.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-create-item',
   templateUrl: './create-item.component.html',
   styleUrls: ['./create-item.component.scss']
@@ -60,14 +61,15 @@ export class CreateItemComponent implements OnInit {
 
 
   private resetForm() {
+    for (let item of this.itemsCover) {
+      item.checked = false;
+    }
+
     this.itemForm.setValue({
       nombre: "",
       caratula: false,
       file: ""
     }, { emitEvent: false });
-
-    this.removeItemsFromItemsCover();
-    this.addItemToItemsCover();
 
     for (let control of Object.values(this.itemForm.controls)) {
       control.markAsPristine();
@@ -85,8 +87,8 @@ export class CreateItemComponent implements OnInit {
       console.error("Something is wrong", this.itemForm);
     } else {
       let item = new Item(this.itemForm.value);
-      if(item.caratula[0]!=true){
-        item.caratula=false;
+      if (item.caratula[0] != true) {
+        item.caratula = false;
       }
       try {
         this.treeSvc.addItem(item, this.itemId, 1);

@@ -17,6 +17,7 @@ export class ItemListComponent implements ControlValueAccessor, OnInit {
 
   public expanded = false;
   @Input() public hijos:Item[];
+  @Input() public parametro:string;
   public item: Item;
   public val:number;
   public get testVal() { return this.val; }
@@ -30,7 +31,6 @@ export class ItemListComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit(){
     this.item = new Item({nombre: 'Presupuesto', hijos: this.hijos});
-    
   }
 
   public get icon() {

@@ -6,7 +6,7 @@
     </button>
     <span (dblclick)="expanded = !expanded">
         <span>
-            <span style="cursor: pointer;" class="name" tabindex="0" (click)="click($event)"
+            <span style="cursor: pointer;" class="name" tabindex="0" [id]="'id'+this.item.id.toString()" (click)="click($event)"
                 (click)="testVal = item.id">{{item.nombre}}
             </span>
             <span [innerHTML]="checked" [attr.ariaLabel]="'Caratula'"></span>
@@ -15,7 +15,7 @@
             style="margin-left: 30px;"><small>{{item.file}}</small></a>
     </span>
     <ul role="group" *ngIf="item.hijos.length">
-        <app-item *ngFor="let hijo of item.hijos; idx as idx" [(ngModel)]="testVal" [item]="hijo" appReplaceTag>
+        <app-item *ngFor="let hijo of item.hijos; idx as idx" [(ngModel)]="testVal" [item]="hijo" [parametro]="parametro" appReplaceTag>
         </app-item>
     </ul>
 </li>

@@ -7,7 +7,9 @@ import { TreeViewService } from '../../services/tree-view.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ItemCheckboxData } from 'desy-angular';
 import { ItemCheckboxModel } from 'src/app/shared/models/item-checkbox-model';
+import { ChangeDetectionStrategy } from "@angular/core";
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-edit-item',
   templateUrl: './edit-item.component.html',
   styleUrls: ['./edit-item.component.scss'],
@@ -34,7 +36,7 @@ export class EditItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemList = this.treeSvc.itemList.asObservable();
-    window.scrollTo(0, 0);;
+    window.scrollTo(0, 0);
     this.itemId = +this.rutaActiva.snapshot.params['id'];
     this.changeValue(this.itemId);
     this.nombreI = this.itemForm.get('nombre');
@@ -42,6 +44,8 @@ export class EditItemComponent implements OnInit {
     item.value = true;
     item.text = 'Carátula';
     item.conditional = true;
+    item.checked = false;
+    item.disabled = true
     this.itemsContact.push(item);
   }
 
@@ -81,7 +85,12 @@ export class EditItemComponent implements OnInit {
         file: item.file,
         hijos: item.hijos
       }, { emitEvent: true });
-      if(this.itemForm.get('hijos').value){
+      const itemCaratula = item.caratula;
+      for (let item of this.itemsContact) {
+        item.checked = itemCaratula;
+        item.disabled = false;
+      }
+      if (this.itemForm.get('hijos').value) {
         this.hijos = this.itemForm.get('hijos').value;
       }
     } else {
@@ -89,8 +98,17 @@ export class EditItemComponent implements OnInit {
       caratula.disable();
       file.disable();
       hijos.disable();
+      this.itemForm.setValue({
+        nombre: '',
+        caratula: false,
+        file: '',
+        hijos: []
+      }, { emitEvent: false });
+      for (let item of this.itemsContact) {
+        item.disabled = true;
+      }
     }
-   
+
   }
 
 

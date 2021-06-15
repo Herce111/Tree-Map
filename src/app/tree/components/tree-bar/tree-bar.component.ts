@@ -1,3 +1,4 @@
+import { ArrayType } from '@angular/compiler';
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -43,12 +44,15 @@ export class TreeBarComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.itemList = this.treeSvc.itemList.asObservable();
-    if(this.rutaActiva.snapshot.params['id']){
+    if (this.rutaActiva.snapshot.params['id']) {
       this.testVal = +this.rutaActiva.snapshot.params['id'];
-      this.visible=true;
+      this.visible = true;
     }
   }
 
+  get param(){
+    return this.rutaActiva.snapshot.params['id'];
+  }
 
   private onChange = (v: any) => { };
   private onTouched = () => { };
@@ -77,25 +81,36 @@ export class TreeBarComponent implements OnInit, ControlValueAccessor {
 
 
       //push de presupuesto
-      const pesupuestoCrumb = new ItemBreadcrumbsModel();
-      pesupuestoCrumb.text = 'Presupuesto';
-      pesupuestoCrumb.html = 'Presupuesto';
-      this.items.push(pesupuestoCrumb);
+      const presupuestoCrumb = new ItemBreadcrumbsModel();
+      presupuestoCrumb.text = 'Presupuesto';
+      presupuestoCrumb.html = 'Presupuesto';
+      this.items.push(presupuestoCrumb);
 
+      if (Array.isArray(parents)) {
+        //push de los padres
+        for (let parent of parents) {
+          if(parent.id!=hijo.id){
+            const itemCrumb = new ItemBreadcrumbsModel();
+            itemCrumb.text = parent.nombre;
+            itemCrumb.html = parent.nombre;
+            this.items.push(itemCrumb);
+          }
 
-      //push de los padres
-      const itemCrumb = new ItemBreadcrumbsModel();
-      itemCrumb.text = parents.nombre;
-      itemCrumb.html = parents.nombre;
-      this.items.push(itemCrumb);
-      
-      if (parents.id != hijo.id) {
-        //push del item actual
-        this.item = new ItemBreadcrumbsModel();
-        this.item.text = hijo.nombre;
-        this.item.html = hijo.nombre;
-        this.items.push(this.item);
+        }
       }
+
+      //push del item actual
+      this.item = new ItemBreadcrumbsModel();
+      this.item.text = hijo.nombre;
+      this.item.html = hijo.nombre;
+      this.items.push(this.item);
+      
+
+    }else{
+      const presupuestoCrumb = new ItemBreadcrumbsModel();
+      presupuestoCrumb.text = 'Presupuesto';
+      presupuestoCrumb.html = 'Presupuesto';
+      this.items.push(presupuestoCrumb);
     }
   }
 
