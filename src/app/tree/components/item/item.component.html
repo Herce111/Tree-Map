@@ -9,7 +9,7 @@
             <span style="cursor: pointer;" class="name" tabindex="0" [id]="'id'+this.item.id.toString()" (click)="click($event)"
                 (click)="testVal = item.id">{{item.nombre}}
             </span>
-            <span [innerHTML]="checked" [attr.ariaLabel]="'Caratula'"></span>
+            <b [innerHTML]="checked" [attr.ariaLabel]="'Caratula'"></b>
         </span>
         <a href="#" *ngIf="!item.hijos.length" class="c-link"
             style="margin-left: 30px;"><small>{{item.file}}</small></a>

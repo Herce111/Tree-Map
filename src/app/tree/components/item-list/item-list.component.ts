@@ -1,7 +1,8 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Item } from '../../models/item';
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.scss'],
@@ -36,8 +37,6 @@ export class ItemListComponent implements ControlValueAccessor, OnInit {
   public get icon() {
     return this.expanded ? 'fa-folder-open' : 'fa-folder';
   }
-
-  
 
 
 

@@ -1,9 +1,8 @@
-import { ArrayType } from '@angular/compiler';
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbsData } from 'desy-angular';
-import { Observable, observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ItemBreadcrumbsModel } from 'src/app/shared/models/item-breadcrumbs-model';
 import { Item } from '../../models/item';
 import { TreeViewService } from '../../services/tree-view.service';

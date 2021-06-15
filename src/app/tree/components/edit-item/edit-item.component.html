@@ -15,8 +15,6 @@
                 <h3 style="margin-left: 40px;" id="tree_label">Ubicación</h3>
                 <app-tree-bar [(ngModel)]="itemID" (ngModelChange)="changeValue($event)" name="itemId" [hijos]="itemLst"
                     appReplaceTag></app-tree-bar>
-                <!-- <app-item-list [(ngModel)]="itemID" (ngModelChange)="changeValue($event)" name="itemId" [hijos]="itemLst" appReplaceTag></app-item-list>
-                <small style="margin-left: 40px;">Es obligatorio seleccionar ubicación</small> -->
             </div>
 
             <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
