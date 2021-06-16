@@ -49,7 +49,7 @@ export class TreeBarComponent implements AfterViewInit, ControlValueAccessor {
     }
   }
 
-  get param(){
+  get param() {
     return this.rutaActiva.snapshot.params['id'];
   }
 
@@ -88,7 +88,7 @@ export class TreeBarComponent implements AfterViewInit, ControlValueAccessor {
       if (Array.isArray(parents)) {
         //push de los padres
         for (let parent of parents) {
-          if(parent.id!=hijo.id){
+          if (parent.id != hijo.id) {
             const itemCrumb = new ItemBreadcrumbsModel();
             itemCrumb.text = parent.nombre;
             itemCrumb.html = parent.nombre;
@@ -103,9 +103,9 @@ export class TreeBarComponent implements AfterViewInit, ControlValueAccessor {
       this.item.text = hijo.nombre;
       this.item.html = hijo.nombre;
       this.items.push(this.item);
-      
 
-    }else{
+
+    } else {
       const presupuestoCrumb = new ItemBreadcrumbsModel();
       presupuestoCrumb.text = 'Presupuesto';
       presupuestoCrumb.html = 'Presupuesto';

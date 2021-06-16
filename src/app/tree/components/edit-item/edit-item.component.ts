@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Item } from '../../models/item';
 import { TreeViewService } from '../../services/tree-view.service';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ItemCheckboxData } from 'desy-angular';
 import { ItemCheckboxModel } from 'src/app/shared/models/item-checkbox-model';
 import { ChangeDetectionStrategy } from "@angular/core";

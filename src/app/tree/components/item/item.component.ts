@@ -88,6 +88,7 @@ export class ItemComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   click(event: Event) {
+    this.testVal = this.item.id;
     const name = document.getElementsByClassName("name");
     for (let i = 0; i < name.length; i++) {
       this.renderer.removeClass(name[i], "focus:shadow-outline-focus");

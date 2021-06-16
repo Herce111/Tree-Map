@@ -4,7 +4,8 @@
     <app-item-list [(ngModel)]="testVal" [hijos]="itemLst"></app-item-list>
     <div>
       <desy-button class="desy-button" [html]="'Añadir secciones'" [routerLink]='"/treeView/addItem"'></desy-button>
-      <desy-button class="desy-button" [html]="'Editar secciones'" [routerLink]='["/treeView/editItem", testVal]'></desy-button>
+      <desy-button class="desy-button" [html]="'Editar secciones'" [routerLink]='["/treeView/editItem", testVal]'>
+      </desy-button>
     </div>
   </div>
 

@@ -6,33 +6,33 @@ import { TreeViewService } from '../../services/tree-view.service';
   selector: 'app-tree-view',
   templateUrl: './tree-view.component.html',
   styleUrls: ['./tree-view.component.scss'],
-  providers: [     
-    {       
-      provide: NG_VALUE_ACCESSOR, 
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TreeViewComponent),
-      multi: true     
-    } 
-  ],  
+      multi: true
+    }
+  ],
 })
-export class TreeViewComponent implements ControlValueAccessor{
+export class TreeViewComponent implements ControlValueAccessor {
 
   public nameComponent = 'Tree Map';
-  
-  public val:number;
+
+  public val: number;
   public get testVal() { return this.val; }
   public set testVal(val: number) {
     this.val = val;
     this.onChange(val)
     this.onTouched();
   }
-  constructor(private treeSvc: TreeViewService) {}
+  constructor(private treeSvc: TreeViewService) { }
 
-  get itemList(){
+  get itemList() {
     return this.treeSvc.itemList;
   }
 
-  private onChange = (v: any) => {};
-  private onTouched = () => {};
+  private onChange = (v: any) => { };
+  private onTouched = () => { };
 
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -51,7 +51,7 @@ export class TreeViewComponent implements ControlValueAccessor{
 
 
 
-  
+
 
 
 }

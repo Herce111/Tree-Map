@@ -1,17 +1,16 @@
-
 ul[role="tree"] {
   margin: 0;
   list-style: none;
   font-size: 120%;
 }
 
-button{
+button {
   background: transparent;
   border: none;
   outline: none;
 }
 
-.icono{
+.icono {
   font-size: 1.3rem;
 }
 
@@ -23,13 +22,13 @@ button{
   display: block;
 }
 
-.name.focus, .doc:focus{
+.name.focus,
+.doc:focus {
   border-color: black;
   background-color: #eee;
 }
 
-.name:hover, .doc:hover{
+.name:hover,
+.doc:hover {
   font-weight: bold;
 }
-
-

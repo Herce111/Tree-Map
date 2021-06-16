@@ -3,13 +3,16 @@
     <desy-button [html]="'Atras'" [type]="'button'" (click)="goBack()"></desy-button>
     <div id="cuerpo">
 
-        <desy-notification *ngIf="success" id="type-success" class="notification" [title]="{'text':'Item creado correctamente'}" type="success">
+        <desy-notification *ngIf="success" id="type-success" class="notification"
+            [title]="{'text':'Item creado correctamente'}" type="success">
         </desy-notification>
 
-        <desy-notification *ngIf="limiteLvl" id="type-alert" class="notification" [title]="{'text':'El elemento seleccionado no puede tener hijos'}" type="alert">
+        <desy-notification *ngIf="limiteLvl" id="type-alert" class="notification"
+            [title]="{'text':'El elemento seleccionado no puede tener hijos'}" type="alert">
         </desy-notification>
         <app-spaced *ngIf="limiteLvl&&generalError" withBorder="true"></app-spaced>
-        <desy-notification *ngIf="generalError" id="type-alert" class="notification" [title]="{'text':'Ha ocurrido un error, revise el formulario'}" type="alert">
+        <desy-notification *ngIf="generalError" id="type-alert" class="notification"
+            [title]="{'text':'Ha ocurrido un error, revise el formulario'}" type="alert">
         </desy-notification>
 
 
@@ -20,7 +23,7 @@
                 <app-item-list [(ngModel)]="itemId" name="itemId" [hijos]="itemLst" appReplaceTag></app-item-list>
             </div>
             <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
-                
+
                 <div id="inputNombre">
                     <desy-input [id]="'nombre-full'" [formControlName]="'nombre'" [labelText]="'Nombre'"
                         [errorMessageText]="(nombreI.invalid && (nombreI.dirty || nombreI.touched)) 

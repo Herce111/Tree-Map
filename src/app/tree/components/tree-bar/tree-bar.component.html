@@ -1,11 +1,14 @@
 <div *ngIf="(itemList | async) as itemLst">
 
     <div class="breadcrumbs">
-        <desy-breadcrumbs class="block-left" [id]="'breadcrumbs'" [collapseOnMobile]=true [items]="items"></desy-breadcrumbs>
-        <button class="block-left noStyle"><span (click)="visible = !visible" class='far' [innerHTML]="icon"></span></button>
+        <desy-breadcrumbs class="block-left" [id]="'breadcrumbs'" [collapseOnMobile]=true [items]="items">
+        </desy-breadcrumbs>
+        <button class="block-left noStyle"><span (click)="visible = !visible" class='far'
+                [innerHTML]="icon"></span></button>
     </div>
 
     <div *ngIf="visible">
-        <app-item-list [(ngModel)]="testVal" name="itemId" [hijos]="itemLst" [parametro]="param" appReplaceTag></app-item-list>
+        <app-item-list [(ngModel)]="testVal" name="itemId" [hijos]="itemLst" [parametro]="param" appReplaceTag>
+        </app-item-list>
     </div>
 </div>

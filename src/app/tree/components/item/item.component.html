@@ -7,7 +7,7 @@
     <span (dblclick)="expanded = !expanded">
         <span>
             <span style="cursor: pointer;" class="name" tabindex="0" [id]="'name'+this.item.id.toString()"
-                (click)="click($event)" (keypress)="pressIntroOrSpace($event)" (click)="testVal = item.id">{{item.nombre}}
+                (click)="click($event)" (keypress)="pressIntroOrSpace($event)">{{item.nombre}}
             </span>
             <b [innerHTML]="checked" [attr.ariaLabel]="'Caratula'"></b>
         </span>

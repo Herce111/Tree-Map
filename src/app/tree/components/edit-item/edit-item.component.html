@@ -3,10 +3,12 @@
     <desy-button [html]="'Atras'" [type]="'button'" (click)="goBack()"></desy-button>
     <div id="cuerpo">
 
-        <desy-notification *ngIf="success" id="type-success" class="notification" [title]="{'text':'Item modificado correctamente'}" type="success">
+        <desy-notification *ngIf="success" id="type-success" class="notification"
+            [title]="{'text':'Item modificado correctamente'}" type="success">
         </desy-notification>
 
-        <desy-notification *ngIf="generalError" id="type-alert" class="notification" [title]="{'text':'Ha ocurrido un error, revise el formulario'}" type="alert">
+        <desy-notification *ngIf="generalError" id="type-alert" class="notification"
+            [title]="{'text':'Ha ocurrido un error, revise el formulario'}" type="alert">
         </desy-notification>
 
 
@@ -42,8 +44,8 @@
                     </desy-input>
                 </div>
 
-                <desy-checkboxes *ngIf="hijos" formControlName="hijos" legendText="Hijos a conservar" hintText="Deselecciona los hijos a eliminar"
-                    [items]="itemsToDelete" id="hijos" name="hijos">
+                <desy-checkboxes *ngIf="hijos" formControlName="hijos" legendText="Hijos a conservar"
+                    hintText="Deselecciona los hijos a eliminar" [items]="itemsToDelete" id="hijos" name="hijos">
                 </desy-checkboxes>
 
                 <div class="centerFlex">

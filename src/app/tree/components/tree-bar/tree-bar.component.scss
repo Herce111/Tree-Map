@@ -1,13 +1,13 @@
-.a:hover{
+.a:hover {
     outline: 1px solid black;
 }
 
-.arrow{
+.arrow {
     margin-left: 5px;
 }
 
-.noStyle{
-    background-color:transparent;
+.noStyle {
+    background-color: transparent;
     border: none;
     height: 30px;
     width: 30px;
@@ -16,14 +16,14 @@
     cursor: pointer;
 }
 
-.breadcrumbs{
+.breadcrumbs {
     display: block;
     width: 100%;
     overflow: hidden;
     cursor: pointer;
 }
 
-.block-left{
+.block-left {
     display: block;
     float: left;
 }

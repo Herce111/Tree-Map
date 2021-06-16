@@ -6,21 +6,21 @@ import { Item } from '../../models/item';
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.scss'],
-  providers: [     
-    {       
-      provide: NG_VALUE_ACCESSOR, 
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ItemListComponent),
-      multi: true     
-    } 
-  ],  
+      multi: true
+    }
+  ],
 })
 export class ItemListComponent implements ControlValueAccessor, OnInit {
 
   public expanded = false;
-  @Input() public hijos:Item[];
-  @Input() public parametro:string;
+  @Input() public hijos: Item[];
+  @Input() public parametro: string;
   public item: Item;
-  public val:number;
+  public val: number;
   public get testVal() { return this.val; }
   public set testVal(val: number) {
     this.val = val;
@@ -28,10 +28,10 @@ export class ItemListComponent implements ControlValueAccessor, OnInit {
     this.onTouched();
   }
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(){
-    this.item = new Item({nombre: 'Presupuesto', hijos: this.hijos});
+  ngOnInit() {
+    this.item = new Item({ nombre: 'Presupuesto', hijos: this.hijos });
   }
 
   public get icon() {
@@ -40,8 +40,8 @@ export class ItemListComponent implements ControlValueAccessor, OnInit {
 
 
 
-  private onChange = (v: any) => {};
-  private onTouched = () => {};
+  private onChange = (v: any) => { };
+  private onTouched = () => { };
 
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -58,7 +58,7 @@ export class ItemListComponent implements ControlValueAccessor, OnInit {
     throw new Error('Method not implemented.');
   }
 
-  
+
 
 }
 
