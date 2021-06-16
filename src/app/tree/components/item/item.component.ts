@@ -37,7 +37,7 @@ export class ItemComponent implements ControlValueAccessor, AfterViewInit {
     this.onTouched();
   }
 
-  constructor(private renderer: Renderer2, private treeSvc: TreeViewService) {}
+  constructor(private renderer: Renderer2, private treeSvc: TreeViewService) { }
 
 
   ngAfterViewInit(): void {
@@ -46,6 +46,14 @@ export class ItemComponent implements ControlValueAccessor, AfterViewInit {
         const name = document.getElementById('name' + this.item.id.toString());
         name.click();
       }
+
+      if (this.item.id === +this.parametro) {
+        this.val = this.item.id;
+        console.log('Es el elemento', +this.parametro, this.item.id);
+      } else if (this.treeSvc.someChildHasIdOf(+this.parametro, this.item)) {
+        this.expanded = true;
+      }
+
     }
   }
 
@@ -71,7 +79,6 @@ export class ItemComponent implements ControlValueAccessor, AfterViewInit {
 
 
   private onChange = (v: any) => {
-    
   };
   private onTouched = () => { };
 
@@ -83,17 +90,7 @@ export class ItemComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   writeValue(val: number): void {
-    console.log(val);
     this.val = val;
-    // if (this.item.id === val) {
-    //   this.val = this.item.id;
-    //   //console.log('Es el elemento', val, this.item.id);
-    // } else if (this.treeSvc.someChildHasIdOf(val, this.item)) {
-    //   this.expanded = true;
-    //   //console.log('Uno de sus hijos es el elemento', val, this.item.id);
-    // } else {
-    //   console.log('Vete a saber que ocurre', val, this.item.id);
-    // }
   }
 
   setDisabledState?(isDisabled: boolean): void {
