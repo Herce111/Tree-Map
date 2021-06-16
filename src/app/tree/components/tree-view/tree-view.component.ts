@@ -16,7 +16,7 @@ import { TreeViewService } from '../../services/tree-view.service';
 })
 export class TreeViewComponent implements ControlValueAccessor {
 
-  public nameComponent = 'Tree Map';
+  public nameComponent = 'Tree View';
 
   public val: number;
   public get testVal() { return this.val; }

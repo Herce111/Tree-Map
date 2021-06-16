@@ -50,6 +50,28 @@ constructor() { }
     return null;
   }
 
+  public someChildHasIdOf(id: number, item: Item){
+    // return item.hijos.reduce(
+    //   (acc: boolean, i: Item) =>
+    //     acc ? acc : i.id === id || this.someChildHasIdOf(id, i),
+    //   false
+    // );
+    
+    // if (item.id === id) {
+    //   return true;
+    // }
+    //console.log('someChildHasIdOf', id, item.id, item.id === id);
+    return item.hijos.some(i => i.id === id || this.someChildHasIdOf(id, i));
+
+
+    // for (const hijo of item.hijos) {
+    //   const itemFound = this.someChildHasIdOf(id, hijo);
+    //   if (itemFound) { return true; }
+    // }
+
+    // return false;
+  }
+
   private getChildrenCount(item: Item) {
   return item.hijos.reduce((acc, it) => acc + this.getChildrenCount(it), item.hijos.length);
 }
