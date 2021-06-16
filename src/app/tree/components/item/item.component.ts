@@ -5,13 +5,13 @@ import { Item } from '../../models/item';
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
-  providers: [     
-    {       
-      provide: NG_VALUE_ACCESSOR, 
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ItemComponent),
-      multi: true     
-    } 
-  ],  
+      multi: true
+    }
+  ],
 })
 export class ItemComponent implements ControlValueAccessor, AfterViewInit {
 
@@ -24,36 +24,53 @@ export class ItemComponent implements ControlValueAccessor, AfterViewInit {
       : this.expanded ? '&#9660;' : '&#9654;';
   }
 
-  public get checked(){
+  public get checked() {
     return this.item.caratula ? '&#10003;' : '';
   }
 
-  public val:number;
+  public val: number;
   public get testVal() { return this.val; }
   public set testVal(val: number) {
     this.val = val;
     this.onChange(val)
     this.onTouched();
   }
-  
+
   constructor(private renderer: Renderer2) {
   }
 
 
   ngAfterViewInit(): void {
-    if(this.parametro && this.parametro!='undefined'){
-      if(+this.parametro == this.item.id){
-        const name = document.getElementById('name'+this.item.id.toString());
+    if (this.parametro && this.parametro != 'undefined') {
+      if (+this.parametro == this.item.id) {
+        const name = document.getElementById('name' + this.item.id.toString());
         name.click();
       }
     }
   }
-  
+
+  pressIntroOrSpace(event: KeyboardEvent) {
+    if (event.code == 'Space' || event.code == 'Enter') {
+      this.testVal = this.item.id;
+      const name = document.getElementsByClassName("name");
+      for (let i = 0; i < name.length; i++) {
+        this.renderer.removeClass(name[i], "focus:shadow-outline-focus");
+        this.renderer.removeClass(name[i], "focus:text-black");
+        this.renderer.removeClass(name[i], "focus:outline-none");
+        this.renderer.removeClass(name[i], "focus:bg-warning-base");
+      }
+      this.renderer.addClass(event.target, "focus:shadow-outline-focus");
+      this.renderer.addClass(event.target, "focus:text-black");
+      this.renderer.addClass(event.target, "focus:outline-none");
+      this.renderer.addClass(event.target, "focus:bg-warning-base");
+    }
+  }
 
 
 
-  private onChange = (v: any) => {};
-  private onTouched = () => {};
+
+  private onChange = (v: any) => { };
+  private onTouched = () => { };
 
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -70,9 +87,9 @@ export class ItemComponent implements ControlValueAccessor, AfterViewInit {
     throw new Error('Method not implemented.');
   }
 
-  click(event:Event){
+  click(event: Event) {
     const name = document.getElementsByClassName("name");
-    for(let i=0;i<name.length;i++){
+    for (let i = 0; i < name.length; i++) {
       this.renderer.removeClass(name[i], "focus:shadow-outline-focus");
       this.renderer.removeClass(name[i], "focus:text-black");
       this.renderer.removeClass(name[i], "focus:outline-none");
@@ -84,6 +101,6 @@ export class ItemComponent implements ControlValueAccessor, AfterViewInit {
     this.renderer.addClass(event.target, "focus:bg-warning-base");
   }
 
-  
+
 
 }
