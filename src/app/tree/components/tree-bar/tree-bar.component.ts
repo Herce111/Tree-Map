@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbsData } from 'desy-angular';
@@ -19,7 +19,7 @@ import { TreeViewService } from '../../services/tree-view.service';
     }
   ],
 })
-export class TreeBarComponent implements OnInit, ControlValueAccessor {
+export class TreeBarComponent implements AfterViewInit, ControlValueAccessor {
 
   public visible: boolean;
   public val: number;
@@ -41,7 +41,7 @@ export class TreeBarComponent implements OnInit, ControlValueAccessor {
   item: ItemBreadcrumbsModel;
   constructor(private rutaActiva: ActivatedRoute, private treeSvc: TreeViewService) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.itemList = this.treeSvc.itemList.asObservable();
     if (this.rutaActiva.snapshot.params['id']) {
       this.testVal = +this.rutaActiva.snapshot.params['id'];

@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, forwardRef, Input, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, Input, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Item } from '../../models/item';
 @Component({
@@ -13,7 +13,7 @@ import { Item } from '../../models/item';
     } 
   ],  
 })
-export class ItemComponent implements ControlValueAccessor, AfterViewChecked {
+export class ItemComponent implements ControlValueAccessor, AfterViewInit {
 
   public expanded = false;
   @Input() item: Item;
@@ -40,19 +40,13 @@ export class ItemComponent implements ControlValueAccessor, AfterViewChecked {
   }
 
 
-  ngAfterViewChecked(): void {
+  ngAfterViewInit(): void {
     if(this.parametro && this.parametro!='undefined'){
-      this.expanded=true;
       if(+this.parametro == this.item.id){
-        this.expanded=false;
-        const el = document.getElementById('id'+this.item.id.toString());
-        el.click();
+        const name = document.getElementById('name'+this.item.id.toString());
+        name.click();
       }
-
     }
-
-
-    
   }
   
 
